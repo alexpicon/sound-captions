@@ -52,27 +52,6 @@ tr.unconfirmed td:nth-child(5) { color: #ffe3a0; }
 .empty { text-align: center; padding: 30px; color: var(--muted); }
 footer { text-align: center; font-size: 12px; margin-top: 24px; }
 [hidden] { display: none !important; }
-.layout-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 13px; color: var(--muted); }
-.layout-bar > span:first-child { flex: 1 1 300px; }
-.layout-bar.floating-controls { position: fixed; top: 8px; right: 8px; z-index: 100000; margin: 0; padding: 6px; max-width: calc(100vw - 16px); border: 1px solid var(--line); border-radius: 10px; background: #101513; }
-.layout-bar.floating-controls > span { display: none; }
-.clip-settings { margin-bottom: 10px; }
-.clip-settings summary { cursor: pointer; color: var(--muted); font-size: 13px; }
-#layout-status { flex-basis: 100%; }
-.panel-tools { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #1a231e; padding-bottom: 12px; }
-.panel-grip { cursor: grab; touch-action: none; user-select: none; color: var(--muted); border-style: dashed; min-height: 34px; padding: 6px 10px; }
-.panel-grip:active { cursor: grabbing; }
-.panel-dock { min-height: 34px; padding: 6px 10px; }
-.floating-panel { position: fixed; margin: 0; resize: both; overflow: auto; min-width: 260px; min-height: 180px; max-width: calc(100vw - 16px); max-height: calc(100dvh - 16px); box-shadow: 0 12px 45px #0009; }
-.floating-panel .panel-tools { position: sticky; top: -1px; z-index: 3; }
-.floating-panel .section-heading { gap: 8px; }
-.floating-panel video { max-height: 32vh; }
-.floating-panel .table-wrap { max-height: none; }
-.floating-panel .time-grid { gap: 8px; }
-.floating-panel .time-grid button { white-space: normal; }
-.panel-placeholder { display: flex; align-items: center; justify-content: center; min-height: 130px; border: 1px dashed var(--line); border-radius: 16px; color: var(--muted); }
-body.dragging-panels, body.dragging-panels * { cursor: grabbing !important; user-select: none !important; }
-@media (max-width: 600px) { .floating-panel { padding: 14px; } .floating-panel h2 { font-size: 18px; } }
 @media (max-width: 900px) { body { padding: 24px 16px; } main { grid-template-columns: 1fr; } .panel { padding: 18px; } .annotations { grid-column: auto; } .badge { display: none; } }
 @media (max-width: 900px) {
   table, tbody { display: block; }
@@ -95,3 +74,66 @@ body.dragging-panels, body.dragging-panels * { cursor: grabbing !important; user
   tbody td:last-child { display: flex; flex-wrap: wrap; gap: 8px; }
   tbody td button { margin: 0; }
 }
+
+/* Clickable presets replace the floating/dragging implementation entirely. */
+body { max-width: none; padding: 16px; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+header { flex: none; margin-bottom: 12px; }
+h1 { font-size: 27px; }
+.eyebrow { font-size: 10px; }
+.layout-bar { display: flex; flex: none; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--muted); font-size: 13px; }
+.layout-bar button { min-height: 36px; padding: 7px 14px; }
+.layout-bar button[aria-pressed="true"] { background: var(--accent); color: #17210d; border-color: var(--accent); }
+#layout-status { margin-left: auto; font-size: 12px; }
+main { flex: 1; min-height: 0; gap: 12px; align-items: stretch; }
+.panel { grid-column: auto; min-height: 0; overflow: auto; padding: 18px; }
+.clip-panel { grid-area: player; }
+.editor { grid-area: editor; }
+.annotations { grid-area: annotations; }
+body[data-layout="review"] main { grid-template-areas: "player annotations" "editor annotations"; grid-template-columns: minmax(260px, .9fr) minmax(300px, 1.25fr); grid-template-rows: minmax(180px, .85fr) minmax(230px, 1.15fr); }
+body[data-layout="columns"] main { grid-template-areas: "player editor annotations"; grid-template-columns: minmax(260px, 1fr) minmax(280px, 1fr) minmax(300px, 1.15fr); grid-template-rows: minmax(0, 1fr); }
+body[data-layout="video"] main { grid-template-areas: "player editor" "player annotations"; grid-template-columns: minmax(320px, 1.2fr) minmax(300px, 1fr); grid-template-rows: minmax(230px, 1fr) minmax(180px, 1fr); }
+.clip-settings { margin: 0 0 10px; }
+.clip-settings summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+.section-heading { margin-bottom: 12px; }
+video { max-height: 35vh; }
+body[data-layout="review"] video { max-height: 17vh; }
+body[data-layout="video"] video { max-height: 52vh; }
+.transport { gap: 6px; margin-top: 8px; }
+.transport button { min-height: 34px; padding: 7px 9px; }
+.clock { font-size: 23px; margin-top: 8px; }
+.panel > .hint { font-size: 12px; }
+.table-wrap { max-height: none; }
+footer { display: none; }
+@media (max-width: 950px) {
+  body { padding: 10px; }
+  header h1 { font-size: 22px; }
+  header .eyebrow, header .badge { display: none; }
+  #layout-status { display: none; }
+  body[data-layout="columns"] main { grid-template-areas: "player editor" "annotations annotations"; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(230px, 1fr) minmax(180px, 1fr); }
+  body[data-layout="review"] main { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  body[data-layout="video"] main { grid-template-areas: "player player" "editor annotations"; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(180px, .8fr) minmax(230px, 1.2fr); }
+  .panel { padding: 12px; }
+  h2 { font-size: 17px; }
+  .time-grid { grid-template-columns: 1fr; gap: 0; }
+}
+@media (max-width: 480px), (max-height: 560px) {
+  body { overflow: auto; height: auto; min-height: 100dvh; }
+  body[data-layout] main { flex: none; grid-template-areas: "player" "editor" "annotations"; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; }
+  .panel { max-height: 70dvh; }
+  .layout-bar { position: sticky; top: 0; z-index: 4; background: #101513; padding: 8px 0; }
+}
+/* Compact forms keep the edit/confirm buttons visible in the split presets. */
+.editor #annotation-form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px 10px; grid-template-areas: "times times" "soundlabel directionlabel" "sound direction" "help help" "actions actions"; }
+.editor .time-grid { grid-area: times; }
+.editor label[for="label"] { grid-area: soundlabel; }
+.editor #label { grid-area: sound; }
+.editor label[for="direction"] { grid-area: directionlabel; }
+.editor #direction { grid-area: direction; }
+.editor #direction-help { grid-area: help; }
+.editor .actions { grid-area: actions; margin-top: 6px; gap: 6px; }
+.editor label { margin: 4px 0; font-size: 13px; }
+.editor input, .editor select, .editor button { min-height: 36px; padding: 7px 9px; }
+body:not([data-layout="columns"]) .editor #direction-help, body:not([data-layout="columns"]) .editor > .hint { display: none; }
+body[data-layout="review"] .clip-panel > .hint, body[data-layout="review"] .clock { display: none; }
+body[data-layout="review"] video { max-height: 15vh; }
+@media (max-width: 950px) { .editor .time-grid { grid-template-columns: 1fr 1fr; gap: 8px; } }
