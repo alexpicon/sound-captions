@@ -14,8 +14,11 @@
   </header>
   <main>
     <section class="panel clip-panel" aria-labelledby="clip-heading">
-      <div class="section-heading"><h2 id="clip-heading">Your clip</h2><span class="muted">6 test clips sealed</span></div>
-      <label for="clip">Development clip</label>
+      <div class="section-heading"><h2 id="clip-heading">Your clip</h2><span id="mode-badge" class="muted">Development labeling</span></div>
+      <label for="mode">Labeling mode</label>
+      <select id="mode"><option value="development">Training clips · review model guesses</option><option value="test">Label test clips · no model guesses</option></select>
+      <p id="mode-help" class="hint">Guesses are unconfirmed until you check them. Only confirmed labels are saved to CSV.</p>
+      <label for="clip">Clip</label>
       <select id="clip" disabled><option>Loading clips…</option></select>
       <p id="clip-info" class="muted">Choose a clip to begin.</p>
       <video id="player" controls preload="metadata" aria-label="Stereo clip player"></video>
@@ -48,9 +51,11 @@
       <p class="hint">Mark a short burst of footsteps or gunfire as one event. Talking and music can overlap game sounds and each other. Leave silence unmarked; it supplies “nothing” examples later.</p>
     </section>
     <section class="panel annotations" aria-labelledby="annotations-heading">
-      <div class="section-heading"><div><h2 id="annotations-heading">Annotations <span id="count">0</span></h2><p id="save-path" class="muted">CSV saved beside the original clip.</p></div><div class="actions"><span id="save-state">No changes</span><button id="undo" type="button" disabled>Undo</button><button id="save" type="button" class="primary" disabled>Save CSV <kbd>⌘/Ctrl S</kbd></button></div></div>
+      <div class="section-heading"><div><h2 id="annotations-heading">Annotations <span id="count">0</span></h2><p id="save-path" class="muted">CSV saved beside the original clip.</p></div><div class="actions"><span id="save-state">No changes</span><button id="undo" type="button" disabled>Undo</button><button id="save" type="button" class="primary" disabled>Save CSV <kbd>⌘/Ctrl S</kbd></button><button id="finish" type="button" disabled>Finish reviewing clip</button></div></div>
+      <p id="review-summary" class="hint">Review every guess and listen for anything the model missed before finishing.</p>
+      <p id="augmentation-state" class="hint"></p>
       <p id="message" role="status" aria-live="polite">Ready.</p>
-      <div class="table-wrap"><table><thead><tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Sound / context</th><th scope="col">Direction</th><th scope="col">Actions</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Sound / context</th><th scope="col">Direction</th><th scope="col">Review status</th><th scope="col">Actions</th></tr></thead><tbody id="rows"></tbody></table></div>
       <p id="empty" class="empty">No labels yet. Play the clip, mark a start and end, then add what you hear.</p>
     </section>
   </main>

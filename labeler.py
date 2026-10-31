@@ -24,7 +24,7 @@ FIELDS = ["start_s", "end_s", "label", "direction"]
 SOUNDS = {"footsteps", "gunshot", "reload", "explosion"}
 CONTEXT = {"talking", "music"}
 DIRECTIONS = {"left", "right", "center", "unknown"}
-WRITE_LOCK = threading.Lock()
+WRITE_LOCK = threading.RLock()
 
 
 def validate_rows(rows, duration):
@@ -72,6 +72,7 @@ class Dataset:
         manifest = json.loads((self.root / "splits.json").read_text())
         sealed = {p for group in manifest["sealed_tests"].values() for p in group}
         self.clips = {}
+        self.test_clips = {}
         self.metadata_cache = {}
         for group, paths in manifest["development"].items():
             for relative in paths:
@@ -82,17 +83,32 @@ class Dataset:
                     raise ValueError("Invalid development media path.")
                 clip_id = hashlib.sha256(relative.encode()).hexdigest()[:16]
                 self.clips[clip_id] = {"path": path, "relative": relative, "group": group}
+        for group, paths in manifest["sealed_tests"].items():
+            if group == "lab_final":
+                continue  # This answer key already exists; keep the final lab clip closed.
+            for relative in paths:
+                path = (self.root / relative).resolve()
+                if not path.is_relative_to(self.root) or path.suffix not in {".mp4", ".wav"}:
+                    raise ValueError("Invalid test media path.")
+                key = hashlib.sha256(relative.encode()).hexdigest()[:16]
+                self.test_clips[key] = {"path": path, "relative": relative, "group": group}
 
-    def clip(self, clip_id):
-        if clip_id not in self.clips:
+    def collection(self, mode="development"):
+        if mode not in {"development", "test"}:
+            raise ValueError("Unknown labeling mode.")
+        return self.test_clips if mode == "test" else self.clips
+
+    def clip(self, clip_id, mode="development"):
+        clips = self.collection(mode)
+        if clip_id not in clips:
             raise KeyError("Clip is unavailable or sealed.")
-        clip = self.clips[clip_id]
+        clip = clips[clip_id]
         if not clip["path"].is_file():
             raise FileNotFoundError("Media file is missing from this checkout.")
         return clip
 
-    def metadata(self, clip_id):
-        clip = self.clip(clip_id)
+    def metadata(self, clip_id, mode="development"):
+        clip = self.clip(clip_id, mode)
         path = clip["path"]
         stamp = path.stat().st_mtime_ns
         cached = self.metadata_cache.get(clip_id)
@@ -116,15 +132,15 @@ class Dataset:
         self.metadata_cache[clip_id] = (stamp, data)
         return data
 
-    def annotations(self, clip_id):
-        path = self.clip(clip_id)["path"].with_suffix(".csv")
+    def annotations(self, clip_id, mode="development"):
+        path = self.clip(clip_id, mode)["path"].with_suffix(".csv")
         with WRITE_LOCK:
-            return {"rows": validate_rows(read_annotations(path), self.metadata(clip_id)["duration"]),
+            return {"rows": validate_rows(read_annotations(path), self.metadata(clip_id, mode)["duration"]),
                     "revision": revision(path), "csv_path": str(path.relative_to(self.root))}
 
-    def save(self, clip_id, rows, expected_revision):
-        path = self.clip(clip_id)["path"].with_suffix(".csv")
-        clean = validate_rows(rows, self.metadata(clip_id)["duration"])
+    def save(self, clip_id, rows, expected_revision, mode="development"):
+        path = self.clip(clip_id, mode)["path"].with_suffix(".csv")
+        clean = validate_rows(rows, self.metadata(clip_id, mode)["duration"])
         with WRITE_LOCK:
             if expected_revision != revision(path):
                 raise FileExistsError("CSV changed in another window. Reload this clip before saving.")
@@ -190,19 +206,25 @@ class Handler(BaseHTTPRequestHandler):
         url = urlsplit(self.path)
         params = parse_qs(url.query)
         clip_id = params.get("id", [""])[0]
+        mode = params.get("mode", ["development"])[0]
         try:
             if url.path == "/api/clips":
                 clips = []
-                for key, clip in self.server.dataset.clips.items():
+                for key, clip in self.server.dataset.collection(mode).items():
                     clips.append({"id": key, "name": clip["path"].stem, "group": clip["group"],
                                   "available": clip["path"].is_file()})
                 self.json(200, {"clips": clips, "sealed_count": 6})
             elif url.path == "/api/annotations":
-                self.json(200, self.server.dataset.annotations(clip_id))
+                from review import workspace
+                self.json(200, workspace(self.server.dataset, clip_id, mode))
             elif url.path == "/api/metadata":
-                self.json(200, self.server.dataset.metadata(clip_id))
+                self.json(200, self.server.dataset.metadata(clip_id, mode))
             elif url.path == "/media":
-                self.send_file(self.server.dataset.clip(clip_id)["path"], ranges=True)
+                self.send_file(self.server.dataset.clip(clip_id, mode)["path"], ranges=True)
+            elif url.path == "/api/augmentation":
+                from review import augmentation_status
+                self.server.dataset.clip(clip_id)  # Development only.
+                self.json(200, augmentation_status(self.server.dataset.root, clip_id))
             elif url.path in {"/", "/app.js", "/styles.css"}:
                 name = "index.html" if url.path == "/" else url.path[1:]
                 self.send_file(self.server.dataset.root / "labeler-ui" / name)
@@ -234,7 +256,13 @@ class Handler(BaseHTTPRequestHandler):
             body = json.loads(self.rfile.read(length))
             if not isinstance(body, dict):
                 raise ValueError("Expected a JSON object.")
-            self.json(200, self.server.dataset.save(body.get("id"), body.get("rows"), body.get("revision")))
+            mode = body.get("mode", "development")
+            if "review" in body:
+                from review import save_workspace
+                value = save_workspace(self.server.dataset, body, mode)
+            else:
+                value = self.server.dataset.save(body.get("id"), body.get("rows"), body.get("revision"), mode)
+            self.json(200, value)
         except FileExistsError as error:
             self.json(409, {"error": str(error)})
         except (KeyError, FileNotFoundError):
@@ -289,7 +317,7 @@ def main():
         parser.error("ffprobe is needed for MP4 metadata. Install FFmpeg first (Mac: brew install ffmpeg).")
     server = make_server(port=args.port)
     print(f"Sound Captions labeler: http://127.0.0.1:{server.server_port}", flush=True)
-    print("Local only. Sealed tests are blocked. Ctrl+C to stop.", flush=True)
+    print("Local only. Test-labeling mode never runs model guesses. Ctrl+C to stop.", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -299,4 +327,7 @@ def main():
 
 
 if __name__ == "__main__":
+    # Keep one shared lock/module when review helpers import this running script.
+    import sys
+    sys.modules["labeler"] = sys.modules[__name__]
     main()

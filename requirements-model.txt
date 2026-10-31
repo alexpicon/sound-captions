@@ -1,0 +1,7 @@
+# Python 3.11; offline inference after the first model download.
+ai-edge-litert==2.3.0
+numpy==1.26.4
+torch==2.5.1
+torchaudio==2.5.1
+demucs==4.0.1
+soundfile==0.13.1

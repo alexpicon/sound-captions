@@ -2,11 +2,11 @@
 
 Important game sounds, captioned for deaf and hard-of-hearing viewers and people watching muted.
 
-**Step 1 is ready: local labeling workspace.** Detection, training, live capture, overlay, and Twitch bot are future steps. Nothing in the labeling tool connects to Twitch, uploads files, or runs a model.
+**Step 1 is ready: local labeling workspace, with pretrained suggestions and blind test labeling.** Training rounds, live capture, overlay, and Twitch bot are future steps. No files are uploaded and nothing connects to Twitch. Offline YAMNet suggestions and Demucs training augmentation run locally.
 
 ## Try the labeling tool
 
-Python 3.10+ and FFmpeg's `ffprobe` are required. Both are already available on the development Mac. No Python or JavaScript packages are needed.
+Python 3.10+ and FFmpeg are required. Both are already available on the development Mac. The web server needs no extra packages; the model tools use a separate Python 3.11 `.venv-model` environment, already installed on this Mac.
 
 ```sh
 cd /Users/alexnpc/hackathons/sound-captions
@@ -15,11 +15,17 @@ python3 labeler.py
 
 Open **http://127.0.0.1:8765** in Chrome or Safari. Keep the terminal open; Ctrl+C stops the server. Use `python3 labeler.py --port 8766` if the port is busy. On another machine, install Python and FFmpeg first and put the untracked media back at the paths in `splits.json`.
 
-1. Pick a development clip. Wear headphones to hear left versus right.
+1. Pick **Training clips · review model guesses**, then a clip. Wear headphones to hear left versus right. Existing Xonotic CSV labels are preserved; the eleven unlabeled Valorant development videos have pretrained suggestions.
 2. Play/pause and find the beginning of a sound. Click **Set start here**.
 3. Find its end and click **Set end here**. You can also type precise times.
 4. Choose the sound and direction, then **Replay selection** to check it.
-5. Click **Add annotation**, then **Save CSV**. Saving writes a four-column CSV beside the original media file. Existing labels reopen automatically.
+5. Click **Add annotation**, then **Save CSV**. Saving writes a four-column CSV beside the original media file. Existing labels reopen automatically. Model guesses stay separate until explicitly confirmed.
+
+Unconfirmed suggestions have their own status and model score (not an accuracy percentage). Use **Play**, **Confirm**, **Edit** then **Confirm corrected annotation**, or **Delete**. Changes to suggestion decisions have Undo and persist when you save. No bulk-confirm action is provided. Add events the model missed, including reloads: the supplied YAMNet class list has no reload class.
+
+**Save CSV** keeps partial progress without approving the whole clip for training. Once every guess is resolved and you have listened through the entire clip, click **Finish reviewing clip**. This saves confirmed labels, marks the full clip reviewed, and queues an aligned stereo voice-reduced copy in the background. The status appears beneath the buttons. Any later label edit invalidates completion until you finish again. Completion applies to the whole clip, including background intervals, so missing annotations do not silently become training negatives.
+
+To label the answer keys, choose **Label test clips · no model guesses**. This mode lists only Valorant 01, 02, 05, 10 and CS 16, plays the original mixed audio, and allows manual CSV labels. It never reads model suggestion caches, shows model scores, runs voice removal, or supplies training examples. Preparing answer labels is distinct from evaluating a model: baseline/final model scoring remains sealed. `clip_voice_final` already has labels and stays inaccessible in both modes.
 
 Use row buttons to play, edit, or delete an annotation. **Undo** restores annotation changes during this clip session. Saving an existing CSV first copies its exact previous contents into `.local/backups/<clip-id>/`. Multiple browser windows cannot silently overwrite each other's saves. Switching clips or closing the page warns about unsaved list changes. Editing fields is a draft: click Add/Update before saving the CSV.
 
@@ -40,7 +46,7 @@ The original synthetic CSVs do not include talking/music intervals. Add these du
 
 ## Frozen data roles
 
-`splits.json` records whole-clip roles and blocks all six test media files and their labels from the labeling server. There is deliberately no unlock control. No model evaluation has occurred.
+`splits.json` records whole-clip roles. Development mode cannot access test media or labels. The separate test-labeling mode exposes the five unlabeled real answer keys only, with no model assistance. The final lab clip remains inaccessible. No model evaluation has occurred.
 
 | Role | Data | Use |
 |---|---|---|
@@ -50,9 +56,35 @@ The original synthetic CSVs do not include talking/music intervals. Add these du
 | Sealed lab test | `clip_voice_final` | Before/final comparison only; never training or tuning |
 | Sealed unseen-game test | 16, CS | Never training or tuning; report unseen-game transfer |
 
-The four Valorant holdouts were selected using the supplied descriptions, before evaluation: 01 is a hype/talking candidate, 05 a quiet clutch candidate, 02 a long busy fight, and 10 a defuse scenario. Their audio conditions still need independent annotation when the baseline test is opened; those descriptions are not verified context labels. Freeze this selection before any modeling. Test labeling/scoring will be a separate explicit baseline/final workflow, not an unrestricted development-tool option.
+The four Valorant holdouts were selected using the supplied descriptions, before evaluation: 01 is a hype/talking candidate, 05 a quiet clutch candidate, 02 a long busy fight, and 10 a defuse scenario. Their audio conditions need independent human annotation in test-labeling mode; those descriptions are not verified context labels. The selection stays frozen. Model scoring is still limited to the before baseline and final comparison.
 
 Xonotic provides nine development clips, close to the requested ten. Its synthetic mixes reuse the same 19 source sounds, so its eventual score demonstrates adaptation to that controlled library, not proven generalization to fresh gameplay. Keep source-family overlap in mind even with whole-clip splitting.
+
+## Local model setup and training copies
+
+Already installed here; to reproduce on another machine with [uv](https://docs.astral.sh/uv/):
+
+```sh
+uv venv --python 3.11 .venv-model
+uv pip install --python .venv-model/bin/python -r requirements-model.txt
+.venv-model/bin/python model_tools.py suggest
+```
+
+On Windows, use `.venv-model/Scripts/python.exe` instead. `suggest` only accepts development IDs, defaults to the eleven Valorant development clips, and skips media with existing human CSV rows or cached suggestions. It uses the supplied YAMNet TFLite through [Google's LiteRT interpreter](https://developers.google.com/edge/litert/migration). Fixed proposal thresholds and model fingerprints are recorded in `.local/suggestions/`; these are labeling aids, not tuned caption settings or reported accuracy. It checks mono and side inputs for game sounds, original mono for talking/music, and original stereo energy for tentative directions.
+
+After you finish a development clip, a single background worker uses [Demucs htdemucs](https://github.com/facebookresearch/demucs) to estimate its vocals and subtract them from the original stereo audio. Weights download into `.local/models` on first use. This is **voice reduction**, not guaranteed speech removal: separation may also alter game sounds, and matching timestamps does not prove every target sound survived. The first labeled training round should compare original-only against original-plus-cleaned on original mixed validation audio and log the result honestly.
+
+Generated copies live under `.local/augmentation/<clip-id>/voice_removed.wav`. They retain both channels and the exact decoded timeline sample count at 44.1 kHz, with no leading trim or intentional offset. Only tail padding/truncation aligns audio length to the media timeline. Original CSVs are shared by reference; there is no second answer key to drift. Talking/music rows remain original context, and are not reused as sound targets for cleaned copies. Worker failures appear in the UI and `.local/augmentation/<clip-id>/worker.log`; click Finish again to retry.
+
+To export reviewed paired training examples for a chosen training fold:
+
+```sh
+.venv-model/bin/python model_tools.py training-manifest --validation-id CLIP_ID
+```
+
+The output is `.local/training-manifest.json`. `review.training_pairs` excludes validation IDs before adding either copy, excludes every sealed test, and keeps Xonotic in its separate game group. Both variants share `clip_id` / `fold_group` and target timestamps. Validation/scoring uses the original mixed clip, never a cleaned training sibling. A clip enters the pool only when fully reviewed, with a matching CSV revision and ready augmentation. External CSV edits invalidate that eligibility. No classifier is trained automatically during labeling: training and validation rounds remain step 2 onward, after human labels are ready.
+
+Review decisions, suggestions, separation files, and model environments are local and ignored by Git. Back them up with the media if moving machines; CSV labels alone remain readable, but review completion must be re-established if the local review state is absent.
 
 ## Agreed implementation direction
 
@@ -74,6 +106,6 @@ Media, shortcut links, model binaries, `.env` credentials, and local backups are
 python3 -m unittest discover -s tests -v
 ```
 
-The tests use temporary generated stereo audio and exercise CSV validation/round trips, backups, stale-save conflicts, held-out isolation, HTTP saving, and byte ranges for media seeking. Step 2 will add scoring tests; step 6 will add chat-command tests. No accuracy numbers exist yet.
+The twelve tests use temporary generated stereo audio and exercise CSV validation/round trips, backups, stale-save conflicts, held-out isolation, HTTP saving, byte ranges, review decisions/completion, blind answer-key labeling, and paired training-fold isolation. Step 2 will add scoring tests; step 6 will add chat-command tests. No accuracy numbers exist yet.
 
 The Xonotic source/licensing notes remain in `test-audio/README.md` and `test-audio/xonotic-sounds/COPYING`. Preserve attribution and review distribution requirements before shipping third-party assets; the audio itself is not committed.

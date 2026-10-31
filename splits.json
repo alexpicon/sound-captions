@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "policy": "Whole clips only. Tune on development validation. Sealed tests are for the pretrained before baseline and the selected final after comparison only; never use their errors to tune.",
+  "policy": "Whole clips only. Tune on development validation. Blind manual test labeling is allowed, with no model guesses. Model evaluation on sealed tests is for the pretrained before baseline and selected final after comparison only; never use their errors to tune.",
   "selection_basis": "Chosen from the existing README descriptions before model evaluation. Clip 01: hype/talking candidate; 05: quiet clutch candidate; 02: extended busy fight; 10: defuse context. These descriptions are not verified listening labels.",
   "development": {
     "valorant": [

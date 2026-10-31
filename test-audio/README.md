@@ -1,6 +1,6 @@
 # test audio
 
-Current data roles are frozen in `../splits.json`; see the main README. Following the updated brief, Xonotic development clips are reserved for second-game adaptation, CS is an unseen-game test, and final test clips stay sealed outside the before/final evaluations. The collection notes below describe the original files.
+Current data roles are frozen in `../splits.json`; see the main README. Xonotic development clips are reserved for second-game adaptation and CS is an unseen-game test. Test model scoring stays sealed outside the before/final comparisons; separate blind manual labeling of the five real test answer keys is allowed. The collection notes below describe the original files.
 
 quick notes on what's in here:
 
