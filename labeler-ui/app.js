@@ -13,6 +13,9 @@ function message(text, error = false) {
 }
 async function api(path, options) {
   const response = await fetch(path, options);
+  if (!(response.headers.get("content-type") || "").includes("application/json")) {
+    throw new Error("The labeling server is unavailable or a different app is using its address. Keep this tab open and restart python3 labeler.py, then try Save again without refreshing.");
+  }
   const value = await response.json();
   if (!response.ok) throw new Error(value.error || "Request failed.");
   return value;
