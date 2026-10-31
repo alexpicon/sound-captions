@@ -1,0 +1,60 @@
+{
+  "created_at": "2026-10-31T00:41:50.784733-07:00",
+  "config": {
+    "version": 1,
+    "name": "round-0-plain-yamnet",
+    "model": "test-audio/model/yamnet.tflite",
+    "recognition_input": "original stereo averaged to mono; no side input or voice separation",
+    "sample_rate": 16000,
+    "window_samples": 15600,
+    "hop_samples": 7680,
+    "class_mapping": {
+      "footsteps": [
+        48
+      ],
+      "gunshot": [
+        421,
+        422,
+        423,
+        424
+      ],
+      "explosion": [
+        420
+      ],
+      "reload": []
+    },
+    "thresholds": {
+      "footsteps": 0.06,
+      "gunshot": 0.08,
+      "explosion": 0.12
+    },
+    "threshold_provenance": "Reuse existing step-1 proposal thresholds unchanged, before opening test answers. Not tuned for caption accuracy.",
+    "hide_centered": true,
+    "direction_balance_threshold": 0.18,
+    "center_side_energy_threshold": 0.03,
+    "caption_ttl_s": 2.0,
+    "max_captions": 2,
+    "deduplication": "One emission attempt per consecutive above-threshold run for each label/direction. Center-suppressed candidates are ignored; capacity-blocked attempts are discarded.",
+    "caption_timestamp": "End of the first window that emits the caption; zero padding is causal at the final tail only.",
+    "matching_tolerance_s": 1.0,
+    "matching": "Maximum-cardinality one-to-one same-label matching, absolute onset difference <= 1 second.",
+    "false_caption_definition": "No annotated game-sound onset of any label within 1 second. Also report all unmatched captions/min, including wrong labels and duplicates.",
+    "primary_targets": "Non-centered labeled game events; additionally report all directions, including intentionally hidden centered sounds.",
+    "context_annotations_complete": false,
+    "context_policy": "All quiet/talking/music slices unavailable until manual context annotation is complete. Absence of spans is not evidence of quiet.",
+    "test_scope": "Four held-out Valorant clips and one unseen CS clip only. Final lab clip remains closed. No training."
+  },
+  "config_sha256": "06e81d72c41cf5b9cbca9cdc21e2e5fc7be56fda62c0527e169c6b1cb35fe2bc",
+  "model_sha256": "10c95ea3eb9a7bb4cb8bddf6feb023250381008177ac162ce169694d05c317de",
+  "splits_sha256": "c2476d2e42ae80d0aa5e6e5f9edea2d2e39ea89c0db44b060b20b303b1181583",
+  "runner_sha256": "f21a89c44a464813e78425b5ea160cb7ec0d5f0ac7373470f485b70a5dc2d3f0",
+  "scorer_sha256": "4147cc8125bfd56f02283e2bcddf8da2bd1fc80f15068005b8844e2311f49146",
+  "git_commit_before_run": "307853c350ad68b0721e10acb90c0c1e2ce8ba22",
+  "runtime": {
+    "ai-edge-litert": "2.3.0",
+    "numpy": "1.26.4"
+  },
+  "no_training": true,
+  "no_separation": true,
+  "no_test_tuning": true
+}

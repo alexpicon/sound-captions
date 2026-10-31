@@ -1,0 +1,8 @@
+start_s,end_s,label,direction
+1.475,2.368,gunshot,center
+2.49,2.621,gunshot,right
+4.859,5.685,gunshot,left
+4.977,6.269,gunshot,right
+7.079,8.046,gunshot,center
+14.033,14.646,gunshot,left
+18.295,23.706,footsteps,center

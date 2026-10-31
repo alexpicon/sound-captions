@@ -98,6 +98,22 @@ Review decisions, suggestions, separation files, and model environments are loca
 
 See `plan.md` for the full original brief. These agreements reflect the follow-up instructions and take precedence where the original plan differs.
 
+## Round 0 baseline
+
+The user-authorized plain-YAMNet before baseline was run once on the four held-out Valorant clips and unseen CS clip on October 31, 2026. Results and exact caveats are in `rounds.md`; frozen configuration and file/code fingerprints are in `baseline-config.json` and `evaluations/round-0/`. No training, voice separation, side-channel recognition, or test-based tuning was performed. The final lab clip remains closed.
+
+`scoring.py` is the reusable event scorer for subsequent rounds. It uses one-to-one same-label onset matching within one second and reports both the brief's literal false-captions/min and the broader unmatched-captions/min, plus arrow coverage. Center-hidden primary recall is accompanied by all-direction recall. Quiet/talking/music slices are unavailable until manual context labels are complete; missing context spans are not assumed quiet. Score caches under `.local/evaluations/round-0/` allow later context-only rescoring without changing baseline predictions.
+
+The baseline runner is `.venv-model/bin/python run_baseline.py`. It **refuses to overwrite round 0**. Do not remove that guard, delete the outputs to rerun, or use test results to select thresholds. Future model choices and rounds use development validation, with test model evaluation next allowed for the final comparison.
+
+Run the complete test suite, including the NumPy-dependent caption-policy checks, with:
+
+```sh
+.venv-model/bin/python -m unittest discover -s tests -v
+```
+
+There are 24 tests after step 2. Training clips can continue to be labeled independently; this evaluation did not alter their workflow.
+
 ## Repository and checks
 
 Media, shortcut links, model binaries, `.env` credentials, and local backups are ignored by Git. CSV annotations, the class map, and source code are tracked candidates. No remote has been created and nothing has been published. `.env.example` contains empty placeholders for the future Twitch bot; credentials are unnecessary for step 1.
@@ -106,6 +122,6 @@ Media, shortcut links, model binaries, `.env` credentials, and local backups are
 python3 -m unittest discover -s tests -v
 ```
 
-The twelve tests use temporary generated stereo audio and exercise CSV validation/round trips, backups, stale-save conflicts, held-out isolation, HTTP saving, byte ranges, review decisions/completion, blind answer-key labeling, and paired training-fold isolation. Step 2 will add scoring tests; step 6 will add chat-command tests. No accuracy numbers exist yet.
+The labeling tests use temporary generated stereo audio and exercise CSV validation/round trips, backups, stale-save conflicts, held-out isolation, HTTP saving, byte ranges, review decisions/completion, blind answer-key labeling, and paired training-fold isolation. Step 2 adds event-scoring and caption-policy tests. Step 6 will add chat-command tests. Baseline accuracy is recorded in `rounds.md`.
 
 The Xonotic source/licensing notes remain in `test-audio/README.md` and `test-audio/xonotic-sounds/COPYING`. Preserve attribution and review distribution requirements before shipping third-party assets; the audio itself is not committed.
