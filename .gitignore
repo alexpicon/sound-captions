@@ -1,0 +1,27 @@
+# Local media, including future recordings and extracted audio
+*.wav
+*.mp4
+*.ogg
+*.mp3
+*.m4a
+*.flac
+*.mov
+*.webm
+*.webloc
+
+# Downloaded model binaries; keep their class lists and provenance
+*.tflite
+*.pt
+*.pth
+*.onnx
+
+# Credentials and local state
+.env
+.env.*
+!.env.example
+.local/
+work/
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store

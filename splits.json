@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "policy": "Whole clips only. Tune on development validation. Sealed tests are for the pretrained before baseline and the selected final after comparison only; never use their errors to tune.",
+  "selection_basis": "Chosen from the existing README descriptions before model evaluation. Clip 01: hype/talking candidate; 05: quiet clutch candidate; 02: extended busy fight; 10: defuse context. These descriptions are not verified listening labels.",
+  "development": {
+    "valorant": [
+      "test-audio/real-clips/03 SOBAAAA ACEEEEE.mp4",
+      "test-audio/real-clips/04 deagace.mp4",
+      "test-audio/real-clips/06 Insane clutch.mp4",
+      "test-audio/real-clips/07 CLUTCH UWU.mp4",
+      "test-audio/real-clips/08 MASTER MARSHEL GETS A JUICY JUICY 3K.mp4",
+      "test-audio/real-clips/09 3k kinda lame.mp4",
+      "test-audio/real-clips/11 SHEEEESH MY AIM TOO CRISP.mp4",
+      "test-audio/real-clips/12 1hp btw.mp4",
+      "test-audio/real-clips/13 IM SQUEAKY CLEAN~.mp4",
+      "test-audio/real-clips/14 sova poppin off.mp4",
+      "test-audio/real-clips/15 they mad.mp4"
+    ],
+    "xonotic_second_game": [
+      "test-audio/clips/clip_clean.wav",
+      "test-audio/clips/clip_train0.wav",
+      "test-audio/clips/clip_train1.wav",
+      "test-audio/clips/clip_train2.wav",
+      "test-audio/clips/clip_train3.wav",
+      "test-audio/clips/clip_train4.wav",
+      "test-audio/clips/clip_train5.wav",
+      "test-audio/clips/clip_voice.wav",
+      "test-audio/clips/clip_voice_heldout.wav"
+    ]
+  },
+  "sealed_tests": {
+    "valorant": [
+      "test-audio/real-clips/01 JETT KNIVES ACE KEKW.mp4",
+      "test-audio/real-clips/02 jett ace.mp4",
+      "test-audio/real-clips/05 CLUTCH.mp4",
+      "test-audio/real-clips/10 NINA DEFUSE.mp4"
+    ],
+    "lab_final": ["test-audio/clips/clip_voice_final.wav"],
+    "unseen_cs": ["test-audio/real-clips/16 First CS Stream ESEA PUG.mp4"]
+  }
+}

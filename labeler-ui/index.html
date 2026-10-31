@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sound Captions · Label clips</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">SOUND CAPTIONS / STEP 01</p><h1>Listen. Mark. Label.</h1></div>
+    <span class="badge">Local files · stereo playback</span>
+  </header>
+  <main>
+    <section class="panel clip-panel" aria-labelledby="clip-heading">
+      <div class="section-heading"><h2 id="clip-heading">Your clip</h2><span class="muted">6 test clips sealed</span></div>
+      <label for="clip">Development clip</label>
+      <select id="clip" disabled><option>Loading clips…</option></select>
+      <p id="clip-info" class="muted">Choose a clip to begin.</p>
+      <video id="player" controls preload="metadata" aria-label="Stereo clip player"></video>
+      <div class="transport">
+        <button id="back" type="button">−2 seconds</button>
+        <button id="play" type="button">Play / pause <kbd>Space</kbd></button>
+        <button id="forward" type="button">+2 seconds</button>
+        <label class="speed-label" for="speed">Speed <select id="speed"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option></select></label>
+      </div>
+      <p class="clock"><span id="clock">0.000</span><span class="muted"> seconds</span></p>
+      <p class="hint">Use headphones for direction. Playback keeps the original left and right channels.</p>
+    </section>
+    <section class="panel editor" aria-labelledby="editor-heading">
+      <div class="section-heading"><h2 id="editor-heading">Mark a sound</h2><span id="edit-mode" class="muted">New annotation</span></div>
+      <form id="annotation-form">
+        <div class="time-grid">
+          <div><label for="start">Start (seconds)</label><input id="start" type="number" min="0" step="0.001" required value="0.000"><button id="mark-start" type="button">Set start here <kbd>I</kbd></button></div>
+          <div><label for="end">End (seconds)</label><input id="end" type="number" min="0" step="0.001" required value="1.000"><button id="mark-end" type="button">Set end here <kbd>O</kbd></button></div>
+        </div>
+        <label for="label">What do you hear?</label>
+        <select id="label">
+          <optgroup label="Game sounds"><option value="footsteps">Footsteps</option><option value="gunshot">Gunshot</option><option value="reload">Reload</option><option value="explosion">Explosion</option></optgroup>
+          <optgroup label="Background context (not captioned)"><option value="talking">Talking</option><option value="music">Music</option></optgroup>
+        </select>
+        <label for="direction">Direction</label>
+        <select id="direction"><option value="unknown">Unknown / not sure</option><option value="left">← Left</option><option value="right">Right →</option><option value="center">Center (no arrow)</option></select>
+        <p id="direction-help" class="hint">Label centered sounds too. The later caption filter will hide them by default.</p>
+        <div class="actions"><button id="replay" type="button">Replay selection <kbd>R</kbd></button><button id="add" type="submit" class="primary">Add annotation <kbd>A</kbd></button><button id="cancel-edit" type="button" hidden>Cancel edit</button></div>
+      </form>
+      <p class="hint">Mark a short burst of footsteps or gunfire as one event. Talking and music can overlap game sounds and each other. Leave silence unmarked; it supplies “nothing” examples later.</p>
+    </section>
+    <section class="panel annotations" aria-labelledby="annotations-heading">
+      <div class="section-heading"><div><h2 id="annotations-heading">Annotations <span id="count">0</span></h2><p id="save-path" class="muted">CSV saved beside the original clip.</p></div><div class="actions"><span id="save-state">No changes</span><button id="undo" type="button" disabled>Undo</button><button id="save" type="button" class="primary" disabled>Save CSV <kbd>⌘/Ctrl S</kbd></button></div></div>
+      <p id="message" role="status" aria-live="polite">Ready.</p>
+      <div class="table-wrap"><table><thead><tr><th scope="col">Start</th><th scope="col">End</th><th scope="col">Sound / context</th><th scope="col">Direction</th><th scope="col">Actions</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <p id="empty" class="empty">No labels yet. Play the clip, mark a start and end, then add what you hear.</p>
+    </section>
+  </main>
+  <footer>This is the labeling workspace. Stream overlay design comes later, after your mockup approval.</footer>
+</body>
+</html>
