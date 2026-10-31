@@ -89,15 +89,15 @@ main { flex: 1; min-height: 0; gap: 12px; align-items: stretch; }
 .clip-panel { grid-area: player; }
 .editor { grid-area: editor; }
 .annotations { grid-area: annotations; }
-body[data-layout="review"] main { grid-template-areas: "player annotations" "editor annotations"; grid-template-columns: minmax(260px, .9fr) minmax(300px, 1.25fr); grid-template-rows: minmax(180px, .85fr) minmax(230px, 1.15fr); }
+body[data-layout="review"] main { grid-template-areas: "player editor annotations"; grid-template-columns: minmax(280px, 1.05fr) minmax(280px, .95fr) minmax(320px, 1.25fr); grid-template-rows: minmax(0, 1fr); }
 body[data-layout="columns"] main { grid-template-areas: "player editor annotations"; grid-template-columns: minmax(260px, 1fr) minmax(280px, 1fr) minmax(300px, 1.15fr); grid-template-rows: minmax(0, 1fr); }
 body[data-layout="video"] main { grid-template-areas: "player editor" "player annotations"; grid-template-columns: minmax(320px, 1.2fr) minmax(300px, 1fr); grid-template-rows: minmax(230px, 1fr) minmax(180px, 1fr); }
 .clip-settings { margin: 0 0 10px; }
 .clip-settings summary { cursor: pointer; color: var(--muted); font-size: 13px; }
 .section-heading { margin-bottom: 12px; }
-video { max-height: 35vh; }
-body[data-layout="review"] video { max-height: 17vh; }
-body[data-layout="video"] video { max-height: 52vh; }
+video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: none; object-fit: contain; }
+
+
 .transport { gap: 6px; margin-top: 8px; }
 .transport button { min-height: 34px; padding: 7px 9px; }
 .clock { font-size: 23px; margin-top: 8px; }
@@ -110,7 +110,7 @@ footer { display: none; }
   header .eyebrow, header .badge { display: none; }
   #layout-status { display: none; }
   body[data-layout="columns"] main { grid-template-areas: "player editor" "annotations annotations"; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(230px, 1fr) minmax(180px, 1fr); }
-  body[data-layout="review"] main { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  body[data-layout="review"] main { grid-template-areas: "player player" "editor annotations"; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto minmax(340px, 1fr); }
   body[data-layout="video"] main { grid-template-areas: "player player" "editor annotations"; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(180px, .8fr) minmax(230px, 1.2fr); }
   .panel { padding: 12px; }
   h2 { font-size: 17px; }
@@ -135,5 +135,23 @@ footer { display: none; }
 .editor input, .editor select, .editor button { min-height: 36px; padding: 7px 9px; }
 body:not([data-layout="columns"]) .editor #direction-help, body:not([data-layout="columns"]) .editor > .hint { display: none; }
 body[data-layout="review"] .clip-panel > .hint, body[data-layout="review"] .clock { display: none; }
-body[data-layout="review"] video { max-height: 15vh; }
+
 @media (max-width: 950px) { .editor .time-grid { grid-template-columns: 1fr 1fr; gap: 8px; } }
+
+/* Never force the media into a short strip. Smaller windows scroll instead of clipping controls. */
+.clip-panel { display: flex; flex-direction: column; }
+.clip-panel > * { flex-shrink: 0; }
+.clip-panel .transport { position: sticky; bottom: -18px; z-index: 2; background: #1a231e; padding: 8px 0; }
+body[data-layout="review"] .clock { display: block; }
+@media (max-width: 950px) {
+  body { height: auto; min-height: 100dvh; overflow: auto; }
+  main { flex: none; }
+  body[data-layout="columns"] main, body[data-layout="video"] main { grid-template-areas: "player player" "editor annotations"; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto minmax(340px, 1fr); }
+  .clip-panel { overflow: visible; max-height: none; }
+  .clip-panel .transport { position: static; }
+  .editor, .annotations { max-height: 75dvh; }
+  .layout-bar { position: sticky; top: 0; z-index: 4; background: #101513; padding: 8px 0; }
+}
+@media (max-width: 480px) {
+  body[data-layout] main { grid-template-areas: "player" "editor" "annotations"; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; }
+}
