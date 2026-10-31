@@ -29,6 +29,8 @@ To label the answer keys, choose **Label test clips · no model guesses**. This 
 
 Use row buttons to play, edit, or delete an annotation. **Undo** restores annotation changes during this clip session. Saving an existing CSV first copies its exact previous contents into `.local/backups/<clip-id>/`. Multiple browser windows cannot silently overwrite each other's saves. Switching clips or closing the page warns about unsaved list changes. Editing fields is a draft: click Add/Update before saving the CSV.
 
+**Arrange the workspace:** drag a panel's **⠿ Move panel** grip to float and reposition it, then resize from its bottom-right corner. **Keep panels on screen** arranges playback, editing, and annotations together; panels scroll independently. Narrow annotation panels show cards so review buttons remain visible. Clicking **Edit** brings the editor onto the screen without scrolling the page. Positions and sizes persist in this browser. **Dock** returns one panel to the page; **Reset layout** restores all three. Focus a move grip and use arrow keys (Shift for bigger steps) as a keyboard alternative. Floating playback has a collapsible **Choose clip and labeling mode** picker. Layout changes do not alter annotations.
+
 Keyboard shortcuts when focus is outside a form, button, or video control: **Space** play/pause; **I** start; **O** end; **R** replay selection; **A** add/update; **←/→** seek two seconds. **Cmd/Ctrl+S** saves from anywhere. Playback supports 0.5×, 0.75×, and 1× and preserves stereo channels.
 
 ## Labeling conventions

@@ -92,6 +92,7 @@ function editProposal(row) {
   $("edit-mode").textContent = "Correcting an unconfirmed guess";
   $("add").textContent = "Confirm corrected annotation"; $("cancel-edit").hidden = false;
   render();
+  showEditorPanel();
 }
 function resolveProposal(row, accept) {
   remember(); decisions[row.id] = accept ? "accepted" : "rejected";
@@ -110,6 +111,7 @@ function edit(index) {
   $("add").textContent = "Update annotation";
   $("cancel-edit").hidden = false;
   render(); message("Editing this row. Update it to keep your changes.");
+  showEditorPanel();
 }
 function remove(index) {
   remember(); rows.splice(index, 1); resetEditor(); changed();
@@ -273,4 +275,135 @@ async function init() {
     await loadClip(first.id);
   } catch (error) { message(error.message, true); }
 }
+// Layout stays in this browser and never changes clip annotations.
+const layoutKey = "sound-captions.panel-layout.v1";
+const panelState = new Map();
+let panelLayer = 30, layoutReady = false;
+const panels = Array.from(document.querySelectorAll("[data-panel]"));
+const limit = (value, minimum, maximum) => Math.max(minimum, Math.min(value, Math.max(minimum, maximum)));
+function geometry(panel) {
+  const box = panel.getBoundingClientRect();
+  return {x: box.left, y: box.top, width: box.width, height: box.height};
+}
+function positionPanel(panel, value) {
+  const width = limit(value.width, Math.min(260, innerWidth - 16), innerWidth - 16);
+  const height = limit(value.height, Math.min(180, innerHeight - 88), innerHeight - 88);
+  panel.style.width = `${width}px`; panel.style.height = `${height}px`;
+  panel.style.left = `${limit(value.x, 8, innerWidth - width - 8)}px`;
+  panel.style.top = `${limit(value.y, Math.min(72, innerHeight - height - 8), innerHeight - height - 8)}px`;
+}
+function savePanelLayout() {
+  if (!layoutReady) return;
+  const saved = {};
+  for (const panel of panels) if (panel.classList.contains("floating-panel")) saved[panel.dataset.panel] = geometry(panel);
+  try { localStorage.setItem(layoutKey, JSON.stringify(saved)); }
+  catch { $("layout-status").textContent = "Layout changed. Browser storage is unavailable, so it will reset on reload."; }
+}
+function floatPanel(panel, value = geometry(panel)) {
+  if (!panel.classList.contains("floating-panel")) {
+    const placeholder = document.createElement("div");
+    placeholder.className = "panel-placeholder";
+    placeholder.style.gridColumn = getComputedStyle(panel).gridColumn;
+    const dock = document.createElement("button"); dock.type = "button";
+    dock.textContent = `Bring back ${panel.querySelector("h2").childNodes[0].textContent.trim()}`;
+    dock.addEventListener("click", () => dockPanel(panel));
+    placeholder.append(dock); panel.before(placeholder);
+    panelState.set(panel, placeholder);
+    panel.classList.add("floating-panel"); panel.querySelector(".panel-dock").hidden = false;
+    if (panel.dataset.panel === "player") panel.querySelector(".clip-settings").open = false;
+  }
+  document.querySelector(".layout-bar").classList.add("floating-controls");
+  positionPanel(panel, value);
+  panel.style.zIndex = ++panelLayer;
+}
+function dockPanel(panel) {
+  panelState.get(panel)?.remove(); panelState.delete(panel);
+  panel.classList.remove("floating-panel");
+  for (const property of ["width", "height", "left", "top", "z-index"]) panel.style.removeProperty(property);
+  panel.querySelector(".panel-dock").hidden = true;
+  if (panel.dataset.panel === "player") panel.querySelector(".clip-settings").open = true;
+  if (!panels.some(item => item.classList.contains("floating-panel"))) document.querySelector(".layout-bar").classList.remove("floating-controls");
+  savePanelLayout();
+}
+function showEditorPanel() {
+  const panel = document.querySelector('[data-panel="editor"]');
+  if (!panel.classList.contains("floating-panel")) {
+    const width = Math.min(420, innerWidth - 32);
+    floatPanel(panel, {x: innerWidth - width - 16, y: 60, width, height: Math.min(620, innerHeight - 80)});
+  }
+  panel.style.zIndex = ++panelLayer;
+  panel.scrollTop = 0;
+  savePanelLayout();
+  $("layout-status").textContent = "Editor is on screen. Drag its grip to place it beside the guesses.";
+}
+function arrangePanels() {
+  const top = Math.min(110, innerHeight * .16), gap = 12, usable = innerWidth - 32;
+  if (innerWidth >= 1100) {
+    const width = (usable - gap * 2) / 3;
+    panels.forEach((panel, index) => floatPanel(panel, {x: 16 + index * (width + gap), y: top, width, height: innerHeight - top - 16}));
+  } else if (innerWidth >= 600) {
+    const width = (usable - gap) / 2, upperHeight = Math.max(220, (innerHeight - top - gap - 16) * .55);
+    floatPanel(panels[0], {x: 16, y: top, width, height: upperHeight});
+    floatPanel(panels[1], {x: 16 + width + gap, y: top, width, height: upperHeight});
+    floatPanel(panels[2], {x: 16, y: top + upperHeight + gap, width: usable, height: innerHeight - top - upperHeight - gap - 16});
+  } else {
+    floatPanel(panels[2], {x: 16, y: top, width: usable, height: innerHeight - top - 16});
+    dockPanel(panels[0]); dockPanel(panels[1]);
+  }
+  panels.forEach(panel => { panel.scrollTop = 0; });
+  savePanelLayout();
+  $("layout-status").textContent = "Panels arranged. Drag their grips to adjust; each panel scrolls independently.";
+}
+for (const panel of panels) {
+  const grip = panel.querySelector(".panel-grip");
+  let drag = null;
+  grip.addEventListener("pointerdown", event => {
+    if (event.button !== 0) return;
+    drag = {pointer: event.pointerId, x: event.clientX, y: event.clientY, rect: geometry(panel), moved: false};
+    grip.setPointerCapture(event.pointerId);
+  });
+  grip.addEventListener("pointermove", event => {
+    if (!drag || drag.pointer !== event.pointerId) return;
+    const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+    if (!drag.moved && Math.hypot(dx, dy) < 5) return;
+    if (!drag.moved) {
+      floatPanel(panel, {...drag.rect, width: Math.min(drag.rect.width, 600), height: Math.min(drag.rect.height, innerHeight - 32)});
+      drag.moved = true; document.body.classList.add("dragging-panels");
+    }
+    positionPanel(panel, {...geometry(panel), x: drag.rect.x + dx, y: drag.rect.y + dy});
+  });
+  const stop = () => {
+    if (!drag) return;
+    if (drag.moved) { savePanelLayout(); $("layout-status").textContent = "Panel position saved in this browser."; }
+    drag = null; document.body.classList.remove("dragging-panels");
+  };
+  grip.addEventListener("pointerup", stop); grip.addEventListener("pointercancel", stop); grip.addEventListener("lostpointercapture", stop);
+  grip.addEventListener("keydown", event => {
+    const directions = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]};
+    if (!directions[event.key]) return;
+    event.preventDefault(); event.stopPropagation();
+    if (!panel.classList.contains("floating-panel")) floatPanel(panel);
+    const [dx, dy] = directions[event.key], rect = geometry(panel), step = event.shiftKey ? 40 : 10;
+    positionPanel(panel, {...rect, x: rect.x + dx * step, y: rect.y + dy * step}); savePanelLayout();
+  });
+  panel.addEventListener("pointerdown", () => { if (panel.classList.contains("floating-panel")) panel.style.zIndex = ++panelLayer; });
+  panel.querySelector(".panel-dock").addEventListener("click", () => dockPanel(panel));
+  new ResizeObserver(() => { if (panel.classList.contains("floating-panel")) savePanelLayout(); }).observe(panel);
+}
+$("arrange-panels").addEventListener("click", arrangePanels);
+$("reset-panels").addEventListener("click", () => {
+  panels.forEach(dockPanel); savePanelLayout(); $("layout-status").textContent = "Original layout restored.";
+});
+window.addEventListener("resize", () => {
+  for (const panel of panels) if (panel.classList.contains("floating-panel")) positionPanel(panel, geometry(panel));
+  savePanelLayout();
+});
+try {
+  const saved = JSON.parse(localStorage.getItem(layoutKey) || "{}");
+  for (const panel of panels) {
+    const value = saved?.[panel.dataset.panel];
+    if (value && [value.x, value.y, value.width, value.height].every(Number.isFinite)) floatPanel(panel, value);
+  }
+} catch { /* Invalid or missing layout falls back to the normal workspace. */ }
+layoutReady = true;
 init();
