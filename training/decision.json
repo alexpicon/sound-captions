@@ -1,0 +1,14 @@
+{
+  "status": "stopped_below_50_percent",
+  "stop_threshold_pct": 50,
+  "best_control_or_trained_round": 1,
+  "best_validation_caught_pct": 47.5,
+  "best_paired_training_round": 2,
+  "best_paired_validation_caught_pct": 47.5,
+  "final_test_opened": false,
+  "final_after_score_run": false,
+  "release_model_selected": false,
+  "augmentation_copies_verified": 11,
+  "scoring_tests_passed": 28,
+  "reason": "Best whole-clip nested-validation recall remains 47.5%; false captions also exceed 2/min. Stop before final tests/live helper."
+}

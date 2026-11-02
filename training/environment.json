@@ -1,0 +1,15 @@
+{
+  "python": "3.11.14 (main, Jan 14 2026, 21:09:41) [Clang 21.1.4 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "1.26.4",
+    "ai-edge-litert": "2.3.0",
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "torchvision": "0.20.1",
+    "scikit-learn": "1.6.1",
+    "soundfile": "0.13.1"
+  },
+  "efficientat_commit": "a425fdce92572e602a1d5634799bd9f1f2efa806",
+  "efficientat_license": "MIT; copied to third_party/EfficientAT-LICENSE"
+}

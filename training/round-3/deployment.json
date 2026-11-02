@@ -1,0 +1,61 @@
+{
+  "threshold": 0.9,
+  "selection": "Development out-of-fold calibration only",
+  "search": [
+    {
+      "threshold": 0.1,
+      "caught_pct": 55.0,
+      "false_per_min": 10.704418768730994,
+      "unmatched_per_min": 27.41833579359167
+    },
+    {
+      "threshold": 0.2,
+      "caught_pct": 55.0,
+      "false_per_min": 9.577637845706679,
+      "unmatched_per_min": 26.479351691071404
+    },
+    {
+      "threshold": 0.3,
+      "caught_pct": 55.0,
+      "false_per_min": 9.389841025202626,
+      "unmatched_per_min": 25.915961229559247
+    },
+    {
+      "threshold": 0.4,
+      "caught_pct": 47.5,
+      "false_per_min": 8.826450563690468,
+      "unmatched_per_min": 24.789180306534934
+    },
+    {
+      "threshold": 0.5,
+      "caught_pct": 37.5,
+      "false_per_min": 7.887466461170206,
+      "unmatched_per_min": 24.41358666552683
+    },
+    {
+      "threshold": 0.6,
+      "caught_pct": 35.0,
+      "false_per_min": 8.075263281674259,
+      "unmatched_per_min": 23.85019620401467
+    },
+    {
+      "threshold": 0.7,
+      "caught_pct": 42.5,
+      "false_per_min": 7.511872820162101,
+      "unmatched_per_min": 22.1600248194782
+    },
+    {
+      "threshold": 0.8,
+      "caught_pct": 40.0,
+      "false_per_min": 6.3850918971377855,
+      "unmatched_per_min": 20.09425979393362
+    },
+    {
+      "threshold": 0.9,
+      "caught_pct": 32.5,
+      "false_per_min": 5.633904615121575,
+      "unmatched_per_min": 16.90171384536473
+    }
+  ],
+  "model": ".local/training-runs/round-3/model.joblib"
+}

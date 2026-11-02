@@ -2,7 +2,7 @@
 
 Important game sounds, captioned for deaf and hard-of-hearing viewers and people watching muted.
 
-**Step 1 is ready: local labeling workspace, with pretrained suggestions and blind test labeling.** Training rounds, live capture, overlay, and Twitch bot are future steps. No files are uploaded and nothing connects to Twitch. Offline YAMNet suggestions and Demucs training augmentation run locally.
+**Labeling and the round-0 baseline are complete. Step 3 ran three training rounds and stopped at the agreed checkpoint:** best development validation recall is 47.5%, below 50%. All eleven stereo voice-reduced copies are verified. Sealed tests remain closed; no final after score, live helper, overlay, or Twitch bot has been run. Details are in `rounds.md` and `training/decision.json`. No files are uploaded and nothing connects to Twitch.
 
 ## Try the labeling tool
 
@@ -115,6 +115,29 @@ Run the complete test suite, including the NumPy-dependent caption-policy checks
 ```
 
 There are 24 tests after step 2. Training clips can continue to be labeled independently; this evaluation did not alter their workflow.
+
+## Training rounds and checkpoint
+
+The predeclared experiment is in `training-plan.json`. It uses nested leave-one-clip-out on the eleven finished Valorant development clips, keeping each original and voice-reduced sibling together. Every outer validation clip is excluded from head fitting, feature scaling, and threshold selection. Thresholds are calibrated by inner leave-one-clip-out on the other ten clips, using the existing round-0 event scorer and caption scheduler.
+
+The original-only YAMNet control scored 47.5%, paired YAMNet 47.5%, and paired EfficientAT with mono/side features 32.5%. The comparable untrained **development** reference was 12.5%; the earlier held-out test baseline is a different corpus. False-caption rates remain above the 2/min goal. Results include per-label recall, confusion counts, arrow accuracy/coverage, and manual quiet/talking context slices. No music spans or explosion targets were annotated in the development set, so those corresponding scores are N/A.
+
+**Training stopped below 50%; no release model was selected.** Local classifier heads are experimental checkpoints. Do not use this as permission to run the final tests or proceed to live-helper work. Discuss a revised approach first. The test answer keys changed after round 0; a future final comparison must score cached baseline predictions and the final model against the same current answer keys, preserving the historical baseline report.
+
+To reproduce this environment on another machine, install `requirements-model.txt`, restore media, review state and aligned copies, then obtain the official [EfficientAT source](https://github.com/fschmid56/EfficientAT) at the recorded revision (MIT license in `third_party/EfficientAT-LICENSE`):
+
+```sh
+git clone https://github.com/fschmid56/EfficientAT.git .local/vendor/EfficientAT
+git -C .local/vendor/EfficientAT checkout a425fdce92572e602a1d5634799bd9f1f2efa806
+```
+
+Commands are `.venv-model/bin/python run_training.py 0` (development reference), then rounds `1`, `2`, and `3`. **Already-recorded rounds refuse to overwrite their artifacts. Do not rerun the current experiment or open sealed tests to tune.** Results/protocols are under `training/round-N/`, the augmentation audit is `training/augmentation-audit.json`, and fitted heads/cached features remain local under `.local/`. `training/environment.json` records package versions. CPU feature extraction timings measure offline throughput, not live end-to-end delay.
+
+```sh
+.venv-model/bin/python -m unittest discover -s tests -v
+```
+
+All 28 tests passed before training. The stop report also records post-run checks that the eleven reviewed annotation/copy hashes and outer-fold exclusion lists stayed correct.
 
 ## Repository and checks
 

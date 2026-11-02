@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-11-01T23:04:28.563372-08:00",
+  "round": 2,
+  "spec": {
+    "round": 2,
+    "encoder": "yamnet",
+    "inputs": "mono",
+    "paired": true,
+    "purpose": "Same head and encoder, training on original plus aligned voice-reduced copies"
+  },
+  "plan_sha256": "aac0da82997d8d2f3b2ba68fe329364ec70a98128f7cab413061fbb1e986abc1",
+  "runner_sha256": "6ab62029e075f7e6354f4d87f8d4535740c8a7582ea7e586b21fe85f2da51ad9",
+  "core_sha256": "c1e95170e20ef28ef2cfdfaa6d86f19f1a5af5c51cee3574e31f9128c1fc1926",
+  "scorer_sha256": "4147cc8125bfd56f02283e2bcddf8da2bd1fc80f15068005b8844e2311f49146",
+  "development_labels": {
+    "3ecdd84a4e12c7f7": "c401bbafbbbecf18dee609beca2266e1abe12909cf1201908bef116a20ea6ee8",
+    "fbad448bb2e501ec": "acee6ad0d1ac56bf026ee79b5b119ed58fad7cd308b17c1167363831ecd557fb",
+    "c2d607f46586c2ca": "c5cf98f0eb36b18298d2c02593a57e8c70c5fb714595b16ea14a2bffc1dcdf27",
+    "88bb5aa1c72894c4": "2edda0e797aabfe0007d7ed8ed455cc1eff5006fd3db3b373360d74d57b7826a",
+    "d0919d4a3830c87e": "500f6e1e5e721a2e22e5ce9b91b354340a572824895269ce68873c5ba2fb3ca0",
+    "ab4b8d61fd23ae43": "1054933a79eb0b62e2b45442e1458f7cf19b23adab9bb913e7dc571349cc9d74",
+    "c14ae26991ee5cd0": "bd224ee4a0c29983308a3810e4b1618036e1e2f2c720fca686f39898d19ee6cd",
+    "ff282effd9efab9e": "b6fa51ebf2df091b76bee3d9c8ab73c6fefb07e1fe866bfac0d090f3cc8edd6f",
+    "6158ce1b2191ed58": "ab8150945fe72ce6dc6bf16d33e9bbf82ad59599cc770ac63f3df681cc4abcba",
+    "731add80a90e456a": "e450d03ca92795a9f1bdc55cfe8300fd53de7ed95e3dc5eb68bd53300bfc37c5",
+    "b0b8b2ea1fe031a9": "f01a8db6730fd572ffd715ca98dbcfac43ec5371f3b9c35436c5f52e0541b10c"
+  },
+  "test_data_opened": false,
+  "efficientat_source_commit": "a425fdce92572e602a1d5634799bd9f1f2efa806"
+}

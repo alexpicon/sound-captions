@@ -1,0 +1,3237 @@
+{
+  "primary": {
+    "duration_s": 319.49422699999997,
+    "targets": 40,
+    "caught": 13,
+    "predictions": 105,
+    "centered_targets_excluded": 71,
+    "false_captions": 32,
+    "unmatched_captions": 92,
+    "matched_directional_targets": 13,
+    "arrows_scored": 6,
+    "arrows_correct": 6,
+    "per_label": {
+      "footsteps": {
+        "targets": 5,
+        "caught": 0,
+        "caught_pct": 0.0
+      },
+      "gunshot": {
+        "targets": 29,
+        "caught": 13,
+        "caught_pct": 44.827586206896555
+      },
+      "reload": {
+        "targets": 6,
+        "caught": 0,
+        "caught_pct": 0.0
+      },
+      "explosion": {
+        "targets": 0,
+        "caught": 0,
+        "caught_pct": null
+      }
+    },
+    "confusion": {
+      "footsteps": {
+        "gunshot": 3,
+        "missed": 1,
+        "reload": 1
+      },
+      "gunshot": {
+        "gunshot": 13,
+        "missed": 9,
+        "footsteps": 6,
+        "reload": 1
+      },
+      "reload": {
+        "missed": 4,
+        "footsteps": 2
+      },
+      "explosion": {}
+    },
+    "caught_pct": 32.5,
+    "false_per_min": 6.009498256129681,
+    "unmatched_per_min": 17.27730748637283,
+    "arrow_correct_pct": 100.0,
+    "arrow_coverage_pct": 46.15384615384615
+  },
+  "all_directions": {
+    "duration_s": 319.49422699999997,
+    "targets": 111,
+    "caught": 40,
+    "predictions": 105,
+    "centered_targets_excluded": 0,
+    "false_captions": 32,
+    "unmatched_captions": 65,
+    "matched_directional_targets": 13,
+    "arrows_scored": 8,
+    "arrows_correct": 8,
+    "per_label": {
+      "footsteps": {
+        "targets": 22,
+        "caught": 3,
+        "caught_pct": 13.636363636363637
+      },
+      "gunshot": {
+        "targets": 67,
+        "caught": 36,
+        "caught_pct": 53.73134328358209
+      },
+      "reload": {
+        "targets": 22,
+        "caught": 1,
+        "caught_pct": 4.545454545454546
+      },
+      "explosion": {
+        "targets": 0,
+        "caught": 0,
+        "caught_pct": null
+      }
+    },
+    "confusion": {
+      "footsteps": {
+        "missed": 13,
+        "reload": 2,
+        "footsteps": 3,
+        "gunshot": 4
+      },
+      "gunshot": {
+        "gunshot": 36,
+        "missed": 21,
+        "footsteps": 9,
+        "reload": 1
+      },
+      "reload": {
+        "missed": 13,
+        "gunshot": 6,
+        "reload": 1,
+        "footsteps": 2
+      },
+      "explosion": {}
+    },
+    "caught_pct": 36.03603603603604,
+    "false_per_min": 6.009498256129681,
+    "unmatched_per_min": 12.206793332763414,
+    "arrow_correct_pct": 100.0,
+    "arrow_coverage_pct": 61.53846153846154
+  },
+  "contexts": {
+    "quiet": {
+      "duration_s": 89.101227,
+      "targets": 15,
+      "caught": 7,
+      "predictions": 44,
+      "centered_targets_excluded": 22,
+      "false_captions": 14,
+      "unmatched_captions": 36,
+      "matched_directional_targets": 7,
+      "arrows_scored": 3,
+      "arrows_correct": 3,
+      "per_label": {
+        "footsteps": {
+          "targets": 3,
+          "caught": 0,
+          "caught_pct": 0.0
+        },
+        "gunshot": {
+          "targets": 11,
+          "caught": 7,
+          "caught_pct": 63.63636363636363
+        },
+        "reload": {
+          "targets": 1,
+          "caught": 0,
+          "caught_pct": 0.0
+        },
+        "explosion": {
+          "targets": 0,
+          "caught": 0,
+          "caught_pct": null
+        }
+      },
+      "confusion": {
+        "footsteps": {},
+        "gunshot": {},
+        "reload": {},
+        "explosion": {}
+      },
+      "caught_pct": 46.666666666666664,
+      "false_per_min": 9.427479601375186,
+      "unmatched_per_min": 24.242090403536196,
+      "arrow_correct_pct": 100.0,
+      "arrow_coverage_pct": 42.857142857142854
+    },
+    "talking": {
+      "duration_s": 230.393,
+      "targets": 25,
+      "caught": 6,
+      "predictions": 61,
+      "centered_targets_excluded": 49,
+      "false_captions": 18,
+      "unmatched_captions": 56,
+      "matched_directional_targets": 6,
+      "arrows_scored": 3,
+      "arrows_correct": 3,
+      "per_label": {
+        "footsteps": {
+          "targets": 2,
+          "caught": 0,
+          "caught_pct": 0.0
+        },
+        "gunshot": {
+          "targets": 18,
+          "caught": 6,
+          "caught_pct": 33.333333333333336
+        },
+        "reload": {
+          "targets": 5,
+          "caught": 0,
+          "caught_pct": 0.0
+        },
+        "explosion": {
+          "targets": 0,
+          "caught": 0,
+          "caught_pct": null
+        }
+      },
+      "confusion": {
+        "footsteps": {},
+        "gunshot": {},
+        "reload": {},
+        "explosion": {}
+      },
+      "caught_pct": 24.0,
+      "false_per_min": 4.687642419691571,
+      "unmatched_per_min": 14.58377641681822,
+      "arrow_correct_pct": 100.0,
+      "arrow_coverage_pct": 50.0
+    },
+    "music": null
+  },
+  "clips": [
+    {
+      "clip_id": "3ecdd84a4e12c7f7",
+      "clip": "test-audio/real-clips/03 SOBAAAA ACEEEEE.mp4",
+      "primary": {
+        "duration_s": 30.018186,
+        "targets": 2,
+        "caught": 2,
+        "predictions": 8,
+        "centered_targets_excluded": 5,
+        "false_captions": 6,
+        "unmatched_captions": 6,
+        "matched_directional_targets": 2,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 2,
+            "caught_pct": 100.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 2
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 100.0,
+        "false_per_min": 11.992730007069714,
+        "unmatched_per_min": 11.992730007069714,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": 0.0
+      },
+      "all_directions": {
+        "duration_s": 30.018186,
+        "targets": 7,
+        "caught": 2,
+        "predictions": 8,
+        "centered_targets_excluded": 0,
+        "false_captions": 6,
+        "unmatched_captions": 6,
+        "matched_directional_targets": 2,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 2,
+            "caught_pct": 40.0
+          },
+          "reload": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 1
+          },
+          "gunshot": {
+            "gunshot": 2,
+            "missed": 3
+          },
+          "reload": {
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 28.571428571428573,
+        "false_per_min": 11.992730007069714,
+        "unmatched_per_min": 11.992730007069714,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": 0.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 8.846185999999996,
+          "targets": 1,
+          "caught": 1,
+          "predictions": 7,
+          "centered_targets_excluded": 3,
+          "false_captions": 5,
+          "unmatched_captions": 5,
+          "matched_directional_targets": 1,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 1,
+              "caught_pct": 100.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 100.0,
+          "false_per_min": 33.91292021216829,
+          "unmatched_per_min": 33.91292021216829,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": 0.0
+        },
+        "talking": {
+          "duration_s": 21.172000000000004,
+          "targets": 1,
+          "caught": 1,
+          "predictions": 1,
+          "centered_targets_excluded": 2,
+          "false_captions": 1,
+          "unmatched_captions": 1,
+          "matched_directional_targets": 1,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 1,
+              "caught_pct": 100.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 100.0,
+          "false_per_min": 2.833931607783865,
+          "unmatched_per_min": 2.833931607783865,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": 0.0
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "fbad448bb2e501ec",
+      "clip": "test-audio/real-clips/04 deagace.mp4",
+      "primary": {
+        "duration_s": 27.001587,
+        "targets": 2,
+        "caught": 0,
+        "predictions": 6,
+        "centered_targets_excluded": 5,
+        "false_captions": 2,
+        "unmatched_captions": 6,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "missed": 2
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 4.444183225230428,
+        "unmatched_per_min": 13.332549675691284,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 27.001587,
+        "targets": 7,
+        "caught": 2,
+        "predictions": 6,
+        "centered_targets_excluded": 0,
+        "false_captions": 2,
+        "unmatched_captions": 4,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 2,
+            "caught_pct": 40.0
+          },
+          "reload": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 2,
+            "missed": 3
+          },
+          "reload": {
+            "gunshot": 1,
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 28.571428571428573,
+        "false_per_min": 4.444183225230428,
+        "unmatched_per_min": 8.888366450460856,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 9.087587000000003,
+          "targets": 2,
+          "caught": 0,
+          "predictions": 4,
+          "centered_targets_excluded": 2,
+          "false_captions": 0,
+          "unmatched_captions": 4,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 26.409650878720605,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 17.913999999999998,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 2,
+          "centered_targets_excluded": 3,
+          "false_captions": 2,
+          "unmatched_captions": 2,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 6.698671430166351,
+          "unmatched_per_min": 6.698671430166351,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "c2d607f46586c2ca",
+      "clip": "test-audio/real-clips/06 Insane clutch.mp4",
+      "primary": {
+        "duration_s": 32.500667,
+        "targets": 0,
+        "caught": 0,
+        "predictions": 9,
+        "centered_targets_excluded": 7,
+        "false_captions": 2,
+        "unmatched_captions": 9,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {},
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": null,
+        "false_per_min": 3.692231916348055,
+        "unmatched_per_min": 16.615043623566248,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 32.500667,
+        "targets": 7,
+        "caught": 3,
+        "predictions": 9,
+        "centered_targets_excluded": 0,
+        "false_captions": 2,
+        "unmatched_captions": 6,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 4,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 3,
+            "caught": 3,
+            "caught_pct": 100.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 3,
+            "reload": 1
+          },
+          "gunshot": {
+            "gunshot": 3
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 42.857142857142854,
+        "false_per_min": 3.692231916348055,
+        "unmatched_per_min": 11.076695749044164,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 17.084667000000003,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 6,
+          "centered_targets_excluded": 3,
+          "false_captions": 2,
+          "unmatched_captions": 6,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 7.023841904556875,
+          "unmatched_per_min": 21.071525713670624,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 15.415999999999997,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 3,
+          "centered_targets_excluded": 4,
+          "false_captions": 0,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 11.676180591593152,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "88bb5aa1c72894c4",
+      "clip": "test-audio/real-clips/07 CLUTCH UWU.mp4",
+      "primary": {
+        "duration_s": 29.962743,
+        "targets": 1,
+        "caught": 0,
+        "predictions": 7,
+        "centered_targets_excluded": 9,
+        "false_captions": 1,
+        "unmatched_captions": 7,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "missed": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 2.002486888466787,
+        "unmatched_per_min": 14.017408219267509,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 29.962743,
+        "targets": 10,
+        "caught": 3,
+        "predictions": 7,
+        "centered_targets_excluded": 0,
+        "false_captions": 1,
+        "unmatched_captions": 4,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 3,
+            "caught": 1,
+            "caught_pct": 33.333333333333336
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 2,
+            "caught_pct": 40.0
+          },
+          "reload": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "footsteps": 1,
+            "missed": 2
+          },
+          "gunshot": {
+            "gunshot": 2,
+            "missed": 2,
+            "footsteps": 1
+          },
+          "reload": {
+            "missed": 1,
+            "gunshot": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 30.0,
+        "false_per_min": 2.002486888466787,
+        "unmatched_per_min": 8.009947553867148,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 1.3397429999999986,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 0,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 28.623,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 7,
+          "centered_targets_excluded": 9,
+          "false_captions": 1,
+          "unmatched_captions": 7,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 2.0962163295252068,
+          "unmatched_per_min": 14.673514306676449,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "d0919d4a3830c87e",
+      "clip": "test-audio/real-clips/08 MASTER MARSHEL GETS A JUICY JUICY 3K.mp4",
+      "primary": {
+        "duration_s": 27.163129,
+        "targets": 9,
+        "caught": 3,
+        "predictions": 13,
+        "centered_targets_excluded": 6,
+        "false_captions": 3,
+        "unmatched_captions": 10,
+        "matched_directional_targets": 3,
+        "arrows_scored": 1,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 6,
+            "caught": 3,
+            "caught_pct": 50.0
+          },
+          "reload": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "gunshot": 2
+          },
+          "gunshot": {
+            "gunshot": 3,
+            "footsteps": 3
+          },
+          "reload": {
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 33.333333333333336,
+        "false_per_min": 6.62662979658934,
+        "unmatched_per_min": 22.08876598863113,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 33.333333333333336
+      },
+      "all_directions": {
+        "duration_s": 27.163129,
+        "targets": 15,
+        "caught": 6,
+        "predictions": 13,
+        "centered_targets_excluded": 0,
+        "false_captions": 3,
+        "unmatched_captions": 7,
+        "matched_directional_targets": 3,
+        "arrows_scored": 2,
+        "arrows_correct": 2,
+        "per_label": {
+          "footsteps": {
+            "targets": 4,
+            "caught": 1,
+            "caught_pct": 25.0
+          },
+          "gunshot": {
+            "targets": 9,
+            "caught": 5,
+            "caught_pct": 55.55555555555556
+          },
+          "reload": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "footsteps": 1,
+            "missed": 2,
+            "gunshot": 1
+          },
+          "gunshot": {
+            "gunshot": 5,
+            "footsteps": 3,
+            "missed": 1
+          },
+          "reload": {
+            "missed": 2
+          },
+          "explosion": {}
+        },
+        "caught_pct": 40.0,
+        "false_per_min": 6.62662979658934,
+        "unmatched_per_min": 15.462136192041791,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 66.66666666666667
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 17.090128999999997,
+          "targets": 6,
+          "caught": 3,
+          "predictions": 10,
+          "centered_targets_excluded": 4,
+          "false_captions": 2,
+          "unmatched_captions": 7,
+          "matched_directional_targets": 3,
+          "arrows_scored": 1,
+          "arrows_correct": 1,
+          "per_label": {
+            "footsteps": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "gunshot": {
+              "targets": 4,
+              "caught": 3,
+              "caught_pct": 75.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 50.0,
+          "false_per_min": 7.02159708683299,
+          "unmatched_per_min": 24.575589803915467,
+          "arrow_correct_pct": 100.0,
+          "arrow_coverage_pct": 33.333333333333336
+        },
+        "talking": {
+          "duration_s": 10.073000000000002,
+          "targets": 3,
+          "caught": 0,
+          "predictions": 3,
+          "centered_targets_excluded": 2,
+          "false_captions": 1,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 5.9565174228134605,
+          "unmatched_per_min": 17.869552268440383,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "ab4b8d61fd23ae43",
+      "clip": "test-audio/real-clips/09 3k kinda lame.mp4",
+      "primary": {
+        "duration_s": 27.218798,
+        "targets": 6,
+        "caught": 4,
+        "predictions": 13,
+        "centered_targets_excluded": 4,
+        "false_captions": 7,
+        "unmatched_captions": 9,
+        "matched_directional_targets": 4,
+        "arrows_scored": 3,
+        "arrows_correct": 3,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 4,
+            "caught_pct": 80.0
+          },
+          "reload": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 4,
+            "missed": 1
+          },
+          "reload": {
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 66.66666666666667,
+        "false_per_min": 15.430512398086059,
+        "unmatched_per_min": 19.839230226110647,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 75.0
+      },
+      "all_directions": {
+        "duration_s": 27.218798,
+        "targets": 10,
+        "caught": 5,
+        "predictions": 13,
+        "centered_targets_excluded": 0,
+        "false_captions": 7,
+        "unmatched_captions": 8,
+        "matched_directional_targets": 4,
+        "arrows_scored": 3,
+        "arrows_correct": 3,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 7,
+            "caught": 5,
+            "caught_pct": 71.42857142857143
+          },
+          "reload": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 2
+          },
+          "gunshot": {
+            "gunshot": 5,
+            "missed": 2
+          },
+          "reload": {
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 50.0,
+        "false_per_min": 15.430512398086059,
+        "unmatched_per_min": 17.63487131209835,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 75.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 5.935797999999998,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 2,
+          "centered_targets_excluded": 1,
+          "false_captions": 2,
+          "unmatched_captions": 2,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 20.21632137751319,
+          "unmatched_per_min": 20.21632137751319,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 21.283,
+          "targets": 5,
+          "caught": 4,
+          "predictions": 11,
+          "centered_targets_excluded": 3,
+          "false_captions": 5,
+          "unmatched_captions": 7,
+          "matched_directional_targets": 4,
+          "arrows_scored": 3,
+          "arrows_correct": 3,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 4,
+              "caught": 4,
+              "caught_pct": 100.0
+            },
+            "reload": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 80.0,
+          "false_per_min": 14.095757177089695,
+          "unmatched_per_min": 19.734060047925574,
+          "arrow_correct_pct": 100.0,
+          "arrow_coverage_pct": 75.0
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "c14ae26991ee5cd0",
+      "clip": "test-audio/real-clips/11 SHEEEESH MY AIM TOO CRISP.mp4",
+      "primary": {
+        "duration_s": 30.007188,
+        "targets": 0,
+        "caught": 0,
+        "predictions": 15,
+        "centered_targets_excluded": 8,
+        "false_captions": 6,
+        "unmatched_captions": 15,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {},
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": null,
+        "false_per_min": 11.9971254887329,
+        "unmatched_per_min": 29.99281372183225,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 30.007188,
+        "targets": 8,
+        "caught": 5,
+        "predictions": 15,
+        "centered_targets_excluded": 0,
+        "false_captions": 6,
+        "unmatched_captions": 10,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 5,
+            "caught_pct": 100.0
+          },
+          "reload": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "gunshot": 2
+          },
+          "gunshot": {
+            "gunshot": 5
+          },
+          "reload": {
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 62.5,
+        "false_per_min": 11.9971254887329,
+        "unmatched_per_min": 19.995209147888165,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 6.839188,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 3,
+          "centered_targets_excluded": 1,
+          "false_captions": 0,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 26.318913882759183,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 23.168,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 12,
+          "centered_targets_excluded": 7,
+          "false_captions": 6,
+          "unmatched_captions": 12,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 15.53867403314917,
+          "unmatched_per_min": 31.07734806629834,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "ff282effd9efab9e",
+      "clip": "test-audio/real-clips/12 1hp btw.mp4",
+      "primary": {
+        "duration_s": 16.450977,
+        "targets": 2,
+        "caught": 1,
+        "predictions": 6,
+        "centered_targets_excluded": 5,
+        "false_captions": 0,
+        "unmatched_captions": 5,
+        "matched_directional_targets": 1,
+        "arrows_scored": 1,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 1,
+            "caught_pct": 50.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 1,
+            "missed": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 50.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 18.235998992643413,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 100.0
+      },
+      "all_directions": {
+        "duration_s": 16.450977,
+        "targets": 7,
+        "caught": 4,
+        "predictions": 6,
+        "centered_targets_excluded": 0,
+        "false_captions": 0,
+        "unmatched_captions": 2,
+        "matched_directional_targets": 1,
+        "arrows_scored": 1,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 6,
+            "caught": 4,
+            "caught_pct": 66.66666666666667
+          },
+          "reload": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 4,
+            "missed": 1,
+            "footsteps": 1
+          },
+          "reload": {
+            "gunshot": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 57.142857142857146,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 7.294399597057366,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 100.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 2.1279770000000013,
+          "targets": 1,
+          "caught": 1,
+          "predictions": 2,
+          "centered_targets_excluded": 1,
+          "false_captions": 0,
+          "unmatched_captions": 1,
+          "matched_directional_targets": 1,
+          "arrows_scored": 1,
+          "arrows_correct": 1,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 1,
+              "caught_pct": 100.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 100.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 28.19579346957226,
+          "arrow_correct_pct": 100.0,
+          "arrow_coverage_pct": 100.0
+        },
+        "talking": {
+          "duration_s": 14.323,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 4,
+          "centered_targets_excluded": 4,
+          "false_captions": 0,
+          "unmatched_captions": 4,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 16.75626614536061,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "6158ce1b2191ed58",
+      "clip": "test-audio/real-clips/13 IM SQUEAKY CLEAN~.mp4",
+      "primary": {
+        "duration_s": 33.8,
+        "targets": 10,
+        "caught": 2,
+        "predictions": 15,
+        "centered_targets_excluded": 11,
+        "false_captions": 1,
+        "unmatched_captions": 13,
+        "matched_directional_targets": 2,
+        "arrows_scored": 1,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 2,
+            "caught_pct": 40.0
+          },
+          "reload": {
+            "targets": 3,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 1,
+            "reload": 1
+          },
+          "gunshot": {
+            "gunshot": 2,
+            "reload": 1,
+            "footsteps": 1,
+            "missed": 1
+          },
+          "reload": {
+            "footsteps": 2,
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 20.0,
+        "false_per_min": 1.775147928994083,
+        "unmatched_per_min": 23.07692307692308,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 50.0
+      },
+      "all_directions": {
+        "duration_s": 33.8,
+        "targets": 21,
+        "caught": 8,
+        "predictions": 15,
+        "centered_targets_excluded": 0,
+        "false_captions": 1,
+        "unmatched_captions": 7,
+        "matched_directional_targets": 2,
+        "arrows_scored": 2,
+        "arrows_correct": 2,
+        "per_label": {
+          "footsteps": {
+            "targets": 3,
+            "caught": 1,
+            "caught_pct": 33.333333333333336
+          },
+          "gunshot": {
+            "targets": 11,
+            "caught": 6,
+            "caught_pct": 54.54545454545455
+          },
+          "reload": {
+            "targets": 7,
+            "caught": 1,
+            "caught_pct": 14.285714285714286
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "footsteps": 1,
+            "missed": 1,
+            "reload": 1
+          },
+          "gunshot": {
+            "gunshot": 6,
+            "reload": 1,
+            "missed": 3,
+            "footsteps": 1
+          },
+          "reload": {
+            "reload": 1,
+            "footsteps": 2,
+            "missed": 4
+          },
+          "explosion": {}
+        },
+        "caught_pct": 38.095238095238095,
+        "false_per_min": 1.775147928994083,
+        "unmatched_per_min": 12.426035502958582,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 100.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 15.757000000000001,
+          "targets": 4,
+          "caught": 2,
+          "predictions": 6,
+          "centered_targets_excluded": 5,
+          "false_captions": 1,
+          "unmatched_captions": 4,
+          "matched_directional_targets": 2,
+          "arrows_scored": 1,
+          "arrows_correct": 1,
+          "per_label": {
+            "footsteps": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 2,
+              "caught_pct": 100.0
+            },
+            "reload": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 50.0,
+          "false_per_min": 3.807831439994923,
+          "unmatched_per_min": 15.231325759979692,
+          "arrow_correct_pct": 100.0,
+          "arrow_coverage_pct": 50.0
+        },
+        "talking": {
+          "duration_s": 18.042999999999996,
+          "targets": 6,
+          "caught": 0,
+          "predictions": 9,
+          "centered_targets_excluded": 6,
+          "false_captions": 0,
+          "unmatched_captions": 9,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "gunshot": {
+              "targets": 3,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 29.928504129025114,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "731add80a90e456a",
+      "clip": "test-audio/real-clips/14 sova poppin off.mp4",
+      "primary": {
+        "duration_s": 8.170204,
+        "targets": 2,
+        "caught": 0,
+        "predictions": 1,
+        "centered_targets_excluded": 1,
+        "false_captions": 0,
+        "unmatched_captions": 1,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "missed": 1,
+            "footsteps": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 7.343757879240225,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 8.170204,
+        "targets": 3,
+        "caught": 0,
+        "predictions": 1,
+        "centered_targets_excluded": 0,
+        "false_captions": 0,
+        "unmatched_captions": 1,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 1
+          },
+          "gunshot": {
+            "missed": 1,
+            "footsteps": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 7.343757879240225,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 0.000204000000000093,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 1,
+          "centered_targets_excluded": 0,
+          "false_captions": 0,
+          "unmatched_captions": 1,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 294117.64705868944,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 8.17,
+          "targets": 2,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 1,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "b0b8b2ea1fe031a9",
+      "clip": "test-audio/real-clips/15 they mad.mp4",
+      "primary": {
+        "duration_s": 57.200748,
+        "targets": 6,
+        "caught": 1,
+        "predictions": 12,
+        "centered_targets_excluded": 10,
+        "false_captions": 4,
+        "unmatched_captions": 11,
+        "matched_directional_targets": 1,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 4,
+            "caught": 1,
+            "caught_pct": 25.0
+          },
+          "reload": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "gunshot": 1
+          },
+          "gunshot": {
+            "gunshot": 1,
+            "missed": 2,
+            "footsteps": 1
+          },
+          "reload": {
+            "missed": 1
+          },
+          "explosion": {}
+        },
+        "caught_pct": 16.666666666666668,
+        "false_per_min": 4.19574932831298,
+        "unmatched_per_min": 11.538310652860694,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": 0.0
+      },
+      "all_directions": {
+        "duration_s": 57.200748,
+        "targets": 16,
+        "caught": 2,
+        "predictions": 12,
+        "centered_targets_excluded": 0,
+        "false_captions": 4,
+        "unmatched_captions": 10,
+        "matched_directional_targets": 1,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 9,
+            "caught": 2,
+            "caught_pct": 22.22222222222222
+          },
+          "reload": {
+            "targets": 5,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "gunshot": 1,
+            "missed": 1
+          },
+          "gunshot": {
+            "gunshot": 2,
+            "missed": 5,
+            "footsteps": 2
+          },
+          "reload": {
+            "gunshot": 3,
+            "missed": 2
+          },
+          "explosion": {}
+        },
+        "caught_pct": 12.5,
+        "false_per_min": 4.19574932831298,
+        "unmatched_per_min": 10.48937332078245,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": 0.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 4.992747999999999,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 3,
+          "centered_targets_excluded": 2,
+          "false_captions": 2,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 24.034860161177775,
+          "unmatched_per_min": 36.05229024176666,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 52.208,
+          "targets": 6,
+          "caught": 1,
+          "predictions": 9,
+          "centered_targets_excluded": 8,
+          "false_captions": 2,
+          "unmatched_captions": 8,
+          "matched_directional_targets": 1,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "gunshot": {
+              "targets": 4,
+              "caught": 1,
+              "caught_pct": 25.0
+            },
+            "reload": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 16.666666666666668,
+          "false_per_min": 2.2984983144345694,
+          "unmatched_per_min": 9.193993257738278,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": 0.0
+        },
+        "music": null
+      }
+    }
+  ],
+  "round": 3,
+  "spec": {
+    "round": 3,
+    "encoder": "efficientat",
+    "inputs": "mono+side",
+    "paired": true,
+    "purpose": "Stronger mn10_as encoder plus mono/side features, retaining original plus cleaned training pairs"
+  },
+  "folds": [
+    {
+      "outer_validation_id": "3ecdd84a4e12c7f7",
+      "train_ids": [
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "3ecdd84a4e12c7f7"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 52.63157894736842,
+          "false_per_min": 10.985365106606524,
+          "unmatched_per_min": 27.981590365884543
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 47.36842105263158,
+          "false_per_min": 10.363551987364644,
+          "unmatched_per_min": 27.981590365884543
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 50.0,
+          "false_per_min": 9.741738868122766,
+          "unmatched_per_min": 26.945235167148077
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 42.10526315789474,
+          "false_per_min": 9.119925748880888,
+          "unmatched_per_min": 26.945235167148077
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 34.21052631578947,
+          "false_per_min": 8.083570550144422,
+          "unmatched_per_min": 26.116151008158905
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 36.8421052631579,
+          "false_per_min": 8.290841589891716,
+          "unmatched_per_min": 24.45798269018056
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 31.57894736842105,
+          "false_per_min": 7.461757430902544,
+          "unmatched_per_min": 23.836169570938683
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 23.68421052631579,
+          "false_per_min": 7.047215351407958,
+          "unmatched_per_min": 21.55618813371846
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 21.05263157894737,
+          "false_per_min": 5.181775993682322,
+          "unmatched_per_min": 18.65439357725636
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "fbad448bb2e501ec",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "fbad448bb2e501ec"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 50.0,
+          "false_per_min": 10.256668338731533,
+          "unmatched_per_min": 26.462204313927355
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 50.0,
+          "false_per_min": 9.84640160518227,
+          "unmatched_per_min": 26.667337680701984
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 42.10526315789474,
+          "false_per_min": 9.64126823840764,
+          "unmatched_per_min": 27.077604414251244
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 42.10526315789474,
+          "false_per_min": 9.23100150485838,
+          "unmatched_per_min": 25.64167084682883
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 42.10526315789474,
+          "false_per_min": 9.43613487163301,
+          "unmatched_per_min": 25.436537480054202
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 31.57894736842105,
+          "false_per_min": 9.025868138083748,
+          "unmatched_per_min": 24.616004012955678
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 28.94736842105263,
+          "false_per_min": 8.000201304210595,
+          "unmatched_per_min": 23.795470545857157
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 31.57894736842105,
+          "false_per_min": 6.3591343700135505,
+          "unmatched_per_min": 20.923603411012326
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 34.21052631578947,
+          "false_per_min": 4.718067435816505,
+          "unmatched_per_min": 17.436336175843604
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "c2d607f46586c2ca",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "c2d607f46586c2ca"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 60.0,
+          "false_per_min": 9.407876608799166,
+          "unmatched_per_min": 26.132990579997685
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 52.5,
+          "false_per_min": 9.198812684159185,
+          "unmatched_per_min": 26.342054504637666
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 52.5,
+          "false_per_min": 8.989748759519204,
+          "unmatched_per_min": 26.342054504637666
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 47.5,
+          "false_per_min": 8.57162091023924,
+          "unmatched_per_min": 25.71486273071772
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 52.5,
+          "false_per_min": 8.57162091023924,
+          "unmatched_per_min": 24.251415258237852
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 52.5,
+          "false_per_min": 7.735365211679315,
+          "unmatched_per_min": 22.997031710397962
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 47.5,
+          "false_per_min": 7.735365211679315,
+          "unmatched_per_min": 21.951712087198054
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 42.5,
+          "false_per_min": 6.480981663839426,
+          "unmatched_per_min": 20.279200690078202
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 40.0,
+          "false_per_min": 5.435662040639518,
+          "unmatched_per_min": 16.9341778958385
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "88bb5aa1c72894c4",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "88bb5aa1c72894c4"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 53.84615384615385,
+          "false_per_min": 10.776030146690367,
+          "unmatched_per_min": 27.354538064675545
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 46.15384615384615,
+          "false_per_min": 9.532642052841478,
+          "unmatched_per_min": 26.732844017751102
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 35.8974358974359,
+          "false_per_min": 9.739873401816293,
+          "unmatched_per_min": 26.940075366725917
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 35.8974358974359,
+          "false_per_min": 9.325410703866662,
+          "unmatched_per_min": 25.489455923902213
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 35.8974358974359,
+          "false_per_min": 8.910948005917033,
+          "unmatched_per_min": 24.45329917902814
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 43.58974358974359,
+          "false_per_min": 8.496485307967404,
+          "unmatched_per_min": 22.79544838722962
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 48.717948717948715,
+          "false_per_min": 8.082022610017775,
+          "unmatched_per_min": 21.137597595431103
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 38.46153846153846,
+          "false_per_min": 7.045865865143701,
+          "unmatched_per_min": 19.27251545465777
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 35.8974358974359,
+          "false_per_min": 5.3880150733451835,
+          "unmatched_per_min": 17.200201964909624
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "d0919d4a3830c87e",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "d0919d4a3830c87e"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 58.064516129032256,
+          "false_per_min": 10.262336167874963,
+          "unmatched_per_min": 26.6820740364749
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 51.61290322580645,
+          "false_per_min": 9.646595997802464,
+          "unmatched_per_min": 25.861087143044905
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 48.38709677419355,
+          "false_per_min": 9.030855827729967,
+          "unmatched_per_min": 25.450593696329907
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 41.935483870967744,
+          "false_per_min": 8.20986893429997,
+          "unmatched_per_min": 24.834853526257408
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 41.935483870967744,
+          "false_per_min": 8.20986893429997,
+          "unmatched_per_min": 23.398126462754913
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 38.70967741935484,
+          "false_per_min": 7.594128764227472,
+          "unmatched_per_min": 22.16664612260992
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 41.935483870967744,
+          "false_per_min": 7.799375487584971,
+          "unmatched_per_min": 21.55090595253742
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 45.16129032258065,
+          "false_per_min": 7.183635317512474,
+          "unmatched_per_min": 19.908932165677427
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 35.483870967741936,
+          "false_per_min": 5.54166153065248,
+          "unmatched_per_min": 16.00924442188494
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "ab4b8d61fd23ae43",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "ab4b8d61fd23ae43"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 52.94117647058823,
+          "false_per_min": 9.648433361806818,
+          "unmatched_per_min": 27.097727739542552
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 52.94117647058823,
+          "false_per_min": 9.237861729389508,
+          "unmatched_per_min": 26.27658447470793
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 44.11764705882353,
+          "false_per_min": 8.827290096972195,
+          "unmatched_per_min": 25.250155393664652
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 41.1764705882353,
+          "false_per_min": 8.006146832137572,
+          "unmatched_per_min": 24.429012128830028
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 38.23529411764706,
+          "false_per_min": 7.390289383511606,
+          "unmatched_per_min": 23.607868863995407
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 35.294117647058826,
+          "false_per_min": 7.390289383511606,
+          "unmatched_per_min": 22.99201141536944
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 38.23529411764706,
+          "false_per_min": 6.774431934885638,
+          "unmatched_per_min": 21.760296518117507
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 35.294117647058826,
+          "false_per_min": 6.569146118676983,
+          "unmatched_per_min": 19.912724172239603
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 29.41176470588235,
+          "false_per_min": 5.132145405216392,
+          "unmatched_per_min": 16.83343692910977
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "c14ae26991ee5cd0",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.8,
+      "inner_excluded_ids": [
+        "c14ae26991ee5cd0"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 60.0,
+          "false_per_min": 9.534105601183754,
+          "unmatched_per_min": 25.493369324904386
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 60.0,
+          "false_per_min": 9.119579270697503,
+          "unmatched_per_min": 24.87157982917501
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 47.5,
+          "false_per_min": 8.912316105454378,
+          "unmatched_per_min": 25.28610615966126
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 45.0,
+          "false_per_min": 8.497789774968128,
+          "unmatched_per_min": 24.664316663931885
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 42.5,
+          "false_per_min": 7.8760002792387525,
+          "unmatched_per_min": 23.420737672473134
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 40.0,
+          "false_per_min": 6.632421287780002,
+          "unmatched_per_min": 22.591685011500633
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 42.5,
+          "false_per_min": 5.596105461564377,
+          "unmatched_per_min": 21.14084285479876
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 47.5,
+          "false_per_min": 4.767052800591877,
+          "unmatched_per_min": 18.239158541395007
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 40.0,
+          "false_per_min": 4.767052800591877,
+          "unmatched_per_min": 16.788316384693132
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "ff282effd9efab9e",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "ff282effd9efab9e"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 55.26315789473684,
+          "false_per_min": 10.493551663005201,
+          "unmatched_per_min": 27.520824172787222
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 52.63157894736842,
+          "false_per_min": 9.701585499759524,
+          "unmatched_per_min": 26.530866468730128
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 50.0,
+          "false_per_min": 9.107610877325268,
+          "unmatched_per_min": 25.93689184629587
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 50.0,
+          "false_per_min": 9.305602418136687,
+          "unmatched_per_min": 24.946934142238778
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 44.73684210526316,
+          "false_per_min": 9.107610877325268,
+          "unmatched_per_min": 25.144925683050197
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 36.8421052631579,
+          "false_per_min": 8.117653173268174,
+          "unmatched_per_min": 24.154967978993103
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 42.10526315789474,
+          "false_per_min": 7.325687010022499,
+          "unmatched_per_min": 22.373044111690334
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 42.10526315789474,
+          "false_per_min": 6.929703928399661,
+          "unmatched_per_min": 19.601162540330467
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 31.57894736842105,
+          "false_per_min": 5.7417546835311475,
+          "unmatched_per_min": 17.027272509782023
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "6158ce1b2191ed58",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "6158ce1b2191ed58"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 53.333333333333336,
+          "false_per_min": 10.290722465316039,
+          "unmatched_per_min": 26.881887256335776
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 50.0,
+          "false_per_min": 10.500737209506163,
+          "unmatched_per_min": 26.041828279575284
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 50.0,
+          "false_per_min": 8.820619255985177,
+          "unmatched_per_min": 23.94168083767405
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 60.0,
+          "false_per_min": 7.350516046654314,
+          "unmatched_per_min": 21.421503907392573
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 53.333333333333336,
+          "false_per_min": 6.930486558274067,
+          "unmatched_per_min": 20.581444930632077
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 53.333333333333336,
+          "false_per_min": 7.14050130246419,
+          "unmatched_per_min": 19.951400698061708
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 46.666666666666664,
+          "false_per_min": 6.930486558274067,
+          "unmatched_per_min": 19.111341721301216
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 50.0,
+          "false_per_min": 5.670398093133327,
+          "unmatched_per_min": 17.641238511970354
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 46.666666666666664,
+          "false_per_min": 5.250368604753081,
+          "unmatched_per_min": 14.491017349118504
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "731add80a90e456a",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "b0b8b2ea1fe031a9",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "731add80a90e456a"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 52.63157894736842,
+          "false_per_min": 11.370789718980342,
+          "unmatched_per_min": 28.13788642323949
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 52.63157894736842,
+          "false_per_min": 10.407163471609126,
+          "unmatched_per_min": 27.55971067481676
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 50.0,
+          "false_per_min": 9.443537224237911,
+          "unmatched_per_min": 26.21063392849706
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 44.73684210526316,
+          "false_per_min": 9.250811974763668,
+          "unmatched_per_min": 25.63245818007433
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 36.8421052631579,
+          "false_per_min": 8.67263622634094,
+          "unmatched_per_min": 25.439732930600087
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 34.21052631578947,
+          "false_per_min": 8.09446047791821,
+          "unmatched_per_min": 24.47610668322887
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 42.10526315789474,
+          "false_per_min": 7.323559480021237,
+          "unmatched_per_min": 22.163403689537954
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 36.8421052631579,
+          "false_per_min": 6.745383731598508,
+          "unmatched_per_min": 20.236151194795525
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 36.8421052631579,
+          "false_per_min": 5.396306985278806,
+          "unmatched_per_min": 16.18892095583642
+        }
+      ]
+    },
+    {
+      "outer_validation_id": "b0b8b2ea1fe031a9",
+      "train_ids": [
+        "3ecdd84a4e12c7f7",
+        "6158ce1b2191ed58",
+        "731add80a90e456a",
+        "88bb5aa1c72894c4",
+        "ab4b8d61fd23ae43",
+        "c14ae26991ee5cd0",
+        "c2d607f46586c2ca",
+        "d0919d4a3830c87e",
+        "fbad448bb2e501ec",
+        "ff282effd9efab9e"
+      ],
+      "threshold": 0.9,
+      "inner_excluded_ids": [
+        "b0b8b2ea1fe031a9"
+      ],
+      "inner_search": [
+        {
+          "threshold": 0.1,
+          "caught_pct": 61.76470588235294,
+          "false_per_min": 10.980067102621335,
+          "unmatched_per_min": 29.73768173626612
+        },
+        {
+          "threshold": 0.2,
+          "caught_pct": 61.76470588235294,
+          "false_per_min": 10.293812908707503,
+          "unmatched_per_min": 29.051427542352283
+        },
+        {
+          "threshold": 0.3,
+          "caught_pct": 64.70588235294117,
+          "false_per_min": 9.607558714793669,
+          "unmatched_per_min": 27.678919154524618
+        },
+        {
+          "threshold": 0.4,
+          "caught_pct": 64.70588235294117,
+          "false_per_min": 8.692553122908558,
+          "unmatched_per_min": 25.620156572783117
+        },
+        {
+          "threshold": 0.5,
+          "caught_pct": 58.8235294117647,
+          "false_per_min": 8.006298928994724,
+          "unmatched_per_min": 24.933902378869284
+        },
+        {
+          "threshold": 0.6,
+          "caught_pct": 44.11764705882353,
+          "false_per_min": 7.777547531023446,
+          "unmatched_per_min": 24.933902378869284
+        },
+        {
+          "threshold": 0.7,
+          "caught_pct": 44.11764705882353,
+          "false_per_min": 7.548796133052169,
+          "unmatched_per_min": 24.018896786984172
+        },
+        {
+          "threshold": 0.8,
+          "caught_pct": 47.05882352941177,
+          "false_per_min": 6.862541939138334,
+          "unmatched_per_min": 22.417637001185227
+        },
+        {
+          "threshold": 0.9,
+          "caught_pct": 41.1764705882353,
+          "false_per_min": 4.575027959425556,
+          "unmatched_per_min": 17.385106245817116
+        }
+      ]
+    }
+  ],
+  "test_data_opened": false,
+  "encoder_sha256": "0bd7dc2443af498c289a2e739f02ebb515d6aa3fd3ab9db539c86123ae368a4e",
+  "encoding_realtime_factor": 0.09590825459882127
+}
