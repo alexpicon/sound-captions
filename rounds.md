@@ -1,3 +1,5 @@
+> **Historical experiment log.** Entries describe the project state when each experiment ran. For the submitted comparison, start with [the results guide](docs/RESULTS.md) and `evaluations/final-valorant-selected.json`. Current setup instructions are in [the README](README.md); the original step-by-step build prompt is no longer part of the submission.
+
 # Training and evaluation rounds
 
 ## Round 0 — plain pretrained YAMNet, no training

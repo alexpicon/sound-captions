@@ -1,3 +1,2 @@
--r requirements-model.txt
-websockets==15.0.1
-sounddevice==0.5.3
+# Compatibility alias for existing local setup commands.
+-r requirements-runtime.txt

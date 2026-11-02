@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Step 4: local caption events from an OBS clip or explicit stereo game-audio bus."""
+"""Local caption events from an OBS clip or explicit stereo game-audio bus."""
 import argparse
 import asyncio
 import json

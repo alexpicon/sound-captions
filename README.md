@@ -13,13 +13,13 @@ I used to stream Valorant on Twitch, and I still watch it. Speech captions can t
 | What you want | Where to look |
 | --- | --- |
 | Project story / submission | [Devpost write-up](docs/DEVPOST.md) |
-| Browser overlay | [`overlay/`](overlay/), [overlay guide](OVERLAY.md) |
-| Live inference / OBS media following | [`live_helper.py`](live_helper.py), [helper guide](LIVE_HELPER.md) |
+| Browser overlay | [`overlay/`](overlay/), [overlay guide](docs/OVERLAY.md) |
+| Live inference / OBS media following | [`live_helper.py`](live_helper.py), [helper guide](docs/LIVE_HELPER.md) |
 | Annotation and model correction UI | [`labeler.py`](labeler.py), [`labeler-ui/`](labeler-ui/) |
 | Selected model and provenance | [`models/`](models/), [`live-config.json`](live-config.json) |
 | Final held-out results | [`evaluations/final-valorant-selected.json`](evaluations/final-valorant-selected.json) |
 | Experiment history | [`rounds.md`](rounds.md), [`training/`](training/) |
-| Detailed development notes | [Development log](docs/DEVELOPMENT.md) |
+| Detailed development notes | [Development guide](docs/DEVELOPMENT.md) |
 
 ## Quick start
 
@@ -65,7 +65,7 @@ python live_helper.py --list-devices
 python live_helper.py --device 7
 ```
 
-Replace `7` with your actual device ID. Audio routing is manual; the helper does not automatically capture a game's process. See the [helper guide](LIVE_HELPER.md) for timing and routing limitations.
+Replace `7` with your actual device ID. Audio routing is manual; the helper does not automatically capture a game's process. See the [helper guide](docs/LIVE_HELPER.md) for timing and routing limitations.
 
 ### Replay hand labels, as in the demo
 
@@ -112,7 +112,7 @@ python labeler.py
 python -m unittest discover -s tests -v
 ```
 
-The labeler opens at `http://127.0.0.1:8765`. Training uses whole-clip splits and separate held-out evaluation. Existing experiment scripts protect frozen artifacts; do not rerun them to overwrite recorded results. Historical notes may describe earlier project states; the selected report and this README describe the submitted version.
+The labeler opens at `http://127.0.0.1:8765`. Training uses whole-clip splits and separate held-out evaluation. Existing experiment scripts protect frozen artifacts; do not rerun them to overwrite recorded results. The [results guide](docs/RESULTS.md) distinguishes the selected comparison from historical experiments.
 
 ## Included and excluded
 

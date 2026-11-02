@@ -1,10 +1,8 @@
-# my Twitch clips (the real test audio)
+# Gameplay annotation sources
 
-these are clips from my own channel, [twitch.tv/washedlatino](https://www.twitch.tv/washedlatino/clips?range=all). I went through all 135 and picked the 16 with the most footsteps and gunfire (aces, clutches, multi-kills). it's like 7 minutes total. they're real stream audio, so my mic is in there and I get pretty loud in hype moments. that's kind of the point, it's the hard test.
+These recordings come from my [Twitch channel, washedlatino](https://www.twitch.tv/washedlatino/clips?range=all). I used to stream Valorant and still watch Twitch. The original clips include my microphone audio, including loud speech during fights.
 
-these are mostly Valorant (plus one CS clip). Valorant is my main game and what the demo uses. some clips might have music in them, so don't put those parts in the video.
-
-each clip is here as an MP4 (stereo, ~350 MB total, keep them out of git) plus a shortcut that opens it on Twitch.
+Only annotations are included in this repository. Restore the corresponding MP4 filenames from `splits.json` if you want to reproduce the original corpus. The source notes below record why each clip was initially selected; the event annotations, rather than these descriptions, define the evaluation targets.
 
 | # | clip | length | why I picked it |
 |---|---|---|---|
@@ -25,4 +23,11 @@ each clip is here as an MP4 (stereo, ~350 MB total, keep them out of git) plus a
 | 15 | [they mad](https://www.twitch.tv/washedlatino/clip/ArbitraryIncredulousShrimpDendiFace-A0cD5RT1c0LxxOVo) | 0:57 | long one, mix of everything |
 | 16 | [First CS Stream. ESEA PUG](https://www.twitch.tv/washedlatino/clip/RichClearNeanderthalFailFish) | 0:30, CS | CS, not Valorant, so it's my second-game test |
 
-Current split: 01, 02, 05, and 10 are sealed Valorant tests; 16 is the sealed unseen-CS test. Label these five manually in the separate **Label test clips** mode, which never displays model guesses. The other eleven are in training-labeling mode with unconfirmed YAMNet proposals. Holdouts were selected from these descriptions before evaluation, not verified listening labels. Scoring stays limited to the before/final comparison; test audio and its labels never enter training or voice removal. See `../../splits.json` and the main README.
+
+## Split and evaluation
+
+Clips 01, 02, 05, and 10 form the held-out Valorant evaluation. The other eleven original Valorant clips form the initial development set. Later development experiments added reviewed portions of a separate skirmish recording, grouped by source recording during validation. See [`splits.json`](../../splits.json) for exact membership.
+
+The Counter-Strike clip is retained as a historical unseen-game test and is excluded from the selected submission report. Test annotations never enter training or threshold selection. The [results guide](../../docs/RESULTS.md) identifies the final four-clip comparison and separates it from historical experiments.
+
+`08 MASTER MARSHEL GETS A JUICY JUICY 3K.srt` and `13 IM SQUEAKY CLEAN~.srt` supply the speech subtitles used alongside hand-labeled sound captions in the demo replay.
