@@ -1,10 +1,9 @@
-"""Incremental round-2 inference; preserves the recorded window scheduler exactly."""
+"""Verified active checkpoint, per-class thresholds and the frozen v2 scheduler."""
 import copy
-import hashlib
-import json
 import time
 import numpy as np
 from caption_policy import CaptionFilter,load_policy
+from deployment import load_deployment
 from labeler import ROOT
 from model_tools import estimate_direction
 from scoring import LABELS
@@ -41,22 +40,17 @@ class LiveEngine:
     def __init__(self,show_centered=False):
         import joblib
         self.policy=load_policy()
-        checkpoint=ROOT/'.local/training-runs/round-2/model.joblib'
-        frozen=json.loads((ROOT/'training/policy-v2-round-2/protocol.json').read_text())
-        if hashlib.sha256(checkpoint.read_bytes()).hexdigest()!=frozen['model_sha256']:
-            raise ValueError('Round-2 checkpoint changed since policy replay')
-        if hashlib.sha256((ROOT/'caption-policy-v2.json').read_bytes()).hexdigest()!=frozen['policy_sha256']:
-            raise ValueError('Policy changed since replay; record a new policy version first')
-        for name,key in [('caption_policy.py','filter_sha256'),('policy_scoring.py','scorer_sha256'),('scoring.py','legacy_scorer_sha256')]:
-            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=frozen[key]:
-                raise ValueError(f'{name} changed since replay; record a new policy version first')
+        self.deployment=load_deployment()
+        checkpoint=ROOT/self.deployment['model']
         saved=joblib.load(checkpoint)
         self.encoder=YamnetEncoder()
-        if self.encoder.identity!=saved['encoder_sha256']:raise ValueError('YAMNet weights changed')
-        if saved['threshold']!=self.policy['deployment_threshold']:raise ValueError('Unexpected checkpoint threshold')
+        if self.encoder.identity!=saved['encoder_sha256'] or self.encoder.identity!=self.deployment['encoder_sha256']:
+            raise ValueError('YAMNet weights changed')
+        if tuple(saved['labels'])!=tuple(LABELS):raise ValueError('Checkpoint class order changed')
         self.head=saved['head'];self.config=copy.deepcopy(saved['config'])
         self.config['class_mapping']={label:[i] for i,label in enumerate(LABELS)}
-        self.config['thresholds']={label:saved['threshold'] for label in LABELS}
+        self.config['thresholds']=dict(self.deployment['thresholds'])
+        self.config['caption_ttl_s']=self.deployment['raw_scheduler_ttl_s']
         self.config['hide_centered']=not show_centered
         self.compute_ms=[];self.reset()
 

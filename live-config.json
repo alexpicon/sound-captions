@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "name": "round-2-fixed-09-purple-overlay",
+  "model_round": 2,
+  "model": ".local/training-runs/round-2/model.joblib",
+  "model_sha256": "d3547ad8493ba740e3d575848a39703ee7a05247bdff2d99d51514f3102bd14a",
+  "encoder_sha256": "10c95ea3eb9a7bb4cb8bddf6feb023250381008177ac162ce169694d05c317de",
+  "thresholds": {
+    "footsteps": 0.9,
+    "gunshot": 0.9,
+    "reload": 0.9,
+    "explosion": 0.9
+  },
+  "policy_version": 2,
+  "scoring_policy": "caption-policy-v2.json",
+  "raw_scheduler_ttl_s": 2,
+  "display_duration_s": 3,
+  "max_display_captions": 2,
+  "fade_out_ms": 250,
+  "placement": "option-1-near-speech-captions",
+  "bottom_percent": 17,
+  "frozen_sources": {
+    "caption-policy-v2.json": "af5e1a13e8f8197796cd2a4c00f94c9f6a63e255de45e583645dbf2c0ff68473",
+    "caption_policy.py": "6281e2b20aabfcd14698ed87677354779fac9c4563e13c0f38519ed946beba84",
+    "policy_scoring.py": "cd5e009855825080178c4ac8099bdcf693eb1fdb9806674c51b81d879a21d569",
+    "scoring.py": "4147cc8125bfd56f02283e2bcddf8da2bd1fc80f15068005b8844e2311f49146",
+    "training_core.py": "c1e95170e20ef28ef2cfdfaa6d86f19f1a5af5c51cee3574e31f9128c1fc1926"
+  },
+  "selection": "User chose to keep round 2 at 0.9 after the round-6 lower-footstep-threshold sweep had an unfavorable recall/false-caption trade-off."
+}

@@ -1,4 +1,4 @@
-"""FINAL ONLY: compare cached pretrained baseline and round 2 with policy v2.
+"""FINAL ONLY: compare cached pretrained baseline and active frozen model with policy v2.
 
 Do not run until the user explicitly requests the final after evaluation.
 Importing or --help never opens test media/labels. Lab-final remains closed.
@@ -27,7 +27,10 @@ def main(argv=None):
     engine=LiveEngine();policy=load_policy()
     atomic_json(out/'protocol.json',{'created_at':datetime.now().astimezone().isoformat(),
         'policy':policy,'policy_sha256':hashlib.sha256((ROOT/'caption-policy-v2.json').read_bytes()).hexdigest(),
-        'learned_model':'round-2','threshold':.9,'head_sha256':hashlib.sha256((ROOT/'.local/training-runs/round-2/model.joblib').read_bytes()).hexdigest(),
+        'learned_model':f"round-{engine.deployment['model_round']}",'thresholds':engine.deployment['thresholds'],
+        'head_sha256':engine.deployment['model_sha256'],
+        'live_config_sha256':hashlib.sha256((ROOT/'live-config.json').read_bytes()).hexdigest(),
+        'raw_scheduler_ttl_s':engine.config['caption_ttl_s'],'overlay_display_duration_s':engine.deployment['display_duration_s'],
         'script_sha256':hashlib.sha256((ROOT/'run_final.py').read_bytes()).hexdigest(),
         'scorer_sha256':hashlib.sha256((ROOT/'policy_scoring.py').read_bytes()).hexdigest(),
         'filter_sha256':hashlib.sha256((ROOT/'caption_policy.py').read_bytes()).hexdigest(),

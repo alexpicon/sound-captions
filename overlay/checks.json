@@ -1,0 +1,28 @@
+{
+  "unit_tests_passed": 55,
+  "production_browser_checks_passed": true,
+  "transparent_background_visually_verified": true,
+  "max_display_captions": 2,
+  "display_duration_s": 3,
+  "fade_out_ms": 250,
+  "placement": "option-1-near-speech-captions",
+  "white_on_purple_contrast": 4.64189749745555,
+  "real_model_websocket_browser_smoke_passed": true,
+  "smoke_inference_median_ms": 5.432,
+  "smoke_inference_p95_ms": 13.651,
+  "native_obs_scene_tested": false,
+  "test_data_opened": false,
+  "new_training_performed": false,
+  "active_model_round": 2,
+  "source_hashes": {
+    "live-config.json": "13f20291a063667bd1bfbefb425782e782dd5278145e23a704b52d007c9e94cd",
+    "deployment.py": "84da9cd1b33caaea79fc5f7bdf0268733a8b82a8173872ba6d2b1496e582f324",
+    "live_engine.py": "fa293157f326edde62d2f61071cdb9d653b652f008878debb3cbfc21763c60a9",
+    "live_helper.py": "9db08c0e7bf57335ae9c4a738d8a7604cfb55d62ea4c083c471fcd96e0053c8d",
+    "overlay_server.py": "86369756cb0aa647ce45b7229a6df3070b2e555af308fe63e8ea4a08e9eaa235",
+    "overlay/index.html": "444b05a7c9cbfc4bdb215eea3049de8c8dac56705c4b9665d5e406dabab2d8ad",
+    "overlay/overlay.css": "d6109f57e41fa2ce4f856f260fd686936e9b628ae4daeae15b1083577068cd82",
+    "overlay/overlay.js": "0b82a0514a9dc17bc1ba1ef9f15458ebdaf1df8929e41fd1aae38af3ae305af1",
+    "run_final.py": "4a8f806ab00e4469b7f04357439f44f127bcf1a4f9b16f6bdde147a3d37b9226"
+  }
+}

@@ -489,3 +489,36 @@ Policy-v2 definitions are unchanged: onset recall within 1 second, centered targ
 Verification: **51 tests passed**. The reconstructed round-5 control reproduces its saved outer probability arrays, full head/scaler parameters, and primary same-12 scores **bit for bit**. Frozen code/label hashes and both saved round-5/live checkpoints remained unchanged. Every validation fold excludes the held-out recording group, including all four skirmish siblings where relevant. Parts 05–06 and all sealed tests remain closed.
 
 Artifacts: `training/round-6/protocol.json`, `metrics.json`, `fold-audit.json`, `checkpoint.json`, `verification.json`, and `conclusion.json`. Both controls’ outer probabilities/captions and the full-data new model are saved under `.local/training-runs/round-6/` for reproducibility. No live-model or overlay switch was made and no additional training/tuning was attempted.
+
+## Round-6 probability review — separate footstep thresholds; no new training
+
+The user requested lower footstep thresholds using **saved round-6 whole-recording-out probabilities**, with gunshots kept at 0.9. The sweep reads cached features/probabilities only: no encoder inference, fitting, voice separation, new labels, or test access. It reuses policy v2 and the frozen raw two-caption scheduler. Original/new skirmish recording grouping remains as frozen in round 6; parts 05–06 are excluded.
+
+| Footstep threshold | Footsteps caught | Recall | False footstep captions/min | Gunshots caught (threshold 0.9) | Total false/min |
+|---|---|---|---|---|---|
+| 0.90 | 6/38 | 15.8% | 1.61 | 36/57 | 5.79 |
+| 0.80 | 7/38 | 18.4% | 2.79 | 33/57 | 6.86 |
+| 0.70 | 9/38 | 23.7% | 3.97 | 32/57 | 8.04 |
+| 0.60 | 8/38 | 21.1% | 4.72 | 32/57 | 8.58 |
+| 0.50 | 10/38 | 26.3% | 5.04 | 32/57 | 8.69 |
+| 0.40 | 10/38 | 26.3% | 5.68 | 31/57 | 9.22 |
+| 0.30 | 10/38 | 26.3% | 5.68 | 30/57 | 9.44 |
+| 0.20 | 10/38 | 26.3% | 6.43 | 29/57 | 10.30 |
+| 0.10 | 14/38 | 36.8% | 7.19 | 27/57 | 11.05 |
+| 0.05 | 14/38 | 36.8% | 6.97 | 28/57 | 10.83 |
+
+**Decision: no lower threshold adopted.** At 0.8, one additional caught footstep costs eleven additional false footstep captions over the same development exposure; at 0.7, three extra catches cost twenty-two extra false captions. At 0.1, eight extra catches cost fifty-two extra false captions. This does not satisfy the requested large recall improvement without excessive false captions. The user then explicitly chose **“Keep round 2 at 0.9”** rather than switching to round 6 at 0.9. The live helper therefore retains round 2 with both footsteps and gunshots at 0.9. No checkpoint bytes were changed and training is finished for this phase.
+
+These are exploratory development-calibration curves, not an unbiased score after selecting a threshold. The fixed-0.9 row reproduces the recorded round-6 15-clip primary metrics exactly. Both the all-15 and original-comparison-12 breakdowns are saved in `training/round-6-threshold-review/metrics.json`. A lower footstep threshold can alter gunshot emissions through the existing two-slot scheduler even though the gunshot threshold stays 0.9; de-duplication/capacity also explain non-monotonic rows. No cherry-picked test result was used.
+
+## Step 5 — approved purple option-1 overlay, three-second display
+
+Built the user-approved style and placement: 52 px bold white Arial at 1920×1080, opaque black outline/halo, and **#9146FF behind only the sound name**. The stack is centered, with its lower edge 17% above the bottom (option 1, “Near speech captions”), leaving the usual bottom speech-caption area free and keeping the minimap/crosshair clear. The production page has a transparent background and no speech-spacing placeholders. The number, brackets, arrow and direction words remain visible. White/purple contrast is 4.6419:1 and white/black is 21:1 at full opacity.
+
+The overlay shows at most two captions for **up to 3 seconds**, fading over the last 250 ms. A third replaces the oldest, so the two-caption limit wins if needed. Recognition retains policy v2’s frozen 2-second raw scheduler and repeat-merging rule; display lifetime is separate. Disconnects, pauses, seeks and resets clear stale captions. Reconnect snapshots contain only the newest two unexpired captions and preserve their remaining lifetime. Reduced-motion settings turn off fade animation.
+
+Implementation: `overlay/` production HTML/CSS/JS, local whitelist server `overlay_server.py`, and verified active settings in `live-config.json`/`deployment.py`. The helper automatically starts or reuses its own overlay HTTP server. OBS Browser Source URL: **http://127.0.0.1:8771/overlay**, 1920×1080, above the media/game source. Model events still use the local receive-only WebSocket on port 8770. No stream is started and no OBS scene is modified automatically. Instructions are in `OVERLAY.md`; the existing `Try helper.command` launcher starts the helper plus overlay.
+
+Validation: **55 tests passed**. Real-browser checks used the actual production source to verify transparent compositing over an untouched development frame, exact approved placement, 52 px font, white/#9146FF colors, max-two replacement, three-second expiry with final fade, unknown directions without arrows, disabled reload/invalid-label rejection, no HTML injection, duplicate suppression, pause/reset clearing, and reconnect expiry preservation. There were no JavaScript errors. A separate end-to-end run used the real saved round-2 model on development clip 03 through the WebSocket into the production browser overlay; it displayed actual model captions, verified three-second event lifetimes, and cleared when the helper stopped. Native OBS scene compositing still needs the user’s local check; no Twitch broadcast was run.
+
+The final-only evaluator now reads the frozen active deployment profile rather than hardcoded model metadata. It still refuses to open tests without explicit final authorization. Both the cached pretrained baseline and the selected learned model will use the same v2 postprocessor/scorer. **No final evaluation was run; all sealed test clips remain closed.**

@@ -1,7 +1,9 @@
 #!/bin/zsh
 # Local development/demo helper only; never starts OBS or a Twitch stream.
 cd "${0:A:h}" || exit 1
-print 'Sound Captions — step 4'
+print 'Sound Captions — live helper + overlay'
+print 'OBS Browser Source: http://127.0.0.1:8771/overlay (1920 x 1080)'
+print 'Purple captions: round 2 at 0.9, max 2, up to 3 seconds.'
 print '1: Follow a clip playing in OBS (OBS must be open; WebSocket enabled)'
 print '2: Quick terminal test using your development clip 03'
 read 'mode?Choose 1 or 2: '

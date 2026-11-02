@@ -1,6 +1,6 @@
 # Try step 4
 
-The helper is ready for a local try. It prints captions in Terminal and sends the same events to `ws://127.0.0.1:8770`. The on-stream overlay is step 5 and still needs the requested mockup approval. Nothing here starts a Twitch stream or changes OBS scenes/playback.
+The helper is ready for a local try. It prints captions in Terminal and sends the same events to `ws://127.0.0.1:8770`. The step-5 overlay is implemented; add `http://127.0.0.1:8771/overlay` as an OBS Browser Source (see `OVERLAY.md`). Nothing here starts a Twitch stream or changes OBS scenes/playback.
 
 ## Quick check
 
@@ -43,9 +43,9 @@ Replace `7` with the actual **game bus** ID. It is an example, not a device reco
 
 ## Model, captions and timing
 
-The fixed model is the saved **round-2 checkpoint at 0.9**. No new fitting was done. Recognition uses the stereo average; original stereo supplies direction. Centered sounds stay hidden unless you add `--show-centered`, which shows them without an arrow. Reload captions are disabled. Same-label/side candidates merge until there is a full 2-second quiet gap. The frozen legacy two-slot scheduler runs before this shared postprocessor, matching the cached development replay; hidden reload candidates can still occupy an internal slot. Display TTL remains 2 seconds, with at most two legacy scheduled captions active.
+The active model is the verified **round-2 checkpoint at 0.9**, kept by the user after the round-6 threshold review. Its settings live in `live-config.json`. No new fitting was done. Recognition uses the stereo average; original stereo supplies direction. Centered sounds stay hidden unless you add `--show-centered`, which shows them without an arrow. Reload captions are disabled. Same-label/side candidates merge until there is a full 2-second quiet gap. The frozen legacy two-slot scheduler runs before this shared postprocessor, matching the cached development replay; hidden reload candidates can still occupy an internal slot. The recognition scheduler still uses its frozen 2-second TTL. The approved overlay displays the newest two captions for up to 3 seconds, fading during the last 250 ms and replacing the oldest if a third arrives.
 
-The model looks back over 975 ms of audio and advances every 480 ms. The console reports measured processing time on exit; processing time does not include the observation window or prove every detected sound appears within a second. Allow approximately one second plus source-polling/capture and processing overhead in the OBS video delay. Do a visual/audio sync check when the overlay is added. No live vocal separator is used.
+The model looks back over 975 ms of audio and advances every 480 ms. The console reports measured processing time on exit; processing time does not include the observation window or prove every detected sound appears within a second. Allow approximately one second plus source-polling/capture and processing overhead in the OBS video delay. Do a visual/audio sync check after adding the overlay. No live vocal separator is used.
 
 `--json` prints full machine events. `--seconds 10` stops a smoke test after ten seconds. The local receive-only WebSocket emits `snapshot`, `caption`, `reset`, `status`, and `performance` events. Caption events include a session ID, numeric caption ID, fixed label, direction, text, confidence, source timestamp, wall-clock expiry, and timing. Reconnecting consumers receive only still-active captions. No chat messages, training commands, file-read commands, or credentials are accepted over this socket.
 

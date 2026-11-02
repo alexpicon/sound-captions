@@ -17,6 +17,7 @@ from labeler import ROOT
 from live_engine import LiveEngine
 from model_tools import decode
 from obs_source import ObsClient
+from overlay_server import overlay_service
 
 
 class SealedMediaError(ValueError):pass
@@ -54,7 +55,7 @@ class EventHub:
     def publish(self,event):
         event={**event,'session':self.session,'policy_version':2}
         if event['type']=='caption':
-            self.active=[r for r in self.active if r['expires_at']>time.time()]+[event]
+            self.active=([r for r in self.active if r['expires_at']>time.time()]+[event])[-2:]
         elif event['type']=='reset':self.active=[]
         elif event['type']=='status':self.status=event
         if self.json_output:print(json.dumps(event),flush=True)
@@ -107,7 +108,7 @@ class Runner:
             side={'left':' ← left','right':' → right'}.get(row['direction'],'')
             now=time.time()
             self.hub.publish({'type':'caption','id':self.hub.sequence,'source':self.source,**row,
-                'text':f"[{row['label']}{side}]",'emitted_at':now,'expires_at':now+self.engine.config['caption_ttl_s'],
+                'text':f"[{row['label']}{side}]",'emitted_at':now,'expires_at':now+self.engine.deployment['display_duration_s'],
                 'processing_ms':round(elapsed,3),'source_lag_ms':round(source_lag_ms+elapsed,3)})
 
 
@@ -233,9 +234,16 @@ async def run(args):
         print(sd.query_devices());return
     engine=await asyncio.to_thread(LiveEngine,args.show_centered);hub=EventHub(json_output=args.json);runner=Runner(engine,hub)
     origins=[None,'null',re.compile(r'http://(127\.0\.0\.1|localhost)(:[0-9]+)?')]
+    with overlay_service(args.overlay_port,args.port):
+        await serve_source(args,engine,hub,runner,origins)
+
+
+async def serve_source(args,engine,hub,runner,origins):
     async with serve(hub.handler,'127.0.0.1',args.port,origins=origins,max_size=4096,max_queue=4,close_timeout=1):
         hub.publish({'type':'status','phase':'ready','websocket':f'ws://127.0.0.1:{args.port}',
-            'model':'round-2','threshold':.9,'enabled_labels':load_policy()['enabled_labels'],'show_centered':args.show_centered})
+            'model':f"round-{engine.deployment['model_round']}",'thresholds':engine.deployment['thresholds'],
+            'overlay':f'http://127.0.0.1:{args.overlay_port}/overlay','display_duration_s':engine.deployment['display_duration_s'],
+            'enabled_labels':load_policy()['enabled_labels'],'show_centered':args.show_centered})
         source=file_source(runner,args.file) if args.file else obs_source(runner,args.obs_media) if args.obs_media else device_source(runner,args.device)
         try:
             if args.seconds:await asyncio.wait_for(source,args.seconds)
@@ -259,6 +267,7 @@ def main():
     mode.add_argument('--list-devices',action='store_true')
     mode.add_argument('--list-obs-inputs',action='store_true')
     parser.add_argument('--port',type=int,default=8770)
+    parser.add_argument('--overlay-port',type=int,default=8771)
     parser.add_argument('--json',action='store_true',help='Machine-readable console events instead of plain captions')
     parser.add_argument('--show-centered',action='store_true',help='Include centered sounds without an arrow; hidden by default')
     parser.add_argument('--seconds',type=float,help='Stop after this many seconds (smoke testing)')

@@ -2,7 +2,7 @@
 
 Important game sounds, captioned for deaf and hard-of-hearing viewers and people watching muted.
 
-**Step 4 is ready for a local try.** The user authorized policy v2 and proceeding with round 2, without further training. The development replay caught 16/34 active sounds (47.1%) at 4.32 same-label span-based false captions/minute. Reload captions are disabled and repeats merge by sound/side. The live helper uses the unchanged round-2 checkpoint at 0.9 and sends local WebSocket events. See `LIVE_HELPER.md` or double-click `Try helper.command`. No overlay or Twitch bot has been built; all sealed tests remain closed.
+**The live helper and step-5 overlay are ready to try.** The active model remains round 2 with footsteps/gunshots at 0.9, as the user chose after reviewing the round-6 threshold trade-off. The approved purple option-1 overlay shows at most two captions for up to 3 seconds. Start `Try helper.command`, then add `http://127.0.0.1:8771/overlay` as a 1920×1080 OBS Browser Source above the video. See `OVERLAY.md`. No more training is planned; all sealed tests remain closed. The Twitch chat bot is still step 6.
 
 ## Try the labeling tool
 

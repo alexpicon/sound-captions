@@ -1,0 +1,16 @@
+{
+  "candidate_model_round": 6,
+  "adopt_lower_footstep_threshold": false,
+  "reason": "Recall gains brought many more false footsteps. At 0.8: one extra catch but 11 extra false footstep captions; at 0.1: eight extra catches but 52 extra false captions.",
+  "user_followup": "Keep round 2 at 0.9 (Recommended)",
+  "active_model_round": 2,
+  "active_thresholds": {
+    "footsteps": 0.9,
+    "gunshot": 0.9,
+    "reload": 0.9,
+    "explosion": 0.9
+  },
+  "live_config_sha256": "13f20291a063667bd1bfbefb425782e782dd5278145e23a704b52d007c9e94cd",
+  "no_training_or_model_weight_changes": true,
+  "sealed_tests_opened": false
+}

@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-11-02T05:37:16.834295-08:00",
+  "grid": [
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2,
+    0.1,
+    0.05
+  ],
+  "no_training_or_inference": true,
+  "test_data_opened": false,
+  "predictions_sha256": "5eb9e4eb2254468a4fe054f5750ea197fb6b9e5841c867600571f5d06d168462",
+  "annotations": {
+    "3ecdd84a4e12c7f7": "c401bbafbbbecf18dee609beca2266e1abe12909cf1201908bef116a20ea6ee8",
+    "fbad448bb2e501ec": "acee6ad0d1ac56bf026ee79b5b119ed58fad7cd308b17c1167363831ecd557fb",
+    "c2d607f46586c2ca": "c5cf98f0eb36b18298d2c02593a57e8c70c5fb714595b16ea14a2bffc1dcdf27",
+    "88bb5aa1c72894c4": "2edda0e797aabfe0007d7ed8ed455cc1eff5006fd3db3b373360d74d57b7826a",
+    "d0919d4a3830c87e": "500f6e1e5e721a2e22e5ce9b91b354340a572824895269ce68873c5ba2fb3ca0",
+    "ab4b8d61fd23ae43": "1054933a79eb0b62e2b45442e1458f7cf19b23adab9bb913e7dc571349cc9d74",
+    "c14ae26991ee5cd0": "bd224ee4a0c29983308a3810e4b1618036e1e2f2c720fca686f39898d19ee6cd",
+    "ff282effd9efab9e": "b6fa51ebf2df091b76bee3d9c8ab73c6fefb07e1fe866bfac0d090f3cc8edd6f",
+    "6158ce1b2191ed58": "ab8150945fe72ce6dc6bf16d33e9bbf82ad59599cc770ac63f3df681cc4abcba",
+    "731add80a90e456a": "e450d03ca92795a9f1bdc55cfe8300fd53de7ed95e3dc5eb68bd53300bfc37c5",
+    "b0b8b2ea1fe031a9": "f01a8db6730fd572ffd715ca98dbcfac43ec5371f3b9c35436c5f52e0541b10c",
+    "78de699728bc538b": "93c8aa86edbe080b024083f8773292139eb9007f53cb2a88330b1ea33d4d12b5",
+    "10c3c71104c6941a": "92f4eaef6cf50fcd4dcc27c9f49ec3ea9b11eddebbfb1c0f2400f86459ec2b8e",
+    "1512f1f1e60bcb2c": "de2862d1e5b2797e5e8fc83742958374e31ca9f188ff4f36166648044093edd8",
+    "7cbb8f7eedd73015": "c1a04eb35331ab944e0fd28040043a50c0ec58f2c242c3b3784e7ce6cfa02347"
+  },
+  "policy_sha256": "af5e1a13e8f8197796cd2a4c00f94c9f6a63e255de45e583645dbf2c0ff68473",
+  "raw_scheduler_ttl_s": 2.0,
+  "overlay_display_lifetime_s": 3,
+  "display_note": "Keep v2 recognition scheduler; overlay holds newest two for up to3s, evicting oldest if needed. Display lifetime does not change inference scores.",
+  "selection_note": "Exploratory development calibration, not an unbiased new validation score. No chosen setting or saved checkpoint modified by this sweep."
+}
