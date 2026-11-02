@@ -1,0 +1,9 @@
+{
+  "tests_passed": 51,
+  "original_round5_control_scores_predictions_parameters_bit_exact": true,
+  "all_four_skirmish_parts_excluded_together": true,
+  "parts_05_06_not_loaded": true,
+  "all_annotations_and_frozen_sources_unchanged": true,
+  "test_data_opened": false,
+  "live_model_changed": false
+}

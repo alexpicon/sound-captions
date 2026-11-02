@@ -427,3 +427,65 @@ Quiet means outside the supplied talking/music spans; agent voice lines remain t
 Validation: **49 tests passed**, including explicit exclusion of unlabeled sibling parts and held-out recording groups. All 12 input annotation hashes, frozen source hashes and the old checkpoint hash were verified unchanged after the run. The current live helper still uses the unchanged original round-2 checkpoint. The newly fitted full-data round-5 checkpoint is saved separately under `.local/training-runs/round-5/model.joblib`; it was not deployed or used to score its own training clips.
 
 Recorded artifacts: `training/round-5/protocol.json`, `metrics.json`, `fold-audit.json`, `verification.json`, `checkpoint.json`, and `conclusion.json`. Both systems’ complete outer probability arrays and caption lists were saved locally, so future threshold reviews do not require refitting. **No sealed tests opened. No new threshold, policy, encoder, direction, live-helper or overlay changes.**
+
+## Training round 6 — add finished skirmish parts 02–04; fixed 0.9 and policy v2
+
+**Footsteps helped a little:** on the same 12 clips used for the round-5 comparison, catches rose **3/14 → 4/14**, while false footstep captions fell **16 → 13**. This is one extra footstep and three fewer false footstep captions, not a large accuracy breakthrough. Overall catches stayed at 21/48: one extra footstep replaced one gunshot. Total false captions decreased, but arrow correctness worsened slightly.
+
+Finished status was checked before any training: part 01 remains complete with 34 labels; parts 02, 03 and 04 are complete with **29, 33 and 35 labels**, respectively, with zero pending guesses. Their labels contain 41 footsteps, 38 gunshots, 13 talking spans and 5 reloads in total. Only these three reviewed clips were added to the round-5 training corpus. Parts **05 and 06 were explicitly excluded**: no audio, labels, feature windows or negative examples were loaded from them. No finish clicks were needed.
+
+Setup unchanged: exact frozen YAMNet mono embedding, window/hop, ClassifierHead/scaler/seed/class weights, 0.9 threshold, original stereo direction and policy-v2 scheduler/scorer. The original eleven retain their existing original+voice-reduced training pairs. All four game-only skirmish parts use original audio only, retaining the preparation gain already applied. No new normalization, separator, cut/paste augmentation, threshold calibration, label edits, or other tuning. The full-data round-6 model is saved separately; the live helper remains unchanged.
+
+### Same twelve clips — direct matched comparison against round 5
+
+Primary comparison uses exactly the original 11 clips plus skirmish part 01, with the same truth labels/exposure for both versions. For each original held-out clip, round 5 trains on the other originals plus part 01; round 6 adds parts 02–04. When any skirmish minute is validated, **all four parts of the same recording are held out together**. Training on part 02 while validating adjacent part 03 would leak recording-specific audio and is forbidden. These are recording-group-out development predictions, not scores from either full-data model on its training clips.
+
+| Measure | Round 5 | Round 6 |
+|---|---|---|
+| Caught sounds | 21 | 21 |
+| False captions | 32 | 29 |
+| Overall recall | 43.75% | 43.75% |
+| False captions/min | 5.06 | 4.59 |
+| Unmatched/min | 12.96 | 12.49 |
+| Arrow correct % | 81.82% | 72.73% |
+| Arrow coverage % | 52.38% | 52.38% |
+| Arrows correct when shown | 9/11 | 8/11 |
+
+| Label | Model | Caught / targets | Recall | False captions/min | Arrows correct when shown |
+|---|---|---|---|---|---|
+| footsteps | Round 5 | 3/14 | 21.4% | 2.53 | 2/2 |
+| footsteps | Round 6 | 4/14 | 28.6% | 2.06 | 3/3 |
+| gunshot | Round 5 | 18/34 | 52.9% | 2.53 | 7/9 |
+| gunshot | Round 6 | 17/34 | 50.0% | 2.53 | 5/8 |
+
+Per-label false/min is grouped by the predicted class and divided by the same full exposure. Footstep false/min improved **2.53 → 2.06**; gunshot false/min stayed **2.53**. The added correct footstep arrow changes footstep arrows from 2/2 to 3/3, while gunshot arrows change 7/9 to 5/8. These small samples do not justify a large direction reliability claim. Reload remains disabled and there are no explosion targets.
+
+### Broader checks — no cherry-picking new scoring clips
+
+| Shared evaluation scope | Model | Caught / targets | Footsteps caught | Gunshots caught | False/min | Arrows right |
+|---|---|---|---|---|---|---|
+| Original 11 only | Round 5 | 16/34 (47.1%) | 3/5 (60.0%) | 13/29 (44.8%) | 4.32 | 8/10 |
+| Original 11 only | Round 6 | 16/34 (47.1%) | 4/5 (80.0%) | 12/29 (41.4%) | 3.76 | 7/10 |
+| All 15 reviewed dev clips | Round 5 | 42/95 (44.2%) | 5/38 (13.2%) | 37/57 (64.9%) | 6.11 | 15/21 |
+| All 15 reviewed dev clips | Round 6 | 42/95 (44.2%) | 6/38 (15.8%) | 36/57 (63.2%) | 5.79 | 14/21 |
+| Entire skirmish recording held out | Round 5 | 26/61 (42.6%) | 2/33 (6.1%) | 24/28 (85.7%) | 8.50 | 7/11 |
+| Entire skirmish recording held out | Round 6 | 26/61 (42.6%) | 2/33 (6.1%) | 24/28 (85.7%) | 8.50 | 7/11 |
+
+On the larger matched 15-clip set, footsteps improve **5/38 → 6/38 (13.2% → 15.8%)**, so detection remains weak overall. Original-11 footstep recall improves 3/5 → 4/5, but that is still just one extra event. The skirmish-only held-out predictions are identical between versions: both train only on the original eleven when the entire new recording is held out. The skirmish score therefore cannot demonstrate transfer between adjacent pieces of the same recording; it deliberately avoids that leakage.
+
+### Context on the primary same-12 comparison
+
+| Context | Model | Caught / targets | Recall | False/min | Arrows right |
+|---|---|---|---|---|---|
+| quiet | Round 5 | 14/26 | 53.8% | 6.83 | 6/6 |
+| quiet | Round 6 | 13/26 | 50.0% | 6.40 | 5/5 |
+| talking | Round 5 | 7/22 | 31.8% | 4.02 | 3/5 |
+| talking | Round 6 | 8/22 | 36.4% | 3.52 | 3/6 |
+| music | Round 5 | N/A | N/A | N/A | N/A |
+| music | Round 6 | N/A | N/A | N/A | N/A |
+
+Policy-v2 definitions are unchanged: onset recall within 1 second, centered targets excluded from primary recall, same-label span/onset support for false captions, two-second same-sound/side quiet-gap merging, and no reload output. Later supported captions can be unmatched without being false. Quiet is the complement of the supplied talking/music spans; agent speech remains talking context. Full per-label, all-direction, confusion and context tables are in the machine-readable metrics.
+
+Verification: **51 tests passed**. The reconstructed round-5 control reproduces its saved outer probability arrays, full head/scaler parameters, and primary same-12 scores **bit for bit**. Frozen code/label hashes and both saved round-5/live checkpoints remained unchanged. Every validation fold excludes the held-out recording group, including all four skirmish siblings where relevant. Parts 05–06 and all sealed tests remain closed.
+
+Artifacts: `training/round-6/protocol.json`, `metrics.json`, `fold-audit.json`, `checkpoint.json`, `verification.json`, and `conclusion.json`. Both controls’ outer probabilities/captions and the full-data new model are saved under `.local/training-runs/round-6/` for reproducibility. No live-model or overlay switch was made and no additional training/tuning was attempted.

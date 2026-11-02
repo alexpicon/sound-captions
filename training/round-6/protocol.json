@@ -1,0 +1,108 @@
+{
+  "round": 6,
+  "created_at": "2026-11-02T05:30:44.599054-08:00",
+  "change": "Add only finished skirmish 02-04 to round 5; parts 05-06 never loaded",
+  "threshold": 0.9,
+  "threshold_selection": "Fixed 0.9; no calibration or hyperparameter search",
+  "encoder_head_augmentation": "Exact round-5 setup: fixed YAMNet mono embeddings and ClassifierHead; original+existing voice-reduced for original11, original-only for skirmish01-04; no paste/separation",
+  "validation": "Matched leave-one-recording-group-out for both versions. All four skirmish minutes held out together on every skirmish validation fold.",
+  "comparison": "Round-5 control versus round 6 on SAME original 12 clips (primary), original11 subset and same15 clips (supplementary)",
+  "old_ids": [
+    "3ecdd84a4e12c7f7",
+    "6158ce1b2191ed58",
+    "731add80a90e456a",
+    "78de699728bc538b",
+    "88bb5aa1c72894c4",
+    "ab4b8d61fd23ae43",
+    "b0b8b2ea1fe031a9",
+    "c14ae26991ee5cd0",
+    "c2d607f46586c2ca",
+    "d0919d4a3830c87e",
+    "fbad448bb2e501ec",
+    "ff282effd9efab9e"
+  ],
+  "added_ids": [
+    "10c3c71104c6941a",
+    "1512f1f1e60bcb2c",
+    "7cbb8f7eedd73015"
+  ],
+  "original_ids": [
+    "3ecdd84a4e12c7f7",
+    "6158ce1b2191ed58",
+    "731add80a90e456a",
+    "88bb5aa1c72894c4",
+    "ab4b8d61fd23ae43",
+    "b0b8b2ea1fe031a9",
+    "c14ae26991ee5cd0",
+    "c2d607f46586c2ca",
+    "d0919d4a3830c87e",
+    "fbad448bb2e501ec",
+    "ff282effd9efab9e"
+  ],
+  "skirmish_ids": [
+    "10c3c71104c6941a",
+    "1512f1f1e60bcb2c",
+    "78de699728bc538b",
+    "7cbb8f7eedd73015"
+  ],
+  "excluded_unlabeled_parts": [
+    "test-audio/real-clips/17 skirmish game audio - part 05.mp4",
+    "test-audio/real-clips/17 skirmish game audio - part 06.mp4"
+  ],
+  "annotations": {
+    "3ecdd84a4e12c7f7": "c401bbafbbbecf18dee609beca2266e1abe12909cf1201908bef116a20ea6ee8",
+    "fbad448bb2e501ec": "acee6ad0d1ac56bf026ee79b5b119ed58fad7cd308b17c1167363831ecd557fb",
+    "c2d607f46586c2ca": "c5cf98f0eb36b18298d2c02593a57e8c70c5fb714595b16ea14a2bffc1dcdf27",
+    "88bb5aa1c72894c4": "2edda0e797aabfe0007d7ed8ed455cc1eff5006fd3db3b373360d74d57b7826a",
+    "d0919d4a3830c87e": "500f6e1e5e721a2e22e5ce9b91b354340a572824895269ce68873c5ba2fb3ca0",
+    "ab4b8d61fd23ae43": "1054933a79eb0b62e2b45442e1458f7cf19b23adab9bb913e7dc571349cc9d74",
+    "c14ae26991ee5cd0": "bd224ee4a0c29983308a3810e4b1618036e1e2f2c720fca686f39898d19ee6cd",
+    "ff282effd9efab9e": "b6fa51ebf2df091b76bee3d9c8ab73c6fefb07e1fe866bfac0d090f3cc8edd6f",
+    "6158ce1b2191ed58": "ab8150945fe72ce6dc6bf16d33e9bbf82ad59599cc770ac63f3df681cc4abcba",
+    "731add80a90e456a": "e450d03ca92795a9f1bdc55cfe8300fd53de7ed95e3dc5eb68bd53300bfc37c5",
+    "b0b8b2ea1fe031a9": "f01a8db6730fd572ffd715ca98dbcfac43ec5371f3b9c35436c5f52e0541b10c",
+    "78de699728bc538b": "93c8aa86edbe080b024083f8773292139eb9007f53cb2a88330b1ea33d4d12b5",
+    "10c3c71104c6941a": "92f4eaef6cf50fcd4dcc27c9f49ec3ea9b11eddebbfb1c0f2400f86459ec2b8e",
+    "1512f1f1e60bcb2c": "de2862d1e5b2797e5e8fc83742958374e31ca9f188ff4f36166648044093edd8",
+    "7cbb8f7eedd73015": "c1a04eb35331ab944e0fd28040043a50c0ec58f2c242c3b3784e7ce6cfa02347"
+  },
+  "policy": {
+    "version": 2,
+    "name": "round-2-no-reload-burst-merge",
+    "model_round": 2,
+    "deployment_threshold": 0.9,
+    "enabled_labels": [
+      "footsteps",
+      "gunshot",
+      "explosion"
+    ],
+    "disabled_labels": [
+      "reload"
+    ],
+    "repeat_gap_s": 2.0,
+    "repeat_key": "label and direction",
+    "repeat_rule": "Emit the first candidate; suppress later same-key candidates until a full 2 seconds without that key. Suppressed repeats extend the quiet-gap timer. Other sides remain independent.",
+    "pipeline": "Unchanged round-2 window scheduler, then remove disabled captions and merge repeats. The original internal scheduler still limits raw candidates to two, including subsequently hidden reloads; this preserves exact replay of stored out-of-fold captions.",
+    "caught_onset_tolerance_s": 1.0,
+    "false_early_tolerance_s": 1.0,
+    "false_after_onset_s": 2.0,
+    "false_caption_rule": "Unsupported unless there is a SAME-LABEL annotation with start-1 <= caption time <= max(end, start+2). This covers the full labeled span, the first 2 seconds after onset, and the original 1-second early allowance. Direction is scored separately.",
+    "targets": "Enabled game labels only. Centered targets remain excluded from primary recall; report all-direction recall separately. Reload recall is N/A, not a claimed improvement.",
+    "final_comparison": "Apply this same versioned postprocessor and scorer to both cached baseline and learned-model final predictions. Never compare new-policy after numbers with old-policy baseline numbers. No tests may be opened before the explicitly authorized final evaluation."
+  },
+  "source_hashes": {
+    "training_core.py": "c1e95170e20ef28ef2cfdfaa6d86f19f1a5af5c51cee3574e31f9128c1fc1926",
+    "caption-policy-v2.json": "af5e1a13e8f8197796cd2a4c00f94c9f6a63e255de45e583645dbf2c0ff68473",
+    "caption_policy.py": "6281e2b20aabfcd14698ed87677354779fac9c4563e13c0f38519ed946beba84",
+    "policy_scoring.py": "cd5e009855825080178c4ac8099bdcf693eb1fdb9806674c51b81d879a21d569",
+    "scoring.py": "4147cc8125bfd56f02283e2bcddf8da2bd1fc80f15068005b8844e2311f49146",
+    "run_training.py": "6ab62029e075f7e6354f4d87f8d4535740c8a7582ea7e586b21fe85f2da51ad9",
+    "run_round5.py": "305a2ec86eccdac1041bbe3ff155698b6d8d1eb88070c650dd04931abc05a48e",
+    "baseline-config.json": "06e81d72c41cf5b9cbca9cdc21e2e5fc7be56fda62c0527e169c6b1cb35fe2bc",
+    "run_round6.py": "a2bb52f5f5fd1a61b786d0cdac897dc1e1ae4440a72b7157863914680cfd0ebf"
+  },
+  "round5_checkpoint_sha256": "f85fc04b14fd4f0f5df62c42ec270e1bbc05837582d324388dc0f12ea784c159",
+  "live_checkpoint_sha256": "d3547ad8493ba740e3d575848a39703ee7a05247bdff2d99d51514f3102bd14a",
+  "test_data_opened": false,
+  "live_model_changed": false
+}

@@ -1,0 +1,22 @@
+{
+  "verdict": "Small footsteps improvement, with trade-offs; not a large overall accuracy gain.",
+  "same_12_footsteps": {
+    "round5_caught": 3,
+    "round6_caught": 4,
+    "targets": 14,
+    "false_captions_before": 16,
+    "false_captions_after": 13
+  },
+  "overall_caught_before": 21,
+  "overall_caught_after": 21,
+  "targets": 48,
+  "false_per_min_before": 5.059365501230669,
+  "false_per_min_after": 4.5850499854902935,
+  "gunshots_caught_before": 18,
+  "gunshots_caught_after": 17,
+  "arrows_before": "9/11",
+  "arrows_after": "8/11",
+  "same15_footsteps_before": "5/38",
+  "same15_footsteps_after": "6/38",
+  "live_model_changed": false
+}
