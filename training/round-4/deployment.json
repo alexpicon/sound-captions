@@ -1,0 +1,200 @@
+{
+  "threshold": 0.999,
+  "selection": "Strict constrained development out-of-fold calibration only",
+  "search": [
+    {
+      "threshold": 0.5,
+      "caught_pct": 47.5,
+      "false_per_min": 8.638653743186415,
+      "false_captions": 46,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 25.35257076804709
+    },
+    {
+      "threshold": 0.55,
+      "caught_pct": 50.0,
+      "false_per_min": 8.638653743186415,
+      "false_captions": 46,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 24.41358666552683
+    },
+    {
+      "threshold": 0.6,
+      "caught_pct": 57.5,
+      "false_per_min": 9.01424738419452,
+      "false_captions": 48,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 24.225789845022774
+    },
+    {
+      "threshold": 0.65,
+      "caught_pct": 62.5,
+      "false_per_min": 8.263060102178311,
+      "false_captions": 44,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 22.911212101494407
+    },
+    {
+      "threshold": 0.7,
+      "caught_pct": 62.5,
+      "false_per_min": 8.450856922682364,
+      "false_captions": 45,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 22.911212101494407
+    },
+    {
+      "threshold": 0.75,
+      "caught_pct": 60.0,
+      "false_per_min": 8.450856922682364,
+      "false_captions": 45,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 22.34782163998225
+    },
+    {
+      "threshold": 0.8,
+      "caught_pct": 60.0,
+      "false_per_min": 7.3240759996580485,
+      "false_captions": 39,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 20.09425979393362
+    },
+    {
+      "threshold": 0.85,
+      "caught_pct": 55.0,
+      "false_per_min": 6.3850918971377855,
+      "false_captions": 34,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 18.02849476838904
+    },
+    {
+      "threshold": 0.9,
+      "caught_pct": 45.0,
+      "false_per_min": 5.633904615121575,
+      "false_captions": 30,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 16.33832338385257
+    },
+    {
+      "threshold": 0.925,
+      "caught_pct": 45.0,
+      "false_per_min": 5.258310974113471,
+      "false_captions": 28,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 15.399339281332306
+    },
+    {
+      "threshold": 0.95,
+      "caught_pct": 40.0,
+      "false_per_min": 4.319326871593208,
+      "false_captions": 23,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 13.521371076291782
+    },
+    {
+      "threshold": 0.96,
+      "caught_pct": 35.0,
+      "false_per_min": 4.131530051089156,
+      "false_captions": 22,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 12.770183794275571
+    },
+    {
+      "threshold": 0.97,
+      "caught_pct": 30.0,
+      "false_per_min": 4.131530051089156,
+      "false_captions": 22,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 12.770183794275571
+    },
+    {
+      "threshold": 0.98,
+      "caught_pct": 25.0,
+      "false_per_min": 3.568139589576998,
+      "false_captions": 19,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 11.455606050747203
+    },
+    {
+      "threshold": 0.985,
+      "caught_pct": 25.0,
+      "false_per_min": 3.7559364100810506,
+      "false_captions": 20,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 10.516621948226941
+    },
+    {
+      "threshold": 0.99,
+      "caught_pct": 20.0,
+      "false_per_min": 3.568139589576998,
+      "false_captions": 19,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 9.202044204698574
+    },
+    {
+      "threshold": 0.9925,
+      "caught_pct": 17.5,
+      "false_per_min": 2.8169523075607876,
+      "false_captions": 15,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 7.699669640666153
+    },
+    {
+      "threshold": 0.995,
+      "caught_pct": 12.5,
+      "false_per_min": 2.25356184604863,
+      "false_captions": 12,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 6.009498256129681
+    },
+    {
+      "threshold": 0.9975,
+      "caught_pct": 10.0,
+      "false_per_min": 2.065765025544578,
+      "false_captions": 11,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 4.694920512601313
+    },
+    {
+      "threshold": 0.999,
+      "caught_pct": 10.0,
+      "false_per_min": 1.6901713845364728,
+      "false_captions": 9,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 3.943733230585103
+    },
+    {
+      "threshold": 0.9995,
+      "caught_pct": 7.5,
+      "false_per_min": 1.126780923024315,
+      "false_captions": 6,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 3.1925459485688927
+    },
+    {
+      "threshold": 0.9999,
+      "caught_pct": 5.0,
+      "false_per_min": 0.7511872820162101,
+      "false_captions": 4,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 2.441358666552683
+    },
+    {
+      "threshold": 0.99999,
+      "caught_pct": 2.5,
+      "false_per_min": 0.5633904615121575,
+      "false_captions": 3,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 1.8779682050405253
+    },
+    {
+      "threshold": 1.000001,
+      "caught_pct": 0.0,
+      "false_per_min": 0.0,
+      "false_captions": 0,
+      "duration_s": 319.49422699999997,
+      "unmatched_per_min": 0.0
+    }
+  ],
+  "model": ".local/training-runs/round-4/model.joblib",
+  "ready_for_step4": false
+}

@@ -1,0 +1,17 @@
+{
+  "round": 4,
+  "status": "gate_not_met",
+  "user_gate": {
+    "recall_required_pct": 35,
+    "false_per_min_required_max": 2,
+    "passed": false
+  },
+  "nested_validation_recall_pct": 7.5,
+  "nested_validation_false_per_min": 1.126780923024315,
+  "nested_validation_unmatched_per_min": 3.568139589576998,
+  "step4_started": false,
+  "sealed_tests_opened": false,
+  "training_tests_passed": 32,
+  "all_67_training_subset_provenance_checks_passed": true,
+  "original_annotation_hashes_unchanged": true
+}

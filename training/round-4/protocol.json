@@ -1,0 +1,81 @@
+{
+  "created_at": "2026-11-01T23:23:57.323517-08:00",
+  "plan": {
+    "round": 4,
+    "authorized_change": "One additional round with labeled cut-and-paste augmentation and false-caption-first threshold selection. Tests remain closed. Proceed to step 4 only if outer validation recall >=35% and literal false captions/min <=2.",
+    "encoder": "Same supplied YAMNet mono embeddings as round 2; same balanced logistic heads and C=0.1",
+    "base_data": "Both original and voice-reduced variants, with siblings in the same clip fold",
+    "augmentation": {
+      "donors": "Only human-labeled game-sound intervals from allowed training clips; extract from their aligned voice-reduced copies",
+      "recipients": "Other allowed training clips, randomly using original or cleaned backgrounds. A deterministic recipient assignment uses clip IDs only; if the recipient is excluded, the recipe is skipped before loading any waveform or cache.",
+      "gains": [
+        0.35,
+        0.65,
+        1.0
+      ],
+      "pan": [
+        "left",
+        "right"
+      ],
+      "fade_ms": 5,
+      "context_s": 0.5,
+      "windows_per_mix": "Up to three 0.975-second windows at different positions, plus identical background-only counterfactual windows with their own original labels",
+      "labels": "Retain recipient targets and shift/clip all overlapping donor game-sound labels, not just the selected event. No human CSV is modified.",
+      "isolation": "Every example records both donor and recipient IDs. Both must be inside that individual inner/outer training fold, including on cache hits. No mixing or training uses validation clips, their cleaned siblings, any test clip or Xonotic.",
+      "limitation": "These are copies of mixed gameplay snippets, not isolated studio effects; they can retain speech or other sounds. More synthetic examples are not new independent recordings."
+    },
+    "seed": 20261102,
+    "threshold_grid": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.925,
+      0.95,
+      0.96,
+      0.97,
+      0.98,
+      0.985,
+      0.99,
+      0.9925,
+      0.995,
+      0.9975,
+      0.999,
+      0.9995,
+      0.9999,
+      0.99999,
+      1.000001
+    ],
+    "threshold_rule": "Strict inner-validation false/min <=2 eligibility; among eligible thresholds maximize event recall, then fewer unmatched/min and higher threshold. 1.000001 is an explicit abstain-all candidate, guaranteeing feasibility without silently relaxing the false-caption constraint. Never select thresholds on the outer validation clip.",
+    "evaluation": "Same nested whole-clip leave-one-clip-out, original mixed outer audio, frozen round-0 caption scheduler and scorer, centered output hidden. Report literal false/min and broader unmatched/min. Inner feasibility does not guarantee outer performance.",
+    "gate": {
+      "minimum_outer_recall_pct": 35,
+      "maximum_outer_false_per_min": 2
+    },
+    "sealed_tests": "Do not read media, labels, baseline prediction caches, or test scores. No final after test in this task."
+  },
+  "plan_sha256": "e5e7decc22518c3fdcc18262fe84c5cf6d06d2b6577838dfba71002525d9ff82",
+  "runner_sha256": "302f8e598a95db2a6c7f77c24ea12d7da3558da2ad45e682cd48818fe37726ed",
+  "augmentation_sha256": "68c84e39467bd66d83b907387b2d582a2f96ea0c32a99d9f7c8e2f9034de1093",
+  "scorer_sha256": "4147cc8125bfd56f02283e2bcddf8da2bd1fc80f15068005b8844e2311f49146",
+  "head_code_sha256": "c1e95170e20ef28ef2cfdfaa6d86f19f1a5af5c51cee3574e31f9128c1fc1926",
+  "annotations": {
+    "3ecdd84a4e12c7f7": "c401bbafbbbecf18dee609beca2266e1abe12909cf1201908bef116a20ea6ee8",
+    "fbad448bb2e501ec": "acee6ad0d1ac56bf026ee79b5b119ed58fad7cd308b17c1167363831ecd557fb",
+    "c2d607f46586c2ca": "c5cf98f0eb36b18298d2c02593a57e8c70c5fb714595b16ea14a2bffc1dcdf27",
+    "88bb5aa1c72894c4": "2edda0e797aabfe0007d7ed8ed455cc1eff5006fd3db3b373360d74d57b7826a",
+    "d0919d4a3830c87e": "500f6e1e5e721a2e22e5ce9b91b354340a572824895269ce68873c5ba2fb3ca0",
+    "ab4b8d61fd23ae43": "1054933a79eb0b62e2b45442e1458f7cf19b23adab9bb913e7dc571349cc9d74",
+    "c14ae26991ee5cd0": "bd224ee4a0c29983308a3810e4b1618036e1e2f2c720fca686f39898d19ee6cd",
+    "ff282effd9efab9e": "b6fa51ebf2df091b76bee3d9c8ab73c6fefb07e1fe866bfac0d090f3cc8edd6f",
+    "6158ce1b2191ed58": "ab8150945fe72ce6dc6bf16d33e9bbf82ad59599cc770ac63f3df681cc4abcba",
+    "731add80a90e456a": "e450d03ca92795a9f1bdc55cfe8300fd53de7ed95e3dc5eb68bd53300bfc37c5",
+    "b0b8b2ea1fe031a9": "f01a8db6730fd572ffd715ca98dbcfac43ec5371f3b9c35436c5f52e0541b10c"
+  },
+  "test_data_opened": false
+}

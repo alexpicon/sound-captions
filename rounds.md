@@ -248,3 +248,76 @@ These slices use human annotations, original mixed validation audio, and the sam
 | 3 | quiet | 7/15 | 46.7% | 9.43 | 24.24 | 3/3 (100.0%) | 42.9% | 0.0% | 63.6% | 0.0% |
 | 3 | talking | 6/25 | 24.0% | 4.69 | 14.58 | 3/3 (100.0%) | 50.0% | 0.0% | 33.3% | 0.0% |
 | 3 | music | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+
+## Training round 4 — Fold-local cut/paste augmentation, gains and L/R panning; strict inner false-caption limit
+
+**Validation only:** pooled outer leave-one-clip-out predictions on the eleven real Valorant development clips. No sealed test data opened. These are not directly comparable to the historical four-test-clip round 0.
+
+| Reference / round | Caught | False/min | Unmatched/min | Arrow correct | Arrow coverage | Quiet caught | Talking caught | Music caught |
+|---|---|---|---|---|---|---|---|---|
+| Pretrained development reference | 12.5% (5/40) | 1.13 | 6.20 | 66.7% | 60.0% | — | — | — |
+| 4 | 7.5% (3/40) | 1.13 | 3.57 | 0.0% (0/1) | 33.3% | 13.3% | 4.0% | N/A |
+
+| Label | Caught / target | Recall |
+|---|---|---|
+| footsteps | 0/5 | 0.0% |
+| gunshot | 3/29 | 10.3% |
+| reload | 0/6 | 0.0% |
+| explosion | 0/0 | N/A |
+
+Confusion counts (rows true, columns predicted; missed is no matched caption):
+
+| True | Footsteps | Gunshot | Reload | Explosion | Missed |
+|---|---|---|---|---|---|
+| footsteps | 0 | 0 | 0 | 0 | 5 |
+| gunshot | 0 | 3 | 0 | 0 | 26 |
+| reload | 0 | 0 | 0 | 0 | 6 |
+| explosion | 0 | 0 | 0 | 0 | 0 |
+
+All-direction recall, including intentionally hidden centered events: 9/111 (8.1%). Primary scoring excluded 71 centered targets.
+
+Machine-readable metrics: `training/round-4/metrics.json`. No test-based tuning.
+
+Round 4 strictly enforces the 2/min limit on **inner calibration**; it never falls back to an infeasible threshold. The threshold grid extends above 0.9 up to an explicit abstain-all setting. Held-out outer performance, rather than the calibration score, determines the user's 35% / 2-per-minute step-4 gate.
+
+Exact outer-fold thresholds (selected on inner folds): 0.999500, 0.999500, 0.999500, 0.997500, 0.999500, 0.997500, 0.997500, 0.999900, 0.999000, 0.999900, 0.997500.
+
+Step-4 gate: **NOT PASSED**. Nested real-clip validation: 7.5% recall, 1.13 literal false/min, 3.57 unmatched/min. Sealed tests remain closed.
+
+### Round 4 augmentation, calibration and gate audit
+
+The user authorized one more round and replaced the previous 50% checkpoint with **at least 35% nested-validation recall and at most 2 false captions/minute**. This gate was **not met**. Step 4 was not started. The historical round-3 stop record remains preserved; the current decision is `training/decision-round-4.json`.
+
+Created 666 distinct cut-and-paste mixes across the development corpus: three gains (0.35, 0.65, 1.0) × two pans per labeled game event. These supply 3996 new feature windows, including paired background-only controls. With the original and voice-reduced windows, the full-data experimental checkpoint uses 5316 windows. Each cross-validation model uses only the subset of recipes whose **donor and recipient** are both in that model's training fold. The full-data checkpoint is fitted only after the outer validation predictions are fixed; its fit is not a validation score.
+
+Sources are human-labeled sound intervals from the aligned voice-reduced training copies. Recipients are other training clips, with original or cleaned backgrounds. Five-millisecond edge fades reduce splice clicks; gain and left/right panning vary the foreground. Recipient sound labels are retained, and every overlapping donor game-sound label is shifted/clipped along with the audio. Counterfactual background windows carry only their own recipient labels. No human CSV, validation audio, or test audio was edited. Recognition remains the same mono YAMNet embedding/head as round 2; panning creates stereo mixtures, but the classifier itself is not a learned direction model.
+
+All 67 fitted training subsets passed donor/recipient membership checks. Checks run **before cache access and before waveform access**, not just when saving a mix. Every outer held-out clip is excluded in both original and cleaned forms, including from its inner calibration models. The eleven original training annotation hashes were verified unchanged after the run. Provenance is recorded in `training/round-4/augmentation-audit.json` and local per-recipe JSONs under `.local/training-runs/round-4/augmentation/`.
+
+| Outer fold | Selected threshold | Inner recall | Inner false/min |
+|---|---|---|---|
+| 1 | 0.999500 | 13.2% | 1.45 |
+| 2 | 0.999500 | 13.3% | 1.26 |
+| 3 | 0.999500 | 7.9% | 1.93 |
+| 4 | 0.997500 | 15.4% | 1.66 |
+| 5 | 0.999500 | 8.8% | 1.64 |
+| 6 | 0.997500 | 20.6% | 1.83 |
+| 7 | 0.997500 | 20.0% | 1.87 |
+| 8 | 0.999900 | 5.0% | 1.25 |
+| 9 | 0.999000 | 9.7% | 1.44 |
+| 10 | 0.999900 | 7.9% | 1.23 |
+| 11 | 0.997500 | 15.8% | 1.98 |
+
+**Held-out outer validation:** 3/40 = 7.5% recall, 6 literal false captions over 5.325 minutes (1.13/min). 19 captions were unmatched (3.57/min), including wrong labels, repeats and captions matching only excluded centered targets. The narrow false/min figure must not be presented as the total wrong-caption rate. Arrows: 0/1 correct; the sample is too small for a reliability claim.
+
+The full-data checkpoint's single threshold is 0.999000, selected separately from development out-of-fold probabilities. Its **calibration** recall is 10.0% at 1.69 literal false/min. That reused calibration score is not the independent nested score and does not rescue the failed gate. Checkpoint files remain experimental and `ready_for_step4` is false.
+
+| Context | Caught / targets | Recall | False/min | Unmatched/min | Arrow correct |
+|---|---|---|---|---|---|
+| quiet | 2/15 | 13.3% | 0.67 | 2.69 | 0/0 |
+| talking | 1/25 | 4.0% | 1.30 | 3.91 | 0/1 |
+| music | N/A | N/A | N/A | N/A | N/A |
+
+The combined change reduced emitted false captions while sacrificing most recall. Because augmentation and stricter threshold selection changed together, this round does not isolate the effect of augmentation alone. Synthetic examples are reused recordings rather than independent new gameplay, and copied mixed snippets may retain other sounds or residual speech. No additional rounds, outer-threshold retuning, final after tests, live helper, overlay, or other new feature work was performed after the gate failed.
+
+Validation: all 32 tests passed before the run, including both donor/recipient fold exclusion before cache reads, pan/gain behavior without array mutation, overlapping annotation shifts, and strict rejection of infeasible thresholds. Existing event-scoring functions and caption scheduling remained unchanged.

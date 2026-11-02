@@ -2,7 +2,7 @@
 
 Important game sounds, captioned for deaf and hard-of-hearing viewers and people watching muted.
 
-**Labeling and the round-0 baseline are complete. Step 3 ran three training rounds and stopped at the agreed checkpoint:** best development validation recall is 47.5%, below 50%. All eleven stereo voice-reduced copies are verified. Sealed tests remain closed; no final after score, live helper, overlay, or Twitch bot has been run. Details are in `rounds.md` and `training/decision.json`. No files are uploaded and nothing connects to Twitch.
+**Labeling, the baseline, and four training rounds are recorded.** The latest precision-first round scored 7.5% held-out development recall at 1.13 literal false captions/minute. It failed the user's updated gate of at least 35% recall with at most 2 false/min, so step 4 was not started. All eleven stereo voice-reduced copies are verified. Sealed tests remain closed; no final after score, live helper, overlay, or Twitch bot has been run. See `rounds.md` and `training/decision-round-4.json`. No files are uploaded and nothing connects to Twitch.
 
 ## Try the labeling tool
 
@@ -138,6 +138,16 @@ Commands are `.venv-model/bin/python run_training.py 0` (development reference),
 ```
 
 All 28 tests passed before training. The stop report also records post-run checks that the eleven reviewed annotation/copy hashes and outer-fold exclusion lists stayed correct.
+
+## Round 4: fold-local augmentation and strict false-caption limit
+
+The user authorized exactly one additional experiment after the earlier stop. Its frozen settings are in `round-4-plan.json`, with code in `cutpaste.py` and `run_round4.py`. It retains the paired mono YAMNet model, adds pasted sound snippets at three gains and two pans, and creates background-only controls. Both donor and recipient must be in the particular training fold before any cache or waveform is read. Overlapping sound labels move with the donor audio; original CSVs and validation audio are never edited.
+
+This created 666 mixes and 3,996 synthetic/control feature windows for the full-data checkpoint. Nested validation filters the recipe set separately for every inner/outer training subset. Thresholds are chosen strictly among inner results with <=2 literal false captions/min; the search extends past 0.9 through 0.99999 plus an explicit abstain-all candidate. It never falls back to an infeasible threshold.
+
+**Outcome:** held-out nested validation caught 3/40 sounds (7.5%) at 1.13 literal false/min and 3.57 unmatched/min, including wrong labels/repeats and excluded centered targets. Every inner calibration met the 2/min limit, but recall did not reach the new 35% gate. The separate full-data checkpoint calibration scored 10% at 1.69 false/min; this is not the independent validation score. **Step 4 was not started and all sealed tests remain closed.** Results, split provenance, calibration searches, and the gate decision are under `training/round-4/` and `training/decision-round-4.json`.
+
+Reproduction command: `.venv-model/bin/python run_round4.py`. The recorded run refuses to overwrite its protocol/results. The complete log is `rounds.md`. All 32 tests passed before the run. Annotation hashes and all 67 training-subset provenance lists were verified afterward. Earlier rounds, their metrics, and the historical stop decision are preserved.
 
 ## Repository and checks
 
