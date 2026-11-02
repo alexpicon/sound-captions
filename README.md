@@ -2,7 +2,7 @@
 
 Important game sounds, captioned for deaf and hard-of-hearing viewers and people watching muted.
 
-**Labeling, the baseline, and four training rounds are recorded.** The latest precision-first round scored 7.5% held-out development recall at 1.13 literal false captions/minute. It failed the user's updated gate of at least 35% recall with at most 2 false/min, so step 4 was not started. All eleven stereo voice-reduced copies are verified. Sealed tests remain closed; no final after score, live helper, overlay, or Twitch bot has been run. See `rounds.md` and `training/decision-round-4.json`. No files are uploaded and nothing connects to Twitch.
+**Step 4 is ready for a local try.** The user authorized policy v2 and proceeding with round 2, without further training. The development replay caught 16/34 active sounds (47.1%) at 4.32 same-label span-based false captions/minute. Reload captions are disabled and repeats merge by sound/side. The live helper uses the unchanged round-2 checkpoint at 0.9 and sends local WebSocket events. See `LIVE_HELPER.md` or double-click `Try helper.command`. No overlay or Twitch bot has been built; all sealed tests remain closed.
 
 ## Try the labeling tool
 

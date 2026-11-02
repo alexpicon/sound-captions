@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "round-2-no-reload-burst-merge",
+  "model_round": 2,
+  "deployment_threshold": 0.9,
+  "enabled_labels": ["footsteps", "gunshot", "explosion"],
+  "disabled_labels": ["reload"],
+  "repeat_gap_s": 2.0,
+  "repeat_key": "label and direction",
+  "repeat_rule": "Emit the first candidate; suppress later same-key candidates until a full 2 seconds without that key. Suppressed repeats extend the quiet-gap timer. Other sides remain independent.",
+  "pipeline": "Unchanged round-2 window scheduler, then remove disabled captions and merge repeats. The original internal scheduler still limits raw candidates to two, including subsequently hidden reloads; this preserves exact replay of stored out-of-fold captions.",
+  "caught_onset_tolerance_s": 1.0,
+  "false_early_tolerance_s": 1.0,
+  "false_after_onset_s": 2.0,
+  "false_caption_rule": "Unsupported unless there is a SAME-LABEL annotation with start-1 <= caption time <= max(end, start+2). This covers the full labeled span, the first 2 seconds after onset, and the original 1-second early allowance. Direction is scored separately.",
+  "targets": "Enabled game labels only. Centered targets remain excluded from primary recall; report all-direction recall separately. Reload recall is N/A, not a claimed improvement.",
+  "final_comparison": "Apply this same versioned postprocessor and scorer to both cached baseline and learned-model final predictions. Never compare new-policy after numbers with old-policy baseline numbers. No tests may be opened before the explicitly authorized final evaluation."
+}

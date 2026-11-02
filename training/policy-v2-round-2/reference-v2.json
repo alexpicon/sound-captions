@@ -1,0 +1,2345 @@
+{
+  "policy_version": 2,
+  "primary": {
+    "duration_s": 319.49422699999997,
+    "targets": 34,
+    "caught": 5,
+    "predictions": 37,
+    "centered_targets_excluded": 55,
+    "false_captions": 18,
+    "unmatched_captions": 32,
+    "matched_directional_targets": 5,
+    "arrows_scored": 3,
+    "arrows_correct": 2,
+    "per_label": {
+      "footsteps": {
+        "targets": 5,
+        "caught": 1,
+        "caught_pct": 20.0
+      },
+      "gunshot": {
+        "targets": 29,
+        "caught": 4,
+        "caught_pct": 13.793103448275861
+      },
+      "reload": {
+        "targets": 0,
+        "caught": 0,
+        "caught_pct": null
+      },
+      "explosion": {
+        "targets": 0,
+        "caught": 0,
+        "caught_pct": null
+      }
+    },
+    "confusion": {
+      "footsteps": {
+        "missed": 4,
+        "footsteps": 1
+      },
+      "gunshot": {
+        "missed": 24,
+        "gunshot": 4,
+        "footsteps": 1
+      },
+      "reload": {},
+      "explosion": {}
+    },
+    "caught_pct": 14.705882352941176,
+    "false_per_min": 3.3803427690729455,
+    "unmatched_per_min": 6.009498256129681,
+    "arrow_correct_pct": 66.66666666666667,
+    "arrow_coverage_pct": 60.0
+  },
+  "all_directions": {
+    "duration_s": 319.49422699999997,
+    "targets": 89,
+    "caught": 17,
+    "predictions": 37,
+    "centered_targets_excluded": 0,
+    "false_captions": 18,
+    "unmatched_captions": 20,
+    "matched_directional_targets": 5,
+    "arrows_scored": 3,
+    "arrows_correct": 2,
+    "per_label": {
+      "footsteps": {
+        "targets": 22,
+        "caught": 1,
+        "caught_pct": 4.545454545454546
+      },
+      "gunshot": {
+        "targets": 67,
+        "caught": 16,
+        "caught_pct": 23.880597014925375
+      },
+      "reload": {
+        "targets": 0,
+        "caught": 0,
+        "caught_pct": null
+      },
+      "explosion": {
+        "targets": 0,
+        "caught": 0,
+        "caught_pct": null
+      }
+    },
+    "confusion": {
+      "footsteps": {
+        "missed": 19,
+        "gunshot": 1,
+        "explosion": 1,
+        "footsteps": 1
+      },
+      "gunshot": {
+        "missed": 47,
+        "gunshot": 16,
+        "footsteps": 3,
+        "explosion": 1
+      },
+      "reload": {},
+      "explosion": {}
+    },
+    "caught_pct": 19.10112359550562,
+    "false_per_min": 3.3803427690729455,
+    "unmatched_per_min": 3.7559364100810506,
+    "arrow_correct_pct": 66.66666666666667,
+    "arrow_coverage_pct": 60.0
+  },
+  "contexts": {
+    "quiet": {
+      "duration_s": 89.101227,
+      "targets": 14,
+      "caught": 3,
+      "predictions": 20,
+      "centered_targets_excluded": 18,
+      "false_captions": 9,
+      "unmatched_captions": 17,
+      "matched_directional_targets": 3,
+      "arrows_scored": 2,
+      "arrows_correct": 2,
+      "per_label": {
+        "footsteps": {
+          "targets": 3,
+          "caught": 1,
+          "caught_pct": 33.333333333333336
+        },
+        "gunshot": {
+          "targets": 11,
+          "caught": 2,
+          "caught_pct": 18.181818181818183
+        },
+        "reload": {
+          "targets": 0,
+          "caught": 0,
+          "caught_pct": null
+        },
+        "explosion": {
+          "targets": 0,
+          "caught": 0,
+          "caught_pct": null
+        }
+      },
+      "confusion": {
+        "footsteps": {},
+        "gunshot": {},
+        "reload": {},
+        "explosion": {}
+      },
+      "caught_pct": 21.428571428571427,
+      "false_per_min": 6.060522600884049,
+      "unmatched_per_min": 11.447653801669869,
+      "arrow_correct_pct": 100.0,
+      "arrow_coverage_pct": 66.66666666666667
+    },
+    "talking": {
+      "duration_s": 230.393,
+      "targets": 20,
+      "caught": 2,
+      "predictions": 17,
+      "centered_targets_excluded": 37,
+      "false_captions": 9,
+      "unmatched_captions": 15,
+      "matched_directional_targets": 2,
+      "arrows_scored": 1,
+      "arrows_correct": 0,
+      "per_label": {
+        "footsteps": {
+          "targets": 2,
+          "caught": 0,
+          "caught_pct": 0.0
+        },
+        "gunshot": {
+          "targets": 18,
+          "caught": 2,
+          "caught_pct": 11.11111111111111
+        },
+        "reload": {
+          "targets": 0,
+          "caught": 0,
+          "caught_pct": null
+        },
+        "explosion": {
+          "targets": 0,
+          "caught": 0,
+          "caught_pct": null
+        }
+      },
+      "confusion": {
+        "footsteps": {},
+        "gunshot": {},
+        "reload": {},
+        "explosion": {}
+      },
+      "caught_pct": 10.0,
+      "false_per_min": 2.3438212098457853,
+      "unmatched_per_min": 3.906368683076309,
+      "arrow_correct_pct": 0.0,
+      "arrow_coverage_pct": 50.0
+    },
+    "music": null
+  },
+  "clips": [
+    {
+      "clip_id": "3ecdd84a4e12c7f7",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/03 SOBAAAA ACEEEEE.mp4",
+      "primary": {
+        "duration_s": 30.018186,
+        "targets": 2,
+        "caught": 0,
+        "predictions": 0,
+        "centered_targets_excluded": 4,
+        "false_captions": 0,
+        "unmatched_captions": 0,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "missed": 2
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 0.0,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 30.018186,
+        "targets": 6,
+        "caught": 0,
+        "predictions": 0,
+        "centered_targets_excluded": 0,
+        "false_captions": 0,
+        "unmatched_captions": 0,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 1
+          },
+          "gunshot": {
+            "missed": 5
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 0.0,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 8.846185999999996,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 2,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 21.172000000000004,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 2,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "fbad448bb2e501ec",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/04 deagace.mp4",
+      "primary": {
+        "duration_s": 27.001587,
+        "targets": 2,
+        "caught": 1,
+        "predictions": 7,
+        "centered_targets_excluded": 3,
+        "false_captions": 4,
+        "unmatched_captions": 6,
+        "matched_directional_targets": 1,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 1,
+            "caught_pct": 50.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 1,
+            "missed": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 50.0,
+        "false_per_min": 8.888366450460856,
+        "unmatched_per_min": 13.332549675691284,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": 0.0
+      },
+      "all_directions": {
+        "duration_s": 27.001587,
+        "targets": 5,
+        "caught": 3,
+        "predictions": 7,
+        "centered_targets_excluded": 0,
+        "false_captions": 4,
+        "unmatched_captions": 4,
+        "matched_directional_targets": 1,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 3,
+            "caught_pct": 60.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 3,
+            "footsteps": 1,
+            "missed": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 60.0,
+        "false_per_min": 8.888366450460856,
+        "unmatched_per_min": 8.888366450460856,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": 0.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 9.087587000000003,
+          "targets": 2,
+          "caught": 1,
+          "predictions": 4,
+          "centered_targets_excluded": 2,
+          "false_captions": 2,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 1,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 1,
+              "caught_pct": 50.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 50.0,
+          "false_per_min": 13.204825439360302,
+          "unmatched_per_min": 19.807238159040452,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": 0.0
+        },
+        "talking": {
+          "duration_s": 17.913999999999998,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 3,
+          "centered_targets_excluded": 1,
+          "false_captions": 2,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 6.698671430166351,
+          "unmatched_per_min": 10.048007145249526,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "c2d607f46586c2ca",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/06 Insane clutch.mp4",
+      "primary": {
+        "duration_s": 32.500667,
+        "targets": 0,
+        "caught": 0,
+        "predictions": 6,
+        "centered_targets_excluded": 7,
+        "false_captions": 3,
+        "unmatched_captions": 6,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {},
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": null,
+        "false_per_min": 5.538347874522082,
+        "unmatched_per_min": 11.076695749044164,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 32.500667,
+        "targets": 7,
+        "caught": 2,
+        "predictions": 6,
+        "centered_targets_excluded": 0,
+        "false_captions": 3,
+        "unmatched_captions": 4,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 4,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 3,
+            "caught": 2,
+            "caught_pct": 66.66666666666667
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 3,
+            "gunshot": 1
+          },
+          "gunshot": {
+            "gunshot": 2,
+            "missed": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 28.571428571428573,
+        "false_per_min": 5.538347874522082,
+        "unmatched_per_min": 7.38446383269611,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 17.084667000000003,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 6,
+          "centered_targets_excluded": 3,
+          "false_captions": 3,
+          "unmatched_captions": 6,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 10.535762856835312,
+          "unmatched_per_min": 21.071525713670624,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 15.415999999999997,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 4,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "88bb5aa1c72894c4",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/07 CLUTCH UWU.mp4",
+      "primary": {
+        "duration_s": 29.962743,
+        "targets": 1,
+        "caught": 0,
+        "predictions": 0,
+        "centered_targets_excluded": 7,
+        "false_captions": 0,
+        "unmatched_captions": 0,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "missed": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 0.0,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 29.962743,
+        "targets": 8,
+        "caught": 0,
+        "predictions": 0,
+        "centered_targets_excluded": 0,
+        "false_captions": 0,
+        "unmatched_captions": 0,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 3,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 3
+          },
+          "gunshot": {
+            "missed": 5
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 0.0,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 1.3397429999999986,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 0,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 28.623,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 7,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "d0919d4a3830c87e",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/08 MASTER MARSHEL GETS A JUICY JUICY 3K.mp4",
+      "primary": {
+        "duration_s": 27.163129,
+        "targets": 8,
+        "caught": 0,
+        "predictions": 1,
+        "centered_targets_excluded": 5,
+        "false_captions": 0,
+        "unmatched_captions": 1,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 6,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 2
+          },
+          "gunshot": {
+            "missed": 6
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 2.2088765988631134,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 27.163129,
+        "targets": 13,
+        "caught": 1,
+        "predictions": 1,
+        "centered_targets_excluded": 0,
+        "false_captions": 0,
+        "unmatched_captions": 0,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 4,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 9,
+            "caught": 1,
+            "caught_pct": 11.11111111111111
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 4
+          },
+          "gunshot": {
+            "gunshot": 1,
+            "missed": 8
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 7.6923076923076925,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 0.0,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 17.090128999999997,
+          "targets": 6,
+          "caught": 0,
+          "predictions": 1,
+          "centered_targets_excluded": 3,
+          "false_captions": 0,
+          "unmatched_captions": 1,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "gunshot": {
+              "targets": 4,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 3.510798543416495,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 10.073000000000002,
+          "targets": 2,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 2,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "ab4b8d61fd23ae43",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/09 3k kinda lame.mp4",
+      "primary": {
+        "duration_s": 27.218798,
+        "targets": 5,
+        "caught": 2,
+        "predictions": 6,
+        "centered_targets_excluded": 4,
+        "false_captions": 3,
+        "unmatched_captions": 4,
+        "matched_directional_targets": 2,
+        "arrows_scored": 1,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 2,
+            "caught_pct": 40.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 2,
+            "missed": 3
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 40.0,
+        "false_per_min": 6.613076742036882,
+        "unmatched_per_min": 8.817435656049176,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 50.0
+      },
+      "all_directions": {
+        "duration_s": 27.218798,
+        "targets": 9,
+        "caught": 3,
+        "predictions": 6,
+        "centered_targets_excluded": 0,
+        "false_captions": 3,
+        "unmatched_captions": 3,
+        "matched_directional_targets": 2,
+        "arrows_scored": 1,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 7,
+            "caught": 3,
+            "caught_pct": 42.857142857142854
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "explosion": 1,
+            "missed": 1
+          },
+          "gunshot": {
+            "gunshot": 3,
+            "missed": 3,
+            "explosion": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 33.333333333333336,
+        "false_per_min": 6.613076742036882,
+        "unmatched_per_min": 6.613076742036882,
+        "arrow_correct_pct": 100.0,
+        "arrow_coverage_pct": 50.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 5.935797999999998,
+          "targets": 1,
+          "caught": 1,
+          "predictions": 2,
+          "centered_targets_excluded": 1,
+          "false_captions": 1,
+          "unmatched_captions": 1,
+          "matched_directional_targets": 1,
+          "arrows_scored": 1,
+          "arrows_correct": 1,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 1,
+              "caught_pct": 100.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 100.0,
+          "false_per_min": 10.108160688756595,
+          "unmatched_per_min": 10.108160688756595,
+          "arrow_correct_pct": 100.0,
+          "arrow_coverage_pct": 100.0
+        },
+        "talking": {
+          "duration_s": 21.283,
+          "targets": 4,
+          "caught": 1,
+          "predictions": 4,
+          "centered_targets_excluded": 3,
+          "false_captions": 2,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 1,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 4,
+              "caught": 1,
+              "caught_pct": 25.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 25.0,
+          "false_per_min": 5.6383028708358784,
+          "unmatched_per_min": 8.457454306253817,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": 0.0
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "c14ae26991ee5cd0",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/11 SHEEEESH MY AIM TOO CRISP.mp4",
+      "primary": {
+        "duration_s": 30.007188,
+        "targets": 0,
+        "caught": 0,
+        "predictions": 7,
+        "centered_targets_excluded": 7,
+        "false_captions": 3,
+        "unmatched_captions": 7,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {},
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": null,
+        "false_per_min": 5.99856274436645,
+        "unmatched_per_min": 13.996646403521716,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 30.007188,
+        "targets": 7,
+        "caught": 3,
+        "predictions": 7,
+        "centered_targets_excluded": 0,
+        "false_captions": 3,
+        "unmatched_captions": 4,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 3,
+            "caught_pct": 60.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 2
+          },
+          "gunshot": {
+            "gunshot": 3,
+            "missed": 2
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 42.857142857142854,
+        "false_per_min": 5.99856274436645,
+        "unmatched_per_min": 7.998083659155267,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 6.839188,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 3,
+          "centered_targets_excluded": 1,
+          "false_captions": 1,
+          "unmatched_captions": 3,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 8.772971294253061,
+          "unmatched_per_min": 26.318913882759183,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 23.168,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 4,
+          "centered_targets_excluded": 6,
+          "false_captions": 2,
+          "unmatched_captions": 4,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 5.179558011049724,
+          "unmatched_per_min": 10.359116022099448,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "ff282effd9efab9e",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/12 1hp btw.mp4",
+      "primary": {
+        "duration_s": 16.450977,
+        "targets": 2,
+        "caught": 0,
+        "predictions": 5,
+        "centered_targets_excluded": 4,
+        "false_captions": 2,
+        "unmatched_captions": 5,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "missed": 2
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 7.294399597057366,
+        "unmatched_per_min": 18.235998992643413,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 16.450977,
+        "targets": 6,
+        "caught": 3,
+        "predictions": 5,
+        "centered_targets_excluded": 0,
+        "false_captions": 2,
+        "unmatched_captions": 2,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 6,
+            "caught": 3,
+            "caught_pct": 50.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "gunshot": 3,
+            "missed": 3
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 50.0,
+        "false_per_min": 7.294399597057366,
+        "unmatched_per_min": 7.294399597057366,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 2.1279770000000013,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 1,
+          "centered_targets_excluded": 1,
+          "false_captions": 0,
+          "unmatched_captions": 1,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 28.19579346957226,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 14.323,
+          "targets": 1,
+          "caught": 0,
+          "predictions": 4,
+          "centered_targets_excluded": 3,
+          "false_captions": 2,
+          "unmatched_captions": 4,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 8.378133072680304,
+          "unmatched_per_min": 16.75626614536061,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "6158ce1b2191ed58",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/13 IM SQUEAKY CLEAN~.mp4",
+      "primary": {
+        "duration_s": 33.8,
+        "targets": 7,
+        "caught": 2,
+        "predictions": 4,
+        "centered_targets_excluded": 7,
+        "false_captions": 2,
+        "unmatched_captions": 2,
+        "matched_directional_targets": 2,
+        "arrows_scored": 2,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 1,
+            "caught_pct": 50.0
+          },
+          "gunshot": {
+            "targets": 5,
+            "caught": 1,
+            "caught_pct": 20.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "footsteps": 1,
+            "missed": 1
+          },
+          "gunshot": {
+            "gunshot": 1,
+            "footsteps": 1,
+            "missed": 3
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 28.571428571428573,
+        "false_per_min": 3.550295857988166,
+        "unmatched_per_min": 3.550295857988166,
+        "arrow_correct_pct": 50.0,
+        "arrow_coverage_pct": 100.0
+      },
+      "all_directions": {
+        "duration_s": 33.8,
+        "targets": 14,
+        "caught": 2,
+        "predictions": 4,
+        "centered_targets_excluded": 0,
+        "false_captions": 2,
+        "unmatched_captions": 2,
+        "matched_directional_targets": 2,
+        "arrows_scored": 2,
+        "arrows_correct": 1,
+        "per_label": {
+          "footsteps": {
+            "targets": 3,
+            "caught": 1,
+            "caught_pct": 33.333333333333336
+          },
+          "gunshot": {
+            "targets": 11,
+            "caught": 1,
+            "caught_pct": 9.090909090909092
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "footsteps": 1,
+            "missed": 2
+          },
+          "gunshot": {
+            "gunshot": 1,
+            "missed": 9,
+            "footsteps": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 14.285714285714286,
+        "false_per_min": 3.550295857988166,
+        "unmatched_per_min": 3.550295857988166,
+        "arrow_correct_pct": 50.0,
+        "arrow_coverage_pct": 100.0
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 15.757000000000001,
+          "targets": 3,
+          "caught": 1,
+          "predictions": 3,
+          "centered_targets_excluded": 4,
+          "false_captions": 2,
+          "unmatched_captions": 2,
+          "matched_directional_targets": 1,
+          "arrows_scored": 1,
+          "arrows_correct": 1,
+          "per_label": {
+            "footsteps": {
+              "targets": 1,
+              "caught": 1,
+              "caught_pct": 100.0
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 33.333333333333336,
+          "false_per_min": 7.615662879989846,
+          "unmatched_per_min": 7.615662879989846,
+          "arrow_correct_pct": 100.0,
+          "arrow_coverage_pct": 100.0
+        },
+        "talking": {
+          "duration_s": 18.042999999999996,
+          "targets": 4,
+          "caught": 1,
+          "predictions": 1,
+          "centered_targets_excluded": 3,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 1,
+          "arrows_scored": 1,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "gunshot": {
+              "targets": 3,
+              "caught": 1,
+              "caught_pct": 33.333333333333336
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 25.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": 0.0,
+          "arrow_coverage_pct": 100.0
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "731add80a90e456a",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/14 sova poppin off.mp4",
+      "primary": {
+        "duration_s": 8.170204,
+        "targets": 2,
+        "caught": 0,
+        "predictions": 0,
+        "centered_targets_excluded": 1,
+        "false_captions": 0,
+        "unmatched_captions": 0,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {},
+          "gunshot": {
+            "missed": 2
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 0.0,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 8.170204,
+        "targets": 3,
+        "caught": 0,
+        "predictions": 0,
+        "centered_targets_excluded": 0,
+        "false_captions": 0,
+        "unmatched_captions": 0,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 1
+          },
+          "gunshot": {
+            "missed": 2
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 0.0,
+        "unmatched_per_min": 0.0,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 0.000204000000000093,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 0,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 8.17,
+          "targets": 2,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 1,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 2,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    },
+    {
+      "clip_id": "b0b8b2ea1fe031a9",
+      "clip": "/Users/alexnpc/hackathons/sound-captions/test-audio/real-clips/15 they mad.mp4",
+      "primary": {
+        "duration_s": 57.200748,
+        "targets": 5,
+        "caught": 0,
+        "predictions": 1,
+        "centered_targets_excluded": 6,
+        "false_captions": 1,
+        "unmatched_captions": 1,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 1,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 4,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 1
+          },
+          "gunshot": {
+            "missed": 4
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 1.048937332078245,
+        "unmatched_per_min": 1.048937332078245,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "all_directions": {
+        "duration_s": 57.200748,
+        "targets": 11,
+        "caught": 0,
+        "predictions": 1,
+        "centered_targets_excluded": 0,
+        "false_captions": 1,
+        "unmatched_captions": 1,
+        "matched_directional_targets": 0,
+        "arrows_scored": 0,
+        "arrows_correct": 0,
+        "per_label": {
+          "footsteps": {
+            "targets": 2,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "gunshot": {
+            "targets": 9,
+            "caught": 0,
+            "caught_pct": 0.0
+          },
+          "reload": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          },
+          "explosion": {
+            "targets": 0,
+            "caught": 0,
+            "caught_pct": null
+          }
+        },
+        "confusion": {
+          "footsteps": {
+            "missed": 2
+          },
+          "gunshot": {
+            "missed": 8,
+            "footsteps": 1
+          },
+          "reload": {},
+          "explosion": {}
+        },
+        "caught_pct": 0.0,
+        "false_per_min": 1.048937332078245,
+        "unmatched_per_min": 1.048937332078245,
+        "arrow_correct_pct": null,
+        "arrow_coverage_pct": null
+      },
+      "contexts": {
+        "quiet": {
+          "duration_s": 4.992747999999999,
+          "targets": 0,
+          "caught": 0,
+          "predictions": 0,
+          "centered_targets_excluded": 1,
+          "false_captions": 0,
+          "unmatched_captions": 0,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "gunshot": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": null,
+          "false_per_min": 0.0,
+          "unmatched_per_min": 0.0,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "talking": {
+          "duration_s": 52.208,
+          "targets": 5,
+          "caught": 0,
+          "predictions": 1,
+          "centered_targets_excluded": 5,
+          "false_captions": 1,
+          "unmatched_captions": 1,
+          "matched_directional_targets": 0,
+          "arrows_scored": 0,
+          "arrows_correct": 0,
+          "per_label": {
+            "footsteps": {
+              "targets": 1,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "gunshot": {
+              "targets": 4,
+              "caught": 0,
+              "caught_pct": 0.0
+            },
+            "reload": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            },
+            "explosion": {
+              "targets": 0,
+              "caught": 0,
+              "caught_pct": null
+            }
+          },
+          "confusion": {
+            "footsteps": {},
+            "gunshot": {},
+            "reload": {},
+            "explosion": {}
+          },
+          "caught_pct": 0.0,
+          "false_per_min": 1.1492491572172847,
+          "unmatched_per_min": 1.1492491572172847,
+          "arrow_correct_pct": null,
+          "arrow_coverage_pct": null
+        },
+        "music": null
+      }
+    }
+  ]
+}

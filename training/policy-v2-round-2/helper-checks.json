@@ -1,0 +1,29 @@
+{
+  "tests_passed": 45,
+  "checkpoint_round": 2,
+  "threshold": 0.9,
+  "policy_version": 2,
+  "realtime_smoke_source": "development clip 03",
+  "realtime_smoke_duration_s": 12,
+  "windows": 23,
+  "processing_median_ms": 5.735,
+  "processing_p95_ms": 8.809,
+  "observation_window_ms": 975,
+  "websocket_snapshot_and_live_caption_received": true,
+  "obs_v5_auth_pause_seek_disconnect_reconnect_mock_test_passed": true,
+  "native_stereo_resampling_mock_and_mono_rejection_test_passed": true,
+  "native_obs_application_integration_tested": false,
+  "routed_hardware_audio_capture_tested": false,
+  "no_training_performed": true,
+  "test_clips_opened": false,
+  "overlay_built": false,
+  "source_hashes": {
+    "live_helper.py": "c8a55e027200d3ebf14287c367c02bbeea6c2663b3b4027bf02c08ae6efb361e",
+    "live_engine.py": "a3d122e1793a2f7f2cbd4ffe559f9ee0f0eef70484aba684abd9283803717cb1",
+    "obs_source.py": "c6ac106bd249126fa1b7b97e77f4a73c5fdf0fee994986b3ad4f7571ec45c043",
+    "caption_policy.py": "6281e2b20aabfcd14698ed87677354779fac9c4563e13c0f38519ed946beba84",
+    "policy_scoring.py": "cd5e009855825080178c4ac8099bdcf693eb1fdb9806674c51b81d879a21d569",
+    "caption-policy-v2.json": "af5e1a13e8f8197796cd2a4c00f94c9f6a63e255de45e583645dbf2c0ff68473",
+    "run_final.py": "1867fe66dda83c200785a42f196c3db4585be531b99b2b570d9e80b8a1b89350"
+  }
+}

@@ -321,3 +321,51 @@ The full-data checkpoint's single threshold is 0.999000, selected separately fro
 The combined change reduced emitted false captions while sacrificing most recall. Because augmentation and stricter threshold selection changed together, this round does not isolate the effect of augmentation alone. Synthetic examples are reused recordings rather than independent new gameplay, and copied mixed snippets may retain other sounds or residual speech. No additional rounds, outer-threshold retuning, final after tests, live helper, overlay, or other new feature work was performed after the gate failed.
 
 Validation: all 32 tests passed before the run, including both donor/recipient fold exclusion before cache reads, pan/gain behavior without array mutation, overlapping annotation shifts, and strict rejection of infeasible thresholds. Existing event-scoring functions and caption scheduling remained unchanged.
+
+## Policy v2 — round-2 development replay; no new training
+
+The user reviewed false-caption candidates and explicitly authorized new scoring/repeat rules, removal of reload captions, and proceeding to step 4. The former 35% / 2-per-minute gate is superseded by that instruction; no new model was fitted and no sealed tests were opened.
+
+A caption is supported only by the **same label** over the labeled span, through at least 2 seconds after that sound starts. The existing 1-second early allowance is retained so an otherwise-correct early caption is not counted as false. Same-label/side candidates less than 2 seconds apart merge into one chain; suppressed candidates extend the quiet-gap timer. Different sides remain independent. Reload captions are suppressed and reload targets are excluded from active-class recall, with the six formerly eligible reload targets reported separately. Original annotations were not changed.
+
+Caught recall remains maximum-cardinality one-to-one same-label onset matching within 1 second. A later supported caption can therefore be neither false nor a newly caught onset. Unmatched/min is retained as an extra diagnostic and includes those later supported captions; it is not equivalent to a wrong-caption rate. Arrow correctness remains independent of sound-label support.
+
+| Comparison | Caught / targets | False/min | Unmatched/min | Arrow correct |
+|---|---|---|---|---|
+| Historical round 2, old rules incl. reload (not directly comparable) | 19/40 (47.5%) | 5.45 | 15.96 | 8/11 |
+| Pretrained development reference, policy v2 | 5/34 (14.7%) | 3.38 | 6.01 | 2/3 |
+| Round 2, reload hidden + span scoring, before repeat merge | 17/34 (50.0%) | 4.51 | 13.15 | 7/9 |
+| Round 2, complete policy v2 | 16/34 (47.1%) | 4.32 | 12.02 | 7/9 |
+
+Both the reference and replay use the same v2 postprocessor/scorer. The old 47.5% result included 40 targets; the active v2 denominator is 34, so do not present any change in percentage as a training improvement.
+
+| Active class | Caught / targets | Recall |
+|---|---|---|
+| footsteps | 4/5 | 80.0% |
+| gunshot | 12/29 | 41.4% |
+| reload | 0/0 | N/A (disabled or no targets) |
+| explosion | 0/0 | N/A (disabled or no targets) |
+
+| Context | Caught / targets | Recall | False/min | Arrow correct |
+|---|---|---|---|---|
+| quiet | 10/14 | 71.4% | 5.39 | 5/5 |
+| talking | 6/20 | 30.0% | 3.91 | 2/4 |
+| music | N/A | N/A | N/A | N/A |
+
+Replay removed 17 reload captions and merged 7 repeat candidates from 104 original emissions. Only cached outer held-out round-2 emissions were replayed: ten folds used 0.9 and clip 03 used 0.8, exactly as originally inner-calibrated. The live full-data round-2 checkpoint keeps its saved deployment threshold **0.9**. Do not describe the replay as fixed-0.9 cross-validation or as inference from the full-data model on its own training clips.
+
+The exact legacy scheduler is retained before v2 postprocessing for replay/live/final consistency. Consequently a hidden reload candidate can still consume a raw internal slot; this conservative limitation cannot be removed from cached OOF captions without unavailable per-window predictions. The final scorer must apply the same versioned rules to **both** the cached pretrained baseline captions and the learned-model captions and report active-class denominators. Old-policy final scores must not be compared against new-policy scores.
+
+Frozen policy: `caption-policy-v2.json`. Replay protocol/results: `training/policy-v2-round-2/`. This is a user-authorized scoring/presentation revision, **not training round 5**.
+
+### Policy-v2 interpretation and step-4 verification
+
+The 23 remaining span-unsupported captions include 10 surviving old false flags and 13 captions that the old scorer excused because another label had a nearby onset. The new rule requires the same label; a footsteps prediction is not justified by a gunshot annotation. The user’s listening observations were recorded as feedback, not converted into guessed timestamp edits. Previously unmarked footsteps remain unmarked until their annotations are explicitly corrected.
+
+Step 4 is implemented: round-2 checkpoint at 0.9, 16-kHz mono embedding from original stereo, stereo direction, shared legacy scheduler and policy-v2 repeat/reload filter, and a loopback-only receive-only WebSocket on port 8770. Source adapters support paced local development files, read-only OBS Media Source playhead following, and an explicitly chosen stereo game-only input bus. There is no default microphone selection, live vocal separation, overlay UI, bot, or Twitch stream control.
+
+A 12-second paced development-clip smoke test processed 23 windows; median inference/postprocessing was 5.735 ms and p95 was 8.809 ms, in addition to the 975-ms observation window and input/polling overhead. A real WebSocket client received both the current snapshot and a subsequent right-gunshot event. These are plumbing/performance checks on development audio, not accuracy scores. All 45 tests passed, including streaming/batch scheduler parity, span/label/recall boundaries, chained burst merging, reload exclusion, live WebSocket reconnect snapshots, OBS v5 authentication and simulated pause/seek/disconnect/reconnect, stereo 48-kHz-to-16-kHz window resampling without repeated chunk-edge transients, rejection of mono inputs, sealed-path/symlink/hardlink blocking on dummy fixtures, and the final entrypoint guard before any test access.
+
+Native OBS integration and a routed game-only hardware input still need a local check: OBS was not running and no suitable routed game bus was available during implementation. The adapter tests used simulated OBS/device inputs; the model and outbound WebSocket used real local development audio. The helper does not account for OBS mixer volume/pan/filter changes in file-follow mode. Instructions: `LIVE_HELPER.md`; launcher: `Try helper.command`. Source hashes and check results are in `training/policy-v2-round-2/helper-checks.json`.
+
+The final-only runner is prepared but **was not run**. Both before and after will use the frozen policy-v2 postprocessor/scorer; historical old-policy scores remain preserved. All sealed real/CS and lab-final clips stay closed. Step 4 stops here for the user to try; step 5 still requires mockup approval.

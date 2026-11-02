@@ -1,0 +1,11 @@
+{
+  "status": "step_4_ready_for_local_try",
+  "user_authorization": "Proceed to step 4 with round 2 and policy v2, no more training; supersedes earlier performance gate.",
+  "checkpoint_round": 2,
+  "threshold": 0.9,
+  "dev_replay_recall_pct": 47.05882352941176,
+  "dev_false_per_min": 4.319326871593207,
+  "final_tests_opened": false,
+  "overlay_approval_pending": true,
+  "native_obs_and_game_bus_check_pending": true
+}
