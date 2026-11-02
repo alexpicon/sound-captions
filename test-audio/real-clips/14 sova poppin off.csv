@@ -1,0 +1,5 @@
+start_s,end_s,label,direction
+0.0,8.17,footsteps,center
+0.0,8.17,talking,unknown
+6.096,6.823,gunshot,right
+7.651,8.17,gunshot,right

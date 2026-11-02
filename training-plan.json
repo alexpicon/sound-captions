@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "seed": 20261101,
+  "scope": "Eleven completed Valorant development clips only. Do not open test media, labels, caches, or metrics during model development. Xonotic remains reserved.",
+  "validation": "Nested leave-one-clip-out: each outer validation clip is excluded in both original and cleaned forms. Threshold selection uses inner leave-one-clip-out on the other ten clips only. Pooled outer predictions are the reported development score.",
+  "head": "Four independent L2-regularized logistic regressions on fixed pretrained embeddings. C=0.1, balanced class weights, max_iter=400. Standardization fitted on training fold only. Unsupported labels are held at probability zero.",
+  "training_target": "Multi-label sound present in the causal audio window, requiring at least 20 ms overlap. Include centered sound examples; suppress centered output at caption time. Talking/music define evaluation context only, not sound targets.",
+  "caption_policy": "Frozen round-0 scheduler, timing and scorer. Direction estimated from original stereo, never the voice-reduced sibling.",
+  "threshold_grid": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+  "threshold_selection": "One global threshold selected on inner validation. Prefer <=2 literal false captions/min, then highest event recall, then fewer unmatched/min. If none feasible, minimize false/min before recall. Report unmatched/min alongside literal false/min.",
+  "rounds": [
+    {"round": 1, "encoder": "yamnet", "inputs": "mono", "paired": false, "purpose": "Original-only control to measure whether voice-reduced training augmentation helps"},
+    {"round": 2, "encoder": "yamnet", "inputs": "mono", "paired": true, "purpose": "Same head and encoder, training on original plus aligned voice-reduced copies"},
+    {"round": 3, "encoder": "efficientat", "inputs": "mono+side", "paired": true, "purpose": "Stronger mn10_as encoder plus mono/side features, retaining original plus cleaned training pairs"}
+  ],
+  "stop": "After these three training rounds, if the best pooled outer real-clip recall is below 50%, stop and report without opening sealed tests. If eligible for final comparison, freeze the selected model/settings before opening sealed test data once; stop if final real Valorant score is below 50%.",
+  "context_policy": "User says all clips are labeled/finished. Use manually supplied talking/music intervals; complement is quiet for these reviewed development clips only. Overlapping context slices can overlap. Context membership is based on event/caption onset and false/min exposure on interval union length.",
+  "final_comparison": "Test answer keys were revised after round 0. At the final comparison only, rescore immutable round-0 cached predictions against the same current answer keys used for after scores; preserve the historical round-0 report."
+}

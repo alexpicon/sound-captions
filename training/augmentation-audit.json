@@ -1,0 +1,127 @@
+{
+  "all_eleven_verified": true,
+  "copies": [
+    {
+      "clip_id": "3ecdd84a4e12c7f7",
+      "original": "test-audio/real-clips/03 SOBAAAA ACEEEEE.mp4",
+      "cleaned": ".local/augmentation/3ecdd84a4e12c7f7/voice_removed.wav",
+      "frames": 1323802,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "c401bbafbbbecf18dee609beca2266e1abe12909cf1201908bef116a20ea6ee8",
+      "cleaned_sha256": "4b7c3768ae3197dabebc5bc1a3dcda73e52b8872565f7bb413b239d4a4b8c896",
+      "review_complete": true
+    },
+    {
+      "clip_id": "fbad448bb2e501ec",
+      "original": "test-audio/real-clips/04 deagace.mp4",
+      "cleaned": ".local/augmentation/fbad448bb2e501ec/voice_removed.wav",
+      "frames": 1190770,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "acee6ad0d1ac56bf026ee79b5b119ed58fad7cd308b17c1167363831ecd557fb",
+      "cleaned_sha256": "8d191a1468b8489e74f1b32c1805e66ef65e2d1b63a8084edaa983a5dc5548e4",
+      "review_complete": true
+    },
+    {
+      "clip_id": "c2d607f46586c2ca",
+      "original": "test-audio/real-clips/06 Insane clutch.mp4",
+      "cleaned": ".local/augmentation/c2d607f46586c2ca/voice_removed.wav",
+      "frames": 1433279,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "c5cf98f0eb36b18298d2c02593a57e8c70c5fb714595b16ea14a2bffc1dcdf27",
+      "cleaned_sha256": "f430df6d95e95009fb54786b76ab48c5cd52b78a1169dae231215fce40be2c0b",
+      "review_complete": true
+    },
+    {
+      "clip_id": "88bb5aa1c72894c4",
+      "original": "test-audio/real-clips/07 CLUTCH UWU.mp4",
+      "cleaned": ".local/augmentation/88bb5aa1c72894c4/voice_removed.wav",
+      "frames": 1321357,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "2edda0e797aabfe0007d7ed8ed455cc1eff5006fd3db3b373360d74d57b7826a",
+      "cleaned_sha256": "cb63b6f4d4f22f52acf68a45ca2ee743bd705eab721c679a14fcf1de24116a95",
+      "review_complete": true
+    },
+    {
+      "clip_id": "d0919d4a3830c87e",
+      "original": "test-audio/real-clips/08 MASTER MARSHEL GETS A JUICY JUICY 3K.mp4",
+      "cleaned": ".local/augmentation/d0919d4a3830c87e/voice_removed.wav",
+      "frames": 1197894,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "500f6e1e5e721a2e22e5ce9b91b354340a572824895269ce68873c5ba2fb3ca0",
+      "cleaned_sha256": "b046c7e02b8b415a6a6ba5cce63d9969fde3f096197f14bfb80543ca8e725b68",
+      "review_complete": true
+    },
+    {
+      "clip_id": "ab4b8d61fd23ae43",
+      "original": "test-audio/real-clips/09 3k kinda lame.mp4",
+      "cleaned": ".local/augmentation/ab4b8d61fd23ae43/voice_removed.wav",
+      "frames": 1200349,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "1054933a79eb0b62e2b45442e1458f7cf19b23adab9bb913e7dc571349cc9d74",
+      "cleaned_sha256": "09bd2ebdf28fb00ab96443489e1d8a501af334e0f7bd39bbb304d2ab3672154f",
+      "review_complete": true
+    },
+    {
+      "clip_id": "c14ae26991ee5cd0",
+      "original": "test-audio/real-clips/11 SHEEEESH MY AIM TOO CRISP.mp4",
+      "cleaned": ".local/augmentation/c14ae26991ee5cd0/voice_removed.wav",
+      "frames": 1323317,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "bd224ee4a0c29983308a3810e4b1618036e1e2f2c720fca686f39898d19ee6cd",
+      "cleaned_sha256": "f2eeedcbf6b38a3f24000d9aaa2fc386324e27dd0aed1d34cdf2dfdcea40ac4a",
+      "review_complete": true
+    },
+    {
+      "clip_id": "ff282effd9efab9e",
+      "original": "test-audio/real-clips/12 1hp btw.mp4",
+      "cleaned": ".local/augmentation/ff282effd9efab9e/voice_removed.wav",
+      "frames": 725488,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "b6fa51ebf2df091b76bee3d9c8ab73c6fefb07e1fe866bfac0d090f3cc8edd6f",
+      "cleaned_sha256": "a0e27bb1cb653971ea531206a551ea3be0d16643a9989824721e5c10cd954d0e",
+      "review_complete": true
+    },
+    {
+      "clip_id": "6158ce1b2191ed58",
+      "original": "test-audio/real-clips/13 IM SQUEAKY CLEAN~.mp4",
+      "cleaned": ".local/augmentation/6158ce1b2191ed58/voice_removed.wav",
+      "frames": 1490580,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "ab8150945fe72ce6dc6bf16d33e9bbf82ad59599cc770ac63f3df681cc4abcba",
+      "cleaned_sha256": "b3c68c4e5d0f0beaa458898fb170c12da4267c007ee6d60109fe73260fc7651b",
+      "review_complete": true
+    },
+    {
+      "clip_id": "731add80a90e456a",
+      "original": "test-audio/real-clips/14 sova poppin off.mp4",
+      "cleaned": ".local/augmentation/731add80a90e456a/voice_removed.wav",
+      "frames": 360306,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "e450d03ca92795a9f1bdc55cfe8300fd53de7ed95e3dc5eb68bd53300bfc37c5",
+      "cleaned_sha256": "f8ed2903071c692c5af74c77fa8e21d4bfcd7266521e7e27e65e8a48c18f04bb",
+      "review_complete": true
+    },
+    {
+      "clip_id": "b0b8b2ea1fe031a9",
+      "original": "test-audio/real-clips/15 they mad.mp4",
+      "cleaned": ".local/augmentation/b0b8b2ea1fe031a9/voice_removed.wav",
+      "frames": 2522553,
+      "sample_rate": 44100,
+      "channels": 2,
+      "csv_sha256": "f01a8db6730fd572ffd715ca98dbcfac43ec5371f3b9c35436c5f52e0541b10c",
+      "cleaned_sha256": "161522503296b1dba6f13e607a00963c937c20688632951af4a26e5e6ca84b66",
+      "review_complete": true
+    }
+  ],
+  "test_data_opened": false
+}
