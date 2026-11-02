@@ -1,0 +1,40 @@
+{
+  "before": [],
+  "after": [
+    {
+      "start_s": 3.375,
+      "end_s": 5.375,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.967773290876993
+    },
+    {
+      "start_s": 5.775,
+      "end_s": 7.775,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9650586166820814
+    },
+    {
+      "start_s": 8.175,
+      "end_s": 10.175,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9938739943220869
+    },
+    {
+      "start_s": 9.615,
+      "end_s": 11.615,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9980937784488958
+    },
+    {
+      "start_s": 23.055,
+      "end_s": 25.055,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9999065828046888
+    }
+  ]
+}

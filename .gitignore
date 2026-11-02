@@ -26,3 +26,11 @@ __pycache__/
 .venv/
 .venv-model/
 .DS_Store
+
+# Bundled, frozen encoder required to reproduce the submitted model
+!test-audio/model/yamnet.tflite
+
+# Other local environments and editor state
+.venv-*/
+.vscode/
+.idea/

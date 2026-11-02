@@ -522,3 +522,28 @@ Implementation: `overlay/` production HTML/CSS/JS, local whitelist server `overl
 Validation: **55 tests passed**. Real-browser checks used the actual production source to verify transparent compositing over an untouched development frame, exact approved placement, 52 px font, white/#9146FF colors, max-two replacement, three-second expiry with final fade, unknown directions without arrows, disabled reload/invalid-label rejection, no HTML injection, duplicate suppression, pause/reset clearing, and reconnect expiry preservation. There were no JavaScript errors. A separate end-to-end run used the real saved round-2 model on development clip 03 through the WebSocket into the production browser overlay; it displayed actual model captions, verified three-second event lifetimes, and cleared when the helper stopped. Native OBS scene compositing still needs the user’s local check; no Twitch broadcast was run.
 
 The final-only evaluator now reads the frozen active deployment profile rather than hardcoded model metadata. It still refuses to open tests without explicit final authorization. Both the cached pretrained baseline and the selected learned model will use the same v2 postprocessor/scorer. **No final evaluation was run; all sealed test clips remain closed.**
+
+## Final test — original-audio Valorant, round 2 at 0.9 (2026-11-02)
+
+Final evaluation was explicitly authorized. This selected report uses the **same four held-out Valorant clips with their original audio** for both models. The before model is plain pretrained YAMNet with its frozen baseline settings; the after model is the selected **round-2 checkpoint at 0.9**. Both use the same policy-v2 postprocessor and scorer. No fitting, threshold changes, or test-based tuning were performed. These are actual model predictions, not the hand-label demo replay.
+
+| Metric | Before: pretrained YAMNet | After: round 2 at 0.9 |
+|---|---|---|
+| All enabled sounds caught | 4/20 (20.0%) | 13/20 (65.0%) |
+| All enabled sounds false captions/min | 2.62 (6 total) | 10.94 (25 total) |
+| Gunshots caught | 4/19 (21.1%) | 13/19 (68.4%) |
+| Gunshots false captions/min | 0.00 (0 total) | 3.50 (8 total) |
+| Footsteps caught | 0/1 (0.0%) | 0/1 (0.0%) |
+| Footsteps false captions/min | 1.75 (4 total) | 7.44 (17 total) |
+| Arrow accuracy | 3/3 (100.0%) | 5/6 (83.3%) |
+
+**68.4% is gunshot recall; overall recall is 65.0%.** The model catches more sounds but produces more false captions: **2.62 → 10.94 per minute**, so it does not meet the two-false-captions-per-minute goal. There is only **one non-centered footstep target**; 0/1 is not a reliable general estimate of footstep performance. After-model arrow accuracy is 5/6 among emitted arrows, with arrows supplied for 6 of 13 matched directional targets.
+
+| Original-audio context | Before caught | After caught | Before false/min | After false/min |
+|---|---|---|---|---|
+| quiet | 2/7 (28.6%) | 5/7 (71.4%) | 4.48 | 17.92 |
+| talking | 2/13 (15.4%) | 8/13 (61.5%) | 1.86 | 8.04 |
+
+Primary recall excludes centered targets, and reload captions remain disabled. “Quiet” means outside the supplied talking/music spans, not verified silence. There are no music spans in these four test clips. The selected final report contains only original-audio Valorant results; the later voice-removal experiment is not the chosen result.
+
+Artifacts: `evaluations/final-valorant-selected.json` (selected report), with frozen predictions and protocol in `evaluations/final-policy-v2/`. Historical entries above describe their state at the time; this final evaluation supersedes their “tests remain closed” status.

@@ -1,0 +1,8 @@
+# Python 3.11; inference / replay only. Training dependencies are separate.
+ai-edge-litert==2.3.0
+numpy==1.26.4
+scikit-learn==1.6.1
+joblib==1.6.0
+soundfile==0.13.1
+websockets==15.0.1
+sounddevice==0.5.3

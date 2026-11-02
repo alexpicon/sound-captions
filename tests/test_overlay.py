@@ -40,6 +40,21 @@ class DeploymentTests(unittest.TestCase):
         for i in range(1,4):hub.publish({'type':'caption','id':i,'expires_at':time.time()+3})
         self.assertEqual([r['id'] for r in hub.active],[2,3])
 
+    def test_speech_does_not_take_a_sound_slot_and_reset_clears_both(self):
+        from live_helper import EventHub
+        hub=EventHub()
+        for i in range(1,3):hub.publish({'type':'caption','id':i,'expires_at':time.time()+3})
+        hub.publish({'type':'speech','text':'Good [ __ ].','expires_at':time.time()+2})
+        self.assertEqual(len(hub.active),2)
+        self.assertEqual(hub.speech['text'],'Good [ __ ].')
+        hub.publish({'type':'speech','text':'','expires_at':time.time()})
+        self.assertIsNone(hub.speech)
+        self.assertEqual(len(hub.active),2)
+        hub.publish({'type':'speech','text':'Hello','expires_at':time.time()+2})
+        hub.publish({'type':'reset','reason':'seek'})
+        self.assertIsNone(hub.speech)
+        self.assertEqual(hub.active,[])
+
 
 class OverlayHttpTests(unittest.TestCase):
     def test_static_whitelist_and_local_websocket_config(self):

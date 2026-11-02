@@ -1,0 +1,154 @@
+{
+  "clip": "test-audio/real-clips/01 JETT KNIVES ACE KEKW.mp4",
+  "original_round2": [
+    {
+      "start_s": 2.895,
+      "end_s": 4.895,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9709779535195825
+    },
+    {
+      "start_s": 3.375,
+      "end_s": 5.375,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9519876162676458
+    },
+    {
+      "start_s": 5.775,
+      "end_s": 7.775,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9840235579555737
+    },
+    {
+      "start_s": 8.175,
+      "end_s": 10.175,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9292644345591615
+    },
+    {
+      "start_s": 11.535,
+      "end_s": 13.535,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9006133692398499
+    },
+    {
+      "start_s": 12.975,
+      "end_s": 14.975,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9469299892694557
+    },
+    {
+      "start_s": 14.895,
+      "end_s": 16.895,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9802592278376252
+    },
+    {
+      "start_s": 15.855,
+      "end_s": 17.855,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.997006542536563
+    },
+    {
+      "start_s": 18.255,
+      "end_s": 20.255,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9924740750445994
+    }
+  ],
+  "voice_removed_round2": [
+    {
+      "start_s": 0.975,
+      "end_s": 2.975,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9854189454544319
+    },
+    {
+      "start_s": 2.895,
+      "end_s": 4.895,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9637504820488102
+    },
+    {
+      "start_s": 3.375,
+      "end_s": 5.375,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9634236661546979
+    },
+    {
+      "start_s": 5.775,
+      "end_s": 7.775,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9127043766735465
+    },
+    {
+      "start_s": 8.175,
+      "end_s": 10.175,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9355541544571228
+    },
+    {
+      "start_s": 10.575,
+      "end_s": 12.575,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9269295257076576
+    },
+    {
+      "start_s": 11.535,
+      "end_s": 13.535,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9167667684819114
+    },
+    {
+      "start_s": 14.895,
+      "end_s": 16.895,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9548888510642899
+    },
+    {
+      "start_s": 15.375,
+      "end_s": 17.375,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9294596380356865
+    },
+    {
+      "start_s": 17.775,
+      "end_s": 19.775,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9183081078043176
+    },
+    {
+      "start_s": 18.255,
+      "end_s": 20.255,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9857498448980755
+    },
+    {
+      "start_s": 20.175,
+      "end_s": 22.175,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9571687848233364
+    }
+  ]
+}

@@ -1,0 +1,447 @@
+{
+  "before": [
+    {
+      "start_s": 27.855,
+      "end_s": 29.855,
+      "label": "explosion",
+      "direction": "right",
+      "score": 0.5859375
+    },
+    {
+      "start_s": 27.855,
+      "end_s": 29.855,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.5
+    },
+    {
+      "start_s": 34.575,
+      "end_s": 36.575,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.4140625
+    },
+    {
+      "start_s": 34.575,
+      "end_s": 36.575,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.33203125
+    },
+    {
+      "start_s": 38.895,
+      "end_s": 40.895,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.890625
+    },
+    {
+      "start_s": 38.895,
+      "end_s": 40.895,
+      "label": "explosion",
+      "direction": "unknown",
+      "score": 0.8515625
+    },
+    {
+      "start_s": 41.775,
+      "end_s": 43.775,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.73828125
+    },
+    {
+      "start_s": 41.775,
+      "end_s": 43.775,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.5859375
+    },
+    {
+      "start_s": 47.055,
+      "end_s": 49.055,
+      "label": "explosion",
+      "direction": "right",
+      "score": 0.4140625
+    },
+    {
+      "start_s": 47.055,
+      "end_s": 49.055,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.4140625
+    },
+    {
+      "start_s": 50.415,
+      "end_s": 52.415,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.5
+    },
+    {
+      "start_s": 50.415,
+      "end_s": 52.415,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.5
+    },
+    {
+      "start_s": 59.055,
+      "end_s": 61.055,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.19921875
+    },
+    {
+      "start_s": 59.055,
+      "end_s": 61.055,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.1484375
+    },
+    {
+      "start_s": 64.815,
+      "end_s": 66.815,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.33203125
+    },
+    {
+      "start_s": 64.815,
+      "end_s": 66.815,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.26171875
+    },
+    {
+      "start_s": 68.655,
+      "end_s": 70.655,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.5
+    },
+    {
+      "start_s": 68.655,
+      "end_s": 70.655,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.33203125
+    },
+    {
+      "start_s": 85.455,
+      "end_s": 87.455,
+      "label": "explosion",
+      "direction": "right",
+      "score": 0.5859375
+    },
+    {
+      "start_s": 85.455,
+      "end_s": 87.455,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.5859375
+    },
+    {
+      "start_s": 96.015,
+      "end_s": 98.015,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.4140625
+    },
+    {
+      "start_s": 96.015,
+      "end_s": 98.015,
+      "label": "explosion",
+      "direction": "right",
+      "score": 0.33203125
+    },
+    {
+      "start_s": 98.895,
+      "end_s": 100.895,
+      "label": "explosion",
+      "direction": "right",
+      "score": 0.5
+    },
+    {
+      "start_s": 98.895,
+      "end_s": 100.895,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.33203125
+    },
+    {
+      "start_s": 106.575,
+      "end_s": 108.575,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.08203125
+    },
+    {
+      "start_s": 107.055,
+      "end_s": 109.055,
+      "label": "explosion",
+      "direction": "right",
+      "score": 0.4140625
+    },
+    {
+      "start_s": 109.935,
+      "end_s": 111.935,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.08203125
+    },
+    {
+      "start_s": 110.415,
+      "end_s": 112.415,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.33203125
+    },
+    {
+      "start_s": 112.815,
+      "end_s": 114.815,
+      "label": "explosion",
+      "direction": "left",
+      "score": 0.66796875
+    },
+    {
+      "start_s": 112.815,
+      "end_s": 114.815,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.66796875
+    },
+    {
+      "start_s": 115.215,
+      "end_s": 117.215,
+      "label": "explosion",
+      "direction": "right",
+      "score": 0.1484375
+    },
+    {
+      "start_s": 115.215,
+      "end_s": 117.215,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.1484375
+    }
+  ],
+  "after": [
+    {
+      "start_s": 1.455,
+      "end_s": 3.455,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9997395888066015
+    },
+    {
+      "start_s": 12.015,
+      "end_s": 14.015,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9999971687830491
+    },
+    {
+      "start_s": 15.855,
+      "end_s": 17.855,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9998253114858624
+    },
+    {
+      "start_s": 17.295,
+      "end_s": 19.295,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9613830667875586
+    },
+    {
+      "start_s": 27.855,
+      "end_s": 29.855,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9895453743964521
+    },
+    {
+      "start_s": 27.855,
+      "end_s": 29.855,
+      "label": "footsteps",
+      "direction": "right",
+      "score": 0.9214641237693181
+    },
+    {
+      "start_s": 34.575,
+      "end_s": 36.575,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9070708532364021
+    },
+    {
+      "start_s": 38.895,
+      "end_s": 40.895,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9940406235736449
+    },
+    {
+      "start_s": 40.335,
+      "end_s": 42.335,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9999989310610018
+    },
+    {
+      "start_s": 43.215,
+      "end_s": 45.215,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9991972997521845
+    },
+    {
+      "start_s": 47.055,
+      "end_s": 49.055,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9857730542613891
+    },
+    {
+      "start_s": 50.415,
+      "end_s": 52.415,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9405116231837335
+    },
+    {
+      "start_s": 58.575,
+      "end_s": 60.575,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9288439028689391
+    },
+    {
+      "start_s": 61.935,
+      "end_s": 63.935,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9999999999995481
+    },
+    {
+      "start_s": 65.295,
+      "end_s": 67.295,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9999898907270244
+    },
+    {
+      "start_s": 65.295,
+      "end_s": 67.295,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9945456412517976
+    },
+    {
+      "start_s": 68.175,
+      "end_s": 70.175,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9517077058131085
+    },
+    {
+      "start_s": 79.695,
+      "end_s": 81.695,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9927318730688954
+    },
+    {
+      "start_s": 80.655,
+      "end_s": 82.655,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.919496088670613
+    },
+    {
+      "start_s": 82.575,
+      "end_s": 84.575,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9519399324327988
+    },
+    {
+      "start_s": 85.455,
+      "end_s": 87.455,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9986379667405164
+    },
+    {
+      "start_s": 86.895,
+      "end_s": 88.895,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9931992554537862
+    },
+    {
+      "start_s": 89.775,
+      "end_s": 91.775,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9971652849086772
+    },
+    {
+      "start_s": 96.015,
+      "end_s": 98.015,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.990244693180276
+    },
+    {
+      "start_s": 98.895,
+      "end_s": 100.895,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9999999998580991
+    },
+    {
+      "start_s": 103.215,
+      "end_s": 105.215,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9999999993427375
+    },
+    {
+      "start_s": 107.055,
+      "end_s": 109.055,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.983519268013535
+    },
+    {
+      "start_s": 109.935,
+      "end_s": 111.935,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9024782459542596
+    },
+    {
+      "start_s": 112.815,
+      "end_s": 114.815,
+      "label": "gunshot",
+      "direction": "left",
+      "score": 0.9964853913383285
+    },
+    {
+      "start_s": 116.175,
+      "end_s": 118.175,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9945158790857085
+    },
+    {
+      "start_s": 118.575,
+      "end_s": 120.575,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9874190991643486
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "clip": "test-audio/real-clips/05 CLUTCH.mp4",
+  "original_round2": [
+    {
+      "start_s": 3.375,
+      "end_s": 5.375,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.967773290876993
+    },
+    {
+      "start_s": 5.775,
+      "end_s": 7.775,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9650586166820814
+    },
+    {
+      "start_s": 8.175,
+      "end_s": 10.175,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9938739943220869
+    },
+    {
+      "start_s": 9.615,
+      "end_s": 11.615,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9980937784488958
+    },
+    {
+      "start_s": 23.055,
+      "end_s": 25.055,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9999065828046888
+    }
+  ],
+  "voice_removed_round2": [
+    {
+      "start_s": 3.375,
+      "end_s": 5.375,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9932472906793992
+    },
+    {
+      "start_s": 9.615,
+      "end_s": 11.615,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9977237439885805
+    },
+    {
+      "start_s": 10.575,
+      "end_s": 12.575,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9994333100300771
+    },
+    {
+      "start_s": 12.495,
+      "end_s": 14.495,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9183413129427394
+    },
+    {
+      "start_s": 16.335,
+      "end_s": 18.335,
+      "label": "footsteps",
+      "direction": "unknown",
+      "score": 0.9655733987716475
+    },
+    {
+      "start_s": 18.735,
+      "end_s": 20.735,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9996956157486829
+    },
+    {
+      "start_s": 20.175,
+      "end_s": 22.175,
+      "label": "footsteps",
+      "direction": "left",
+      "score": 0.9600684229370838
+    },
+    {
+      "start_s": 21.615,
+      "end_s": 23.615,
+      "label": "gunshot",
+      "direction": "unknown",
+      "score": 0.9197664262788409
+    },
+    {
+      "start_s": 23.402494,
+      "end_s": 25.402494,
+      "label": "gunshot",
+      "direction": "right",
+      "score": 0.9748207298384345
+    }
+  ]
+}

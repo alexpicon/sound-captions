@@ -1,4 +1,6 @@
 start_s,end_s,label,direction
+0.0,1.309,reload,center
+0.0,25.847,talking,unknown
 1.475,2.368,gunshot,center
 2.49,2.621,gunshot,right
 4.859,5.685,gunshot,left
@@ -6,3 +8,4 @@ start_s,end_s,label,direction
 7.079,8.046,gunshot,center
 14.033,14.646,gunshot,left
 18.295,23.706,footsteps,center
+28.937,30.0,talking,unknown

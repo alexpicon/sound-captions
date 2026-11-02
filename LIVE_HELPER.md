@@ -1,4 +1,4 @@
-# Try step 4
+# Live helper guide
 
 The helper is ready for a local try. It prints captions in Terminal and sends the same events to `ws://127.0.0.1:8770`. The step-5 overlay is implemented; add `http://127.0.0.1:8771/overlay` as an OBS Browser Source (see `OVERLAY.md`). Nothing here starts a Twitch stream or changes OBS scenes/playback.
 
@@ -9,7 +9,7 @@ Double-click **Try helper.command** in the project folder and choose **2**. It r
 Or run in Terminal:
 
 ```sh
-cd /Users/alexnpc/hackathons/sound-captions
+cd /path/to/sound-captions
 .venv-model/bin/python live_helper.py --file 'test-audio/real-clips/03 SOBAAAA ACEEEEE.mp4'
 ```
 
@@ -28,7 +28,7 @@ CLI equivalents:
 .venv-model/bin/python live_helper.py --obs-media 'Media Source'
 ```
 
-OBS's native app connection has not yet been exercised on this setup because OBS was not running during implementation. The v5 adapter was tested against a local mock OBS server, including authentication, play/pause/seek, and connection loss; the actual model, paced file input, and outbound WebSocket were smoke-tested on this Mac. If OBS is closed the helper waits/reconnects; configuration/source-name errors are printed for correction.
+The OBS media-following and replay paths were used for the recorded demo. Automated tests additionally cover authentication, play/pause/seek, and connection loss against a local mock OBS server; model inference and outbound WebSocket delivery have been smoke-tested on this Mac. If OBS is closed the helper waits/reconnects; configuration/source-name errors are printed for correction.
 
 ## Future real game audio on Windows or Mac
 
@@ -49,14 +49,14 @@ The model looks back over 975 ms of audio and advances every 480 ms. The console
 
 `--json` prints full machine events. `--seconds 10` stops a smoke test after ten seconds. The local receive-only WebSocket emits `snapshot`, `caption`, `reset`, `status`, and `performance` events. Caption events include a session ID, numeric caption ID, fixed label, direction, text, confidence, source timestamp, wall-clock expiry, and timing. Reconnecting consumers receive only still-active captions. No chat messages, training commands, file-read commands, or credentials are accepted over this socket.
 
-## Final score remains sealed
+## Final evaluation
 
-The shared policy lives in `caption-policy-v2.json`, `caption_policy.py`, and `policy_scoring.py`. Historical logs/scorers are retained. `run_final.py` has been prepared to apply **the same v2 rules to both the cached pretrained baseline and round 2**, with the same active-class target set and separate Valorant/CS results. It refuses to run without an explicit final-only flag. **Do not run it until the user authorizes the final evaluation.** It has not been run; all five real/CS clips and the lab-final clip remain sealed. The lab-final is outside that real/CS runner's scope.
+The final evaluation has been completed. The submitted report is [evaluations/final-valorant-selected.json](evaluations/final-valorant-selected.json), covering four original-audio Valorant holdouts. The helper continues to block held-out media to keep demonstration and training separate from evaluation. Historical experiment details are retained in `rounds.md`.
 
 ## Reproduce this development replay
 
 `rescore_policy_v2.py` uses the cached outer-held-out emissions: ten folds retained 0.9 and clip 03 retained 0.8, exactly as originally inner-calibrated. It does not run the full-data model over its training clips for an accuracy claim. The recorded replay refuses to overwrite its results. Detailed metrics and protocol are under `training/policy-v2-round-2/`, with the plain explanation in `rounds.md`.
 
-Install dependencies on another machine with Python 3.11 and the packages in `requirements-live.txt`; FFmpeg/ffprobe must be on PATH. The ignored local model/checkpoint files must also be copied for offline use. On this Mac the dependencies and checkpoint are already installed. Windows paths/activation differ; Windows hardware capture has not yet been tested.
+Install dependencies on another machine with Python 3.11 and the packages in `requirements-live.txt`; FFmpeg/ffprobe must be on PATH. The frozen encoder and classifier are bundled: run `python3 scripts/setup_models.py` after cloning to verify and install the classifier into its expected local path. On this Mac the dependencies and checkpoint are already installed. Windows paths/activation differ; Windows hardware capture has not yet been tested.
 
 Implementation references: [OBS WebSocket v5 protocol](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md), [sounddevice input streams](https://python-sounddevice.readthedocs.io/en/latest/api/streams.html), [websockets server](https://websockets.readthedocs.io/en/15.0.1/reference/asyncio/server.html).

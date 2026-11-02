@@ -13,7 +13,8 @@ def auth_response(password,salt,challenge):
 
 
 class ObsClient:
-    ALLOWED={'GetInputList','GetInputSettings','GetMediaInputStatus'}
+    ALLOWED={'GetInputList','GetInputSettings','GetMediaInputStatus',
+             'GetCurrentProgramScene','GetSceneItemList'}
     def __init__(self,url=None,password=None):
         self.url=url or os.environ.get('OBS_WS_URL','ws://127.0.0.1:4455')
         u=urlsplit(self.url)

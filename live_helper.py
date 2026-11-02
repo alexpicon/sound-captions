@@ -18,6 +18,7 @@ from live_engine import LiveEngine
 from model_tools import decode
 from obs_source import ObsClient
 from overlay_server import overlay_service
+from label_replay import LabelTimeline, SpeechTimeline, ReplaySettings, SOUNDS, load_labels, load_speech
 
 
 class SealedMediaError(ValueError):pass
@@ -49,14 +50,15 @@ def load_env():
 class EventHub:
     def __init__(self,json_output=True):
         self.json_output=json_output
-        self.clients={};self.active=[];self.status={'type':'status','phase':'starting'}
+        self.clients={};self.active=[];self.speech=None;self.status={'type':'status','phase':'starting'}
         self.session=uuid.uuid4().hex;self.sequence=0
 
     def publish(self,event):
         event={**event,'session':self.session,'policy_version':2}
         if event['type']=='caption':
             self.active=([r for r in self.active if r['expires_at']>time.time()]+[event])[-2:]
-        elif event['type']=='reset':self.active=[]
+        elif event['type']=='speech':self.speech=event if event.get('text') else None
+        elif event['type']=='reset':self.active=[];self.speech=None
         elif event['type']=='status':self.status=event
         if self.json_output:print(json.dumps(event),flush=True)
         elif event['type']=='caption':print(f"#{event['id']} {event['text']}  ({event['source']} @ {event['start_s']:.3f}s)",flush=True)
@@ -73,7 +75,8 @@ class EventHub:
         q=asyncio.Queue(maxsize=32);self.clients[ws]=q
         try:
             await ws.send(json.dumps({'type':'snapshot','session':self.session,'policy_version':2,'status':self.status,
-                                     'captions':[r for r in self.active if r['expires_at']>time.time()]}))
+                                     'captions':[r for r in self.active if r['expires_at']>time.time()],
+                                     'speech':self.speech if self.speech and self.speech['expires_at']>time.time() else None}))
             async def writer():
                 while True:await asyncio.wait_for(ws.send(json.dumps(await q.get())),2)
             async def reader():
@@ -222,6 +225,92 @@ async def obs_source(runner,name):
             await asyncio.sleep(backoff);backoff=min(5,backoff*2)
 
 
+async def current_scene_media(obs):
+    scene = (await obs.request('GetCurrentProgramScene'))['currentProgramSceneName']
+    items = (await obs.request('GetSceneItemList', {'sceneName': scene}))['sceneItems']
+    media = [item['sourceName'] for item in items
+             if item.get('sceneItemEnabled') and item.get('inputKind') == 'ffmpeg_source']
+    return scene, media[0] if len(media) == 1 else None
+
+
+async def replay_source(runner, name):
+    """Follow the actual OBS playhead using human annotations, not predictions."""
+    from websockets.exceptions import ConnectionClosed
+    backoff = .5
+    while True:
+        try:
+            async with ObsClient() as obs:
+                path = timeline = speech = selection = None
+                runner.reset('Hand-label replay connected (no model inference)')
+                while True:
+                    selected = (None, name) if name else await current_scene_media(obs)
+                    if selected != selection:
+                        selection = selected
+                        path = timeline = speech = None
+                        runner.last_phase = None
+                        runner.reset('Active OBS scene changed' if not name else 'Replay source selected')
+                    active_name = selected[1]
+                    if active_name is None:
+                        runner.source = selected[0]
+                        runner.status('waiting-for-scene', mode='csv_replay',
+                                      message='Active scene needs one visible local Media Source')
+                        await asyncio.sleep(.1)
+                        continue
+                    settings = await obs.request('GetInputSettings', {'inputName': active_name})
+                    local = settings.get('inputSettings', {}).get('local_file')
+                    if settings.get('inputKind') != 'ffmpeg_source' or not local:
+                        raise ValueError('Replay requires a local OBS Media Source')
+                    checked = guard_media(local)  # Before opening any CSV, including after a source change.
+                    if checked != path:
+                        rows = load_labels(checked)
+                        path = checked
+                        runner.source = path.name
+                        runner.last_phase = None
+                        timeline = LabelTimeline(rows, runner.engine.deployment['display_duration_s'])
+                        speech = SpeechTimeline(load_speech(checked))
+                        runner.reset('Hand-label replay file changed')
+                    media = await obs.request('GetMediaInputStatus', {'inputName': active_name})
+                    playing = media['mediaState'] == 'OBS_MEDIA_STATE_PLAYING'
+                    cursor = media.get('mediaCursor')
+                    cursor = cursor / 1000 if cursor is not None else None
+                    update = timeline.update(cursor, playing, time.monotonic())
+                    if update.reason:
+                        runner.reset(update.reason)
+                    runner.status('replaying' if playing else 'paused', mode='csv_replay')
+                    for row in update.captions:
+                        row = dict(row)
+                        remaining = row.pop('remaining_s')
+                        side = {'left': ' ← left', 'right': ' → right'}.get(row['direction'], '')
+                        now = time.time()
+                        runner.hub.sequence += 1
+                        runner.hub.publish({'type': 'caption', 'id': runner.hub.sequence,
+                            'mode': 'csv_replay', 'source': runner.source, **row,
+                            'text': f"[{row['label']}{side}]", 'emitted_at': now,
+                            'expires_at': now + remaining, 'processing_ms': 0,
+                            'source_lag_ms': round(max(0, cursor - row['start_s']) * 1000, 3)})
+                    changed, cue = speech.update(cursor, playing, force=bool(update.reason),
+                        speed=float(settings.get('inputSettings', {}).get('speed_percent', 100)) / 100)
+                    if changed:
+                        now = time.time()
+                        if cue:
+                            cue = dict(cue)
+                            remaining = cue.pop('remaining_s')
+                            runner.hub.publish({'type': 'speech', 'mode': 'csv_replay',
+                                'source': runner.source, **cue,
+                                'emitted_at': now, 'expires_at': now + remaining})
+                        else:
+                            runner.hub.publish({'type': 'speech', 'mode': 'csv_replay',
+                                'source': runner.source, 'text': '',
+                                'emitted_at': now, 'expires_at': now})
+                    backoff = .5
+                    await asyncio.sleep(.04)
+        except (OSError, TimeoutError, ConnectionClosed):
+            runner.reset('Hand-label replay connection lost')
+            runner.status('reconnecting', mode='csv_replay')
+            await asyncio.sleep(backoff)
+            backoff = min(5, backoff * 2)
+
+
 async def run(args):
     load_env()
     if args.list_obs_inputs:
@@ -232,7 +321,10 @@ async def run(args):
     if args.list_devices:
         import sounddevice as sd
         print(sd.query_devices());return
-    engine=await asyncio.to_thread(LiveEngine,args.show_centered);hub=EventHub(json_output=args.json);runner=Runner(engine,hub)
+    engine = ReplaySettings() if args.replay_labels else await asyncio.to_thread(LiveEngine,args.show_centered)
+    if args.replay_labels and not args.json:
+        print('HAND-LABEL REPLAY: CSV annotations, including centered sounds; no model inference.', flush=True)
+    hub=EventHub(json_output=args.json);runner=Runner(engine,hub)
     origins=[None,'null',re.compile(r'http://(127\.0\.0\.1|localhost)(:[0-9]+)?')]
     with overlay_service(args.overlay_port,args.port):
         await serve_source(args,engine,hub,runner,origins)
@@ -241,10 +333,14 @@ async def run(args):
 async def serve_source(args,engine,hub,runner,origins):
     async with serve(hub.handler,'127.0.0.1',args.port,origins=origins,max_size=4096,max_queue=4,close_timeout=1):
         hub.publish({'type':'status','phase':'ready','websocket':f'ws://127.0.0.1:{args.port}',
-            'model':f"round-{engine.deployment['model_round']}",'thresholds':engine.deployment['thresholds'],
+            'mode':'csv_replay' if args.replay_labels else 'inference',
+            'model':None if args.replay_labels else f"round-{engine.deployment['model_round']}",'thresholds':engine.deployment['thresholds'],
             'overlay':f'http://127.0.0.1:{args.overlay_port}/overlay','display_duration_s':engine.deployment['display_duration_s'],
-            'enabled_labels':load_policy()['enabled_labels'],'show_centered':args.show_centered})
-        source=file_source(runner,args.file) if args.file else obs_source(runner,args.obs_media) if args.obs_media else device_source(runner,args.device)
+            'enabled_labels':sorted(SOUNDS) if args.replay_labels else load_policy()['enabled_labels'],
+            'show_centered':args.replay_labels or args.show_centered})
+        source = (replay_source(runner, None if getattr(args, 'follow_scene', False) else args.obs_media) if args.replay_labels else
+                  file_source(runner,args.file) if args.file else
+                  obs_source(runner,args.obs_media) if args.obs_media else device_source(runner,args.device))
         try:
             if args.seconds:await asyncio.wait_for(source,args.seconds)
             else:await source
@@ -263,6 +359,8 @@ def main():
     mode=parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('--file',help='Paced local clip; does not play sound or control OBS')
     mode.add_argument('--obs-media',help='Exact name of the local OBS Media Source to follow')
+    mode.add_argument('--follow-scene', action='store_true',
+                      help='Follow the visible Media Source in the live OBS scene (with --replay-labels)')
     mode.add_argument('--device',type=int,help='Explicit stereo game-only audio input ID; never defaults to microphone')
     mode.add_argument('--list-devices',action='store_true')
     mode.add_argument('--list-obs-inputs',action='store_true')
@@ -270,8 +368,14 @@ def main():
     parser.add_argument('--overlay-port',type=int,default=8771)
     parser.add_argument('--json',action='store_true',help='Machine-readable console events instead of plain captions')
     parser.add_argument('--show-centered',action='store_true',help='Include centered sounds without an arrow; hidden by default')
+    parser.add_argument('--replay-labels', action='store_true',
+                        help='With --obs-media: replay the adjacent hand-labeled CSV, without model inference')
     parser.add_argument('--seconds',type=float,help='Stop after this many seconds (smoke testing)')
     args=parser.parse_args()
+    if args.replay_labels and not (args.obs_media or args.follow_scene):
+        parser.error('--replay-labels requires --obs-media or --follow-scene')
+    if args.follow_scene and not args.replay_labels:
+        parser.error('--follow-scene requires --replay-labels')
     if args.seconds is not None and args.seconds<=0:parser.error('--seconds must be positive')
     try:asyncio.run(run(args))
     except KeyboardInterrupt:pass

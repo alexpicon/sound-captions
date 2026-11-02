@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-11-02T09:55:10.565528-08:00",
+  "scope": [
+    "test-audio/real-clips/01 JETT KNIVES ACE KEKW.mp4",
+    "test-audio/real-clips/02 jett ace.mp4",
+    "test-audio/real-clips/05 CLUTCH.mp4",
+    "test-audio/real-clips/10 NINA DEFUSE.mp4"
+  ],
+  "model_round": 2,
+  "thresholds": {
+    "footsteps": 0.9,
+    "gunshot": 0.9,
+    "reload": 0.9,
+    "explosion": 0.9
+  },
+  "model_sha256": "d3547ad8493ba740e3d575848a39703ee7a05247bdff2d99d51514f3102bd14a",
+  "encoder_sha256": "10c95ea3eb9a7bb4cb8bddf6feb023250381008177ac162ce169694d05c317de",
+  "policy_sha256": "af5e1a13e8f8197796cd2a4c00f94c9f6a63e255de45e583645dbf2c0ff68473",
+  "separator": "htdemucs-vocals-residual-v1",
+  "separator_sample_rate": 44100,
+  "shifts": 0,
+  "overlap": 0.25,
+  "separator_weights_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+  "model_tools_sha256": "068155a7b908711d8a7e2a62e6e445479def728a3d667b83391e731238900d70",
+  "script_sha256": "e2de77a0561a09897c5c7f0b90a81668611a2c1f92b38f592802758cc299dbe4",
+  "runtime": {
+    "demucs": "4.0.1",
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "soundfile": "0.13.1"
+  },
+  "rounds_sha256_before": "5965a734805a2efe6260dbd94cc3d8666894d3d1a80bf8baa6a7499bf8eb9c1e",
+  "no_training": true,
+  "no_tuning": true,
+  "cs_opened": false,
+  "lab_opened": false,
+  "source_files_unchanged": true,
+  "timing_offset_samples": 0,
+  "note": "Voice-reduced estimate, not a clean game-only recording. Separator can alter other sounds."
+}

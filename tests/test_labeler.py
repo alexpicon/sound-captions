@@ -31,6 +31,14 @@ class LabelerTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
+    def test_retired_test_groups_are_not_active_or_reclassified_as_training(self):
+        self.manifest['sealed_tests'] = {'valorant': ['sealed.wav'], 'unseen_cs': ['cs.wav']}
+        self.manifest['active_test_groups'] = ['valorant']
+        (self.root / 'splits.json').write_text(json.dumps(self.manifest))
+        dataset = Dataset(self.root)
+        self.assertEqual([c['group'] for c in dataset.test_clips.values()], ['valorant'])
+        self.assertNotIn('cs.wav', [c['relative'] for c in dataset.clips.values()])
+
     def test_csv_roundtrip_context_overlap_and_backup(self):
         initial = self.dataset.annotations(self.clip_id)
         rows = [self.row, {"start_s": 0, "end_s": 1, "label": "talking", "direction": "center"}]

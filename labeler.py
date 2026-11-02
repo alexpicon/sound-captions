@@ -90,6 +90,8 @@ class Dataset:
         for group, paths in manifest["sealed_tests"].items():
             if group == "lab_final":
                 continue  # This answer key already exists; keep the final lab clip closed.
+            if "active_test_groups" in manifest and group not in manifest["active_test_groups"]:
+                continue  # Retired tests remain sealed but are excluded from active evaluation.
             for relative in paths:
                 path = (self.root / relative).resolve()
                 if not path.is_relative_to(self.root) or path.suffix not in {".mp4", ".wav"}:

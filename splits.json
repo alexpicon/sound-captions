@@ -115,5 +115,8 @@
       "source_end_s": 325.161,
       "gain_db": 20
     }
-  }
+  },
+  "active_test_groups": [
+    "valorant"
+  ]
 }

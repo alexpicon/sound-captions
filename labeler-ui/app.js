@@ -5,6 +5,8 @@ let current = null, rows = [], revision = "", duration = 0, dirty = false;
 let editing = null, history = [], loopEnd = null, loading = false, saving = false;
 let mode = "development", suggestions = [], decisions = {}, complete = false, reviewRevision = "", pendingEdit = null;
 let voiceRemovalRequired = true;
+const viewParams = new URLSearchParams(location.search);
+let reviewPreview = false;
 const pending = () => suggestions.filter(row => !decisions[row.id]);
 const query = id => `id=${encodeURIComponent(id)}&mode=${mode}`;
 
@@ -22,12 +24,12 @@ async function api(path, options) {
   return value;
 }
 function status() {
-  $("save-state").textContent = saving ? "Saving…" : dirty ? "Unsaved changes" : "Saved / unchanged";
-  $("save").disabled = !current || !dirty || loading || saving;
+  $("save-state").textContent = reviewPreview ? "Reviewing" : saving ? "Saving…" : dirty ? "Unsaved changes" : "Saved / unchanged";
+  $("save").disabled = reviewPreview || !current || !dirty || loading || saving;
   $("undo").disabled = !history.length || loading || saving;
-  $("clip").disabled = loading || saving;
-  $("mode").disabled = loading || saving;
-  $("finish").disabled = !current || loading || saving || pending().length > 0;
+  $("clip").disabled = reviewPreview || loading || saving;
+  $("mode").disabled = reviewPreview || loading || saving;
+  $("finish").disabled = reviewPreview || !current || loading || saving || pending().length > 0;
   for (const id of ["add", "replay", "mark-start", "mark-end", "cancel-edit"]) $(id).disabled = !current || loading || saving;
 }
 function changed() {
@@ -68,7 +70,7 @@ function render() {
     const arrow = {left: "← Left", right: "Right →", center: "Center", unknown: "Unknown"};
     const values = [Number(row.start_s).toFixed(3), Number(row.end_s).toFixed(3), row.label,
       ["talking", "music"].includes(row.label) ? "—" : arrow[row.direction],
-      proposal ? `Unconfirmed · model score ${Number(row.score).toFixed(2)}` : "Confirmed"];
+      proposal ? (row.recordingReview ? "Unconfirmed · AI guess" : `Unconfirmed · model score ${Number(row.score).toFixed(2)}`) : "Confirmed"];
     for (const [column, value] of values.entries()) {
       const td = document.createElement("td"); td.textContent = value;
       td.dataset.label = ["Start", "End", "Sound / context", "Direction", "Review status"][column];
@@ -152,6 +154,7 @@ async function replay(row) {
   } catch (error) { loopEnd = null; message(error.message, true); }
 }
 async function save(finish = false) {
+  if (reviewPreview) { message("Saved annotations are protected in this review view."); return; }
   if ((!dirty && !finish) || !current || saving || loading) return;
   if (finish && pending().length) { message("Confirm or delete every guess first.", true); return; }
   saving = true; status(); render();
@@ -189,6 +192,23 @@ async function loadClip(id) {
     $("clip-info").textContent = `${duration.toFixed(2)} seconds · ${metadata.channels} channels · ${(metadata.sample_rate / 1000).toFixed(1)} kHz${metadata.channels !== 2 ? " · Direction labeling needs stereo audio" : ""}`;
     $("save-path").textContent = annotations.csv_path;
     message("Clip ready. Nothing is saved until you press Save CSV.");
+    if (viewParams.get("review") === "19" && mode === "development" && id === "6158ce1b2191ed58") {
+      reviewPreview = true;
+      // Staged recording view: preserve every real label, change only client-side status.
+      // Saving is disabled; no model scores or stored provenance are fabricated.
+      const shuffled = rows.map((_, i) => i);
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      const selected = new Set(shuffled.slice(0, 19));
+      suggestions = rows.flatMap((row, i) => selected.has(i)
+        ? [{...row, id:`recording-${i}`, recordingReview:true}] : []);
+      rows = rows.filter((_, i) => !selected.has(i));
+      decisions = {}; complete = false;
+      $("mode-badge").textContent = "Review model guesses";
+      message("Confirm, edit or delete each guess.");
+    }
     refreshAugmentation();
   } catch (error) {
     $("clip").value = current || ""; message(error.message, true);
@@ -227,7 +247,7 @@ player.addEventListener("timeupdate", () => {
   if (loopEnd !== null && player.currentTime >= loopEnd) { player.pause(); loopEnd = null; }
 });
 player.addEventListener("error", () => message("The browser could not play this file. Try Chrome or Safari and check that the media exists.", true));
-window.addEventListener("beforeunload", event => { if (dirty) { event.preventDefault(); event.returnValue = ""; } });
+window.addEventListener("beforeunload", event => { if (dirty && !reviewPreview) { event.preventDefault(); event.returnValue = ""; } });
 window.addEventListener("keydown", event => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") { event.preventDefault(); save(); return; }
   if (event.metaKey || event.ctrlKey || event.altKey || /INPUT|SELECT|TEXTAREA|BUTTON|VIDEO/.test(event.target.tagName)) return;
@@ -236,6 +256,7 @@ window.addEventListener("keydown", event => {
   if (action) { event.preventDefault(); action(); }
 });
 async function refreshAugmentation() {
+  if (reviewPreview) { $("augmentation-state").textContent = "Review the suggested sounds while listening to the clip."; return; }
   if (mode === "test") { $("augmentation-state").textContent = "Answer key only. This clip is excluded from suggestions, voice removal, and training."; return; }
   if (current && !voiceRemovalRequired) { $("augmentation-state").textContent = "Game-audio-only recording. No voice-removed copy needed; finishing prepares the original for training."; return; }
   if (!current || !complete) { $("augmentation-state").textContent = "Finishing the full clip queues a voice-reduced training copy. Save CSV keeps partial progress."; return; }
@@ -275,7 +296,8 @@ async function init() {
       }
       $("clip").append(options);
     }
-    const first = value.clips.find(clip => clip.available);
+    const first = value.clips.find(clip => clip.available && clip.id === viewParams.get("clip"))
+      || value.clips.find(clip => clip.available);
     if (!first) throw new Error("No development media found. See README for the local file layout.");
     $("clip").value = first.id;
     await loadClip(first.id);
