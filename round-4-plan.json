@@ -1,0 +1,24 @@
+{
+  "round": 4,
+  "authorized_change": "One additional round with labeled cut-and-paste augmentation and false-caption-first threshold selection. Tests remain closed. Proceed to step 4 only if outer validation recall >=35% and literal false captions/min <=2.",
+  "encoder": "Same supplied YAMNet mono embeddings as round 2; same balanced logistic heads and C=0.1",
+  "base_data": "Both original and voice-reduced variants, with siblings in the same clip fold",
+  "augmentation": {
+    "donors": "Only human-labeled game-sound intervals from allowed training clips; extract from their aligned voice-reduced copies",
+    "recipients": "Other allowed training clips, randomly using original or cleaned backgrounds. A deterministic recipient assignment uses clip IDs only; if the recipient is excluded, the recipe is skipped before loading any waveform or cache.",
+    "gains": [0.35, 0.65, 1.0],
+    "pan": ["left", "right"],
+    "fade_ms": 5,
+    "context_s": 0.5,
+    "windows_per_mix": "Up to three 0.975-second windows at different positions, plus identical background-only counterfactual windows with their own original labels",
+    "labels": "Retain recipient targets and shift/clip all overlapping donor game-sound labels, not just the selected event. No human CSV is modified.",
+    "isolation": "Every example records both donor and recipient IDs. Both must be inside that individual inner/outer training fold, including on cache hits. No mixing or training uses validation clips, their cleaned siblings, any test clip or Xonotic.",
+    "limitation": "These are copies of mixed gameplay snippets, not isolated studio effects; they can retain speech or other sounds. More synthetic examples are not new independent recordings."
+  },
+  "seed": 20261102,
+  "threshold_grid": [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.925, 0.95, 0.96, 0.97, 0.98, 0.985, 0.99, 0.9925, 0.995, 0.9975, 0.999, 0.9995, 0.9999, 0.99999, 1.000001],
+  "threshold_rule": "Strict inner-validation false/min <=2 eligibility; among eligible thresholds maximize event recall, then fewer unmatched/min and higher threshold. 1.000001 is an explicit abstain-all candidate, guaranteeing feasibility without silently relaxing the false-caption constraint. Never select thresholds on the outer validation clip.",
+  "evaluation": "Same nested whole-clip leave-one-clip-out, original mixed outer audio, frozen round-0 caption scheduler and scorer, centered output hidden. Report literal false/min and broader unmatched/min. Inner feasibility does not guarantee outer performance.",
+  "gate": {"minimum_outer_recall_pct": 35, "maximum_outer_false_per_min": 2},
+  "sealed_tests": "Do not read media, labels, baseline prediction caches, or test scores. No final after test in this task."
+}
