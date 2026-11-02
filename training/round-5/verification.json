@@ -1,0 +1,17 @@
+{
+  "tests_passed": 49,
+  "original_round2_full_head_parameters_bit_exact": true,
+  "fixed09_original_outer_predictions_reproduce_saved_round2_curve": true,
+  "reproduced_legacy_fixed09_reference": {
+    "threshold": 0.9,
+    "caught_pct": 45.0,
+    "false_per_min": 5.070514153609418,
+    "unmatched_per_min": 15.962729742844465
+  },
+  "new_part_held_out_predictions_identical_old_and_new": true,
+  "all_outer_exclusions_passed": true,
+  "five_unlabeled_parts_excluded": true,
+  "frozen_source_hashes_unchanged": true,
+  "live_checkpoint_unchanged": true,
+  "sealed_tests_opened": false
+}

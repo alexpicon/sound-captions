@@ -1,0 +1,14 @@
+{
+  "verdict": "Basically no useful overall improvement: small mixed trade-off; gunshots helped, footsteps hurt.",
+  "same_12_delta": {
+    "caught_sounds": 1,
+    "false_captions": 1,
+    "caught_percentage_points": 2.0833333333333357,
+    "false_per_min": 0.15810517191345852
+  },
+  "gunshot_change": "+2 caught, -2 false captions",
+  "footsteps_change": "-1 caught, +3 false captions",
+  "interpretation": "A one-event overall gain is not a clear win when false captions are the higher priority. Counts are small; no statistical significance or final-test improvement claimed.",
+  "active_checkpoint_changed": false,
+  "sealed_tests_opened": false
+}

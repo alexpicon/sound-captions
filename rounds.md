@@ -369,3 +369,61 @@ A 12-second paced development-clip smoke test processed 23 windows; median infer
 Native OBS integration and a routed game-only hardware input still need a local check: OBS was not running and no suitable routed game bus was available during implementation. The adapter tests used simulated OBS/device inputs; the model and outbound WebSocket used real local development audio. The helper does not account for OBS mixer volume/pan/filter changes in file-follow mode. Instructions: `LIVE_HELPER.md`; launcher: `Try helper.command`. Source hashes and check results are in `training/policy-v2-round-2/helper-checks.json`.
 
 The final-only runner is prepared but **was not run**. Both before and after will use the frozen policy-v2 postprocessor/scorer; historical old-policy scores remain preserved. All sealed real/CS and lab-final clips stay closed. Step 4 stops here for the user to try; step 5 still requires mockup approval.
+
+## Training round 5 — add labeled skirmish part 01; unchanged round-2 setup
+
+**Verdict: basically no useful overall improvement.** Gunshots improved, footsteps worsened. Across the same 12 held-out development clips, the new model caught **one more sound** and emitted **one more false caption**. Given the user’s preference against false captions, this is not a clear win. No further tuning or training rounds were attempted.
+
+Training-data change only: include the 34 reviewed human labels from `17 skirmish game audio - part 01.csv` (14 footsteps, 12 gunshots, 1 reload, 7 talking spans). Its 14 active non-centered targets are 9 footsteps and 5 gunshots. Parts 02–06 are **explicitly excluded**: their audio, features and answer rows were not loaded, and their header-only CSVs were never treated as negative examples. Only part 01 of the new recording participates. No sealed media, answer keys, caches or metrics were opened.
+
+Frozen before fitting: the identical YAMNet mono embedding, 0.975-second window/0.48-second hop, original multi-label window targets, four independent balanced logistic heads (`C=0.1`, fold-fitted standardizer, liblinear, same seed), original stereo direction, raw two-slot scheduler and policy-v2 postprocessor/scorer. Every comparison uses the user-specified fixed **0.9 threshold**, without an inner threshold search. The original eleven retain original + aligned voice-reduced training variants. The game-audio-only minute uses **original audio only**, as previously instructed. No new separator copies or cut/paste augmentation were made. The previously applied +20 dB preparation gain on that minute was not changed.
+
+### Fair comparison — same 12 development clips
+
+Both systems score the same held-out originals with identical target sets and timing. For each original clip, the old control trains on the other ten original clips; the new control trains on those same ten plus part 01. On the held-out part-01 fold, **both** train on only the original eleven: the new minute cannot train on its own scoring fold. Whole recording groups and their voice-reduced siblings stay outside validation. The old control is reconstructed from the unchanged round-2 procedure, rather than evaluated on clips its full-data model has seen.
+
+| Model | Caught / targets | Recall | False captions | False/min | Arrows correct when shown | Arrow coverage | Unmatched/min |
+|---|---|---|---|---|---|---|---|
+| Old round-2 control | 20/48 | 41.7% | 31 | 4.90 | 8/10 (80.0%) | 50.0% | 13.12 |
+| Round 5 (+part 01) | 21/48 | 43.8% | 32 | 5.06 | 9/11 (81.8%) | 52.4% | 12.96 |
+
+Per-label rates use the same total 6.325 minutes, grouped by predicted label for false captions. Arrows are scored only for caught events with known left/right truth and a shown left/right arrow. No-arrow cases are reported through coverage, not silently counted as correct.
+
+| Sound | Model | Caught / targets | Recall | False/min | Arrows correct when shown |
+|---|---|---|---|---|---|
+| footsteps | Old round 2 | 4/14 | 28.6% | 2.06 | 2/2 (100.0%) |
+| footsteps | Round 5 | 3/14 | 21.4% | 2.53 | 2/2 (100.0%) |
+| gunshot | Old round 2 | 16/34 | 47.1% | 2.85 | 6/8 (75.0%) |
+| gunshot | Round 5 | 18/34 | 52.9% | 2.53 | 7/9 (77.8%) |
+
+The class trade-off is explicit: **gunshots +2 caught and −2 false captions; footsteps −1 caught and +3 false captions**. Arrow changes are based on only 10 versus 11 scored arrows overall, so they are not evidence of a large direction improvement. Reload output remains disabled and explosion recall is unavailable because there are no explosion targets.
+
+### Original eleven only — isolates the effect of adding training data
+
+| Model | Caught / targets | Recall | False/min | Footsteps caught | Gunshots caught | Arrow correct |
+|---|---|---|---|---|---|---|
+| Old round-2 control | 15/34 | 44.1% | 4.13 | 4/5 (80.0%) | 11/29 (37.9%) | 7/9 (77.8%) |
+| Round 5 | 16/34 | 47.1% | 4.32 | 3/5 (60.0%) | 13/29 (44.8%) | 8/10 (80.0%) |
+
+Do not compare this old-control 44.1% directly to the earlier policy-v2 replay’s 47.1%: that earlier replay preserved the historical 0.8 threshold on clip 03 and 0.9 on ten others. This requested comparison fixes **both models to 0.9 on every fold**. The reconstructed original full-data head reproduces all stored round-2 head/scaler parameters **bit for bit**, and its original-11 outer predictions reproduce the saved round-2 fixed-0.9 legacy calibration curve exactly. This verifies the old control rather than silently changing its setup.
+
+### New minute held out — not a training-set score
+
+Both models give exactly the same held-out result on part 01, as expected because both use the original eleven on that fold: **5/14 caught (35.7%), 9.00 false captions/min, arrows 1/1 with only 20% arrow coverage**. Footsteps are 0/9, gunshots 5/5. This is not an after-training score on the minute itself. The identical result prevents the added clip from inflating its own measured benefit.
+
+### Context breakdown, same twelve clips
+
+| Context | Model | Caught / targets | Recall | False/min | Arrow correct |
+|---|---|---|---|---|---|
+| quiet | Old round 2 | 14/26 | 53.8% | 6.40 | 6/6 |
+| quiet | Round 5 | 14/26 | 53.8% | 6.83 | 6/6 |
+| talking | Old round 2 | 6/22 | 27.3% | 4.02 | 2/4 |
+| talking | Round 5 | 7/22 | 31.8% | 4.02 | 3/5 |
+| music | Old round 2 | N/A | N/A | N/A | N/A |
+| music | Round 5 | N/A | N/A | N/A | N/A |
+
+Quiet means outside the supplied talking/music spans; agent voice lines remain talking context. False captions require same-label span/onset support under policy v2. Unmatched counts additionally include later valid burst captions, so unmatched/min is not a wrong-caption rate. Onset recall stays at the original 1-second tolerance, with centered targets excluded from primary scoring. Full all-direction and confusion/context details remain in the machine-readable metrics.
+
+Validation: **49 tests passed**, including explicit exclusion of unlabeled sibling parts and held-out recording groups. All 12 input annotation hashes, frozen source hashes and the old checkpoint hash were verified unchanged after the run. The current live helper still uses the unchanged original round-2 checkpoint. The newly fitted full-data round-5 checkpoint is saved separately under `.local/training-runs/round-5/model.joblib`; it was not deployed or used to score its own training clips.
+
+Recorded artifacts: `training/round-5/protocol.json`, `metrics.json`, `fold-audit.json`, `verification.json`, `checkpoint.json`, and `conclusion.json`. Both systems’ complete outer probability arrays and caption lists were saved locally, so future threshold reviews do not require refitting. **No sealed tests opened. No new threshold, policy, encoder, direction, live-helper or overlay changes.**

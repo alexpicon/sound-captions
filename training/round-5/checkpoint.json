@@ -1,0 +1,22 @@
+{
+  "model": ".local/training-runs/round-5/model.joblib",
+  "threshold": 0.9,
+  "active_live_checkpoint_changed": false,
+  "training_ids": [
+    "3ecdd84a4e12c7f7",
+    "6158ce1b2191ed58",
+    "731add80a90e456a",
+    "78de699728bc538b",
+    "88bb5aa1c72894c4",
+    "ab4b8d61fd23ae43",
+    "b0b8b2ea1fe031a9",
+    "c14ae26991ee5cd0",
+    "c2d607f46586c2ca",
+    "d0919d4a3830c87e",
+    "fbad448bb2e501ec",
+    "ff282effd9efab9e"
+  ],
+  "original_only_ids": [
+    "78de699728bc538b"
+  ]
+}
