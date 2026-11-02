@@ -34,7 +34,7 @@ def estimate_direction(stereo):
     return "center" if side < .03 else "unknown"
 
 
-def generate_suggestions(dataset, keys):
+def generate_suggestions(dataset, keys, labels=None):
     for key in keys:
         dataset.clip(key)  # Reject test IDs before importing or executing a model.
     import numpy as np
@@ -53,9 +53,15 @@ def generate_suggestions(dataset, keys):
     classes = {"footsteps": ([48], .06), "gunshot": ([421, 422, 423, 424], .08),
                "explosion": ([420], .12),
                "talking": (list(range(0, 11)), .4), "music": ([132], .25)}
+    if labels is not None:
+        if not labels or set(labels) - set(classes):
+            raise ValueError("Unsupported suggestion labels")
+        classes = {label: classes[label] for label in labels}
     fingerprint = hashlib.sha256(model.read_bytes()).hexdigest()
     for key in keys:
         clip = dataset.clip(key)  # Intentionally cannot open test-mode media.
+        clip_classes = {label: value for label, value in classes.items()
+                        if clip.get("suggestion_labels") is None or label in clip["suggestion_labels"]}
         target = dataset.root / ".local" / "suggestions" / f"{key}.json"
         if target.exists():
             print(f"Keep existing suggestions: {clip['path'].name}", flush=True)
@@ -65,7 +71,7 @@ def generate_suggestions(dataset, keys):
             continue
         audio = decode(clip["path"], 16000)
         duration = dataset.metadata(key)["duration"]
-        candidates = {label: [] for label in classes}
+        candidates = {label: [] for label in clip_classes}
         hop = 7680
         for offset in range(0, len(audio), hop):
             frame = audio[offset:offset + size]
@@ -73,14 +79,14 @@ def generate_suggestions(dataset, keys):
                 frame = np.pad(frame, ((0, size - len(frame)), (0, 0)))
             mono, side = frame.mean(axis=1), (frame[:, 0] - frame[:, 1]) * .5
             predictions = []
-            for channel in [mono, side]:
+            for channel in ([mono] if set(clip_classes) <= {"talking", "music"} else [mono, side]):
                 interpreter.set_tensor(input_info["index"], channel.reshape(input_info["shape"]).astype(np.float32))
                 interpreter.invoke()
                 predictions.append(interpreter.get_tensor(score_info["index"]).reshape(-1, 521).max(axis=0))
             start, end = offset / 16000, min((offset + size) / 16000, duration)
             if start >= end:
                 continue
-            for label, (indices, threshold) in classes.items():
+            for label, (indices, threshold) in clip_classes.items():
                 # Speech/music context comes from the original mono mix only.
                 score = float((predictions[0] if label in {"talking", "music"} else np.maximum(*predictions))[indices].max())
                 if score >= threshold:
@@ -103,7 +109,7 @@ def generate_suggestions(dataset, keys):
         rows.sort(key=lambda event: (event["start_s"], event["label"]))
         atomic_json(target, {"model": "YAMNet TFLite", "model_sha256": fingerprint,
                              "purpose": "human-review proposals only; not training labels", "rows": rows,
-                             "reload_supported": False, "thresholds": {k: v[1] for k, v in classes.items()}})
+                             "reload_supported": False, "thresholds": {k: v[1] for k, v in clip_classes.items()}})
         print(f"{clip['path'].name}: {len(rows)} unconfirmed proposals", flush=True)
 
 
@@ -133,6 +139,9 @@ def remove_voice(audio, sample_rate=44100):
 
 def augment(dataset, key):
     clip = dataset.clip(key)  # Reject test IDs before importing or executing a model.
+    if not clip.get("voice_removal_required", True):
+        print(f"No voice-removed copy needed for {clip['path'].name}", flush=True)
+        return
     import numpy as np
     import soundfile as sf
     reviewed = workspace(dataset, key)
@@ -174,11 +183,12 @@ def main():
     parser.add_argument("--id")
     parser.add_argument("--group", default="valorant", choices=["valorant", "xonotic_second_game"])
     parser.add_argument("--validation-id", action="append", default=[])
+    parser.add_argument("--labels", nargs="+", choices=["talking", "music", "footsteps", "gunshot", "explosion"])
     args = parser.parse_args()
     dataset = Dataset(ROOT)
     if args.command == "suggest":
         keys = [args.id] if args.id else [key for key, clip in dataset.clips.items() if clip["group"] == args.group]
-        generate_suggestions(dataset, keys)
+        generate_suggestions(dataset, keys, args.labels)
     elif args.command == "augment":
         if not args.id:
             parser.error("augment requires --id")

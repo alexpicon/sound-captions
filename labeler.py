@@ -82,7 +82,11 @@ class Dataset:
                 if not path.is_relative_to(self.root) or path.suffix not in {".mp4", ".wav"}:
                     raise ValueError("Invalid development media path.")
                 clip_id = hashlib.sha256(relative.encode()).hexdigest()[:16]
-                self.clips[clip_id] = {"path": path, "relative": relative, "group": group}
+                options = manifest.get("clip_options", {}).get(relative, {})
+                self.clips[clip_id] = {"path": path, "relative": relative, "group": group,
+                                      "voice_removal_required": options.get("voice_removal_required", True),
+                                      "suggestion_labels": options.get("suggestion_labels"),
+                                      "fold_group": options.get("fold_group", clip_id)}
         for group, paths in manifest["sealed_tests"].items():
             if group == "lab_final":
                 continue  # This answer key already exists; keep the final lab clip closed.
@@ -223,8 +227,9 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_file(self.server.dataset.clip(clip_id, mode)["path"], ranges=True)
             elif url.path == "/api/augmentation":
                 from review import augmentation_status
-                self.server.dataset.clip(clip_id)  # Development only.
-                self.json(200, augmentation_status(self.server.dataset.root, clip_id))
+                clip = self.server.dataset.clip(clip_id)  # Development only.
+                self.json(200, augmentation_status(self.server.dataset.root, clip_id)
+                          if clip["voice_removal_required"] else {"state": "not_required"})
             elif url.path in {"/", "/app.js", "/styles.css"}:
                 name = "index.html" if url.path == "/" else url.path[1:]
                 self.send_file(self.server.dataset.root / "labeler-ui" / name)

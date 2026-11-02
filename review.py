@@ -47,6 +47,7 @@ def workspace(dataset, key, mode="development"):
         state = load_json(state_path, {})
         current = state.get("csv_revision") == value["revision"]
         value.update({"suggestions": suggestions(dataset, key, mode),
+                      "voice_removal_required": mode == "development" and dataset.clip(key, mode).get("voice_removal_required", True),
                       "review": {"decisions": state.get("decisions", {}) if current else {},
                                  "complete": bool(current and state.get("complete"))},
                       "review_revision": revision(state_path), "mode": mode})
@@ -76,7 +77,7 @@ def save_workspace(dataset, body, mode="development"):
         atomic_json(state_path, {"csv_revision": result["revision"], "decisions": decisions,
                                  "complete": review["complete"], "mode": mode})
         result = workspace(dataset, key, mode)
-    if mode == "development" and review["complete"]:
+    if mode == "development" and review["complete"] and dataset.clip(key).get("voice_removal_required", True):
         queue_augmentation(dataset.root, key)
     return result
 
@@ -87,6 +88,9 @@ def augmentation_status(root, key):
 
 def queue_augmentation(root, key):
     root = Path(root)
+    from labeler import Dataset
+    if not Dataset(root).clip(key).get("voice_removal_required", True):
+        return
     identity = (str(root), key)
     with PENDING_LOCK:
         if identity in PENDING:
@@ -116,11 +120,19 @@ def queue_augmentation(root, key):
 def training_pairs(dataset, group="valorant", validation_ids=()):
     """Augment training folds only; validation keeps the original mixed audio."""
     pairs = []
+    validation_groups = {dataset.clips[key].get("fold_group", key) for key in validation_ids if key in dataset.clips}
     for key, clip in dataset.clips.items():
-        if clip["group"] != group or key in validation_ids:
+        fold_group = clip.get("fold_group", key)
+        if clip["group"] != group or key in validation_ids or fold_group in validation_groups:
             continue
         value = workspace(dataset, key)
         if not value["review"]["complete"]:
+            continue
+        labels = [{field: row[field] for field in FIELDS} for row in value["rows"] if row["label"] not in {"talking", "music"}]
+        if not clip.get("voice_removal_required", True):
+            pairs.append({"clip_id": key, "fold_group": fold_group, "variant": "original",
+                          "audio": clip["relative"], "labels": labels,
+                          "csv_revision": value["revision"], "game_group": group})
             continue
         status = augmentation_status(dataset.root, key)
         if status.get("state") != "ready" or status.get("csv_revision") != value["revision"]:
@@ -131,9 +143,8 @@ def training_pairs(dataset, group="valorant", validation_ids=()):
         cleaned = dataset.root / status["audio"]
         if not cleaned.is_file():
             continue
-        labels = [{field: row[field] for field in FIELDS} for row in value["rows"] if row["label"] not in {"talking", "music"}]
         for variant, audio in [("original", clip["path"]), ("voice_removed", cleaned)]:
-            pairs.append({"clip_id": key, "fold_group": key, "variant": variant,
+            pairs.append({"clip_id": key, "fold_group": fold_group, "variant": variant,
                           "audio": str(audio.relative_to(dataset.root)), "labels": labels,
                           "csv_revision": value["revision"], "game_group": group})
     return pairs

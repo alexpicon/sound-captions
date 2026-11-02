@@ -4,6 +4,7 @@ const player = $("player");
 let current = null, rows = [], revision = "", duration = 0, dirty = false;
 let editing = null, history = [], loopEnd = null, loading = false, saving = false;
 let mode = "development", suggestions = [], decisions = {}, complete = false, reviewRevision = "", pendingEdit = null;
+let voiceRemovalRequired = true;
 const pending = () => suggestions.filter(row => !decisions[row.id]);
 const query = id => `id=${encodeURIComponent(id)}&mode=${mode}`;
 
@@ -179,6 +180,7 @@ async function loadClip(id) {
     current = id; duration = metadata.duration; rows = annotations.rows; revision = annotations.revision;
     suggestions = annotations.suggestions; decisions = annotations.review.decisions;
     complete = annotations.review.complete; reviewRevision = annotations.review_revision;
+    voiceRemovalRequired = annotations.voice_removal_required !== false;
     dirty = false; history = []; resetEditor();
     $("start").value = "0.000"; $("end").value = Math.min(1, duration).toFixed(3);
     $("start").max = $("end").max = duration.toFixed(3);
@@ -235,6 +237,7 @@ window.addEventListener("keydown", event => {
 });
 async function refreshAugmentation() {
   if (mode === "test") { $("augmentation-state").textContent = "Answer key only. This clip is excluded from suggestions, voice removal, and training."; return; }
+  if (current && !voiceRemovalRequired) { $("augmentation-state").textContent = "Game-audio-only recording. No voice-removed copy needed; finishing prepares the original for training."; return; }
   if (!current || !complete) { $("augmentation-state").textContent = "Finishing the full clip queues a voice-reduced training copy. Save CSV keeps partial progress."; return; }
   const requestedId = current;
   try {

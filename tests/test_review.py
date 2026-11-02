@@ -100,5 +100,37 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(training_pairs(self.dataset), [])
 
 
+class OriginalOnlyTests(unittest.TestCase):
+    setUp = ReviewTests.setUp
+    tearDown = ReviewTests.tearDown
+    body = ReviewTests.body
+    @patch('review.queue_augmentation')
+    def test_finished_game_audio_only_uses_original_and_never_queues_separator(self, queue):
+        self.dataset.clips[self.key]['voice_removal_required']=False
+        self.dataset.clips[self.key]['fold_group']='source-17'
+        value=save_workspace(self.dataset,self.body(complete=True,decisions={'guess-1':'accepted'},rows=[self.row]))
+        self.assertFalse(value['voice_removal_required']);queue.assert_not_called()
+        augment(self.dataset,self.key)
+        self.assertFalse((self.root/'.local/augmentation'/self.key).exists())
+        pairs=training_pairs(self.dataset)
+        self.assertEqual(len(pairs),1);self.assertEqual(pairs[0]['variant'],'original')
+        self.assertEqual(pairs[0]['fold_group'],'source-17')
+        self.assertEqual(training_pairs(self.dataset,validation_ids=[self.key]),[])
+
+    @patch('review.queue_augmentation')
+    def test_all_parts_of_recording_excluded_together(self, queue):
+        self.dataset.clips[self.key]['voice_removal_required']=False
+        self.dataset.clips[self.key]['fold_group']='source-17'
+        save_workspace(self.dataset,self.body(complete=True,decisions={'guess-1':'accepted'},rows=[self.row]))
+        path=self.dataset.root/'part2.wav';path.write_bytes((self.root/'train.wav').read_bytes())
+        key=hashlib.sha256(b'part2.wav').hexdigest()[:16]
+        self.dataset.clips[key]={'path':path,'relative':'part2.wav','group':'valorant','voice_removal_required':False,'fold_group':'source-17'}
+        state=workspace(self.dataset,key)
+        save_workspace(self.dataset,{'id':key,'rows':[self.row],'revision':state['revision'],'review_revision':state['review_revision'],'review':{'complete':True,'decisions':{}}})
+        self.assertEqual(len(training_pairs(self.dataset)),2)
+        self.assertEqual(training_pairs(self.dataset,validation_ids=[key]),[])
+        queue.assert_not_called()
+
+
 if __name__ == "__main__":
     unittest.main()

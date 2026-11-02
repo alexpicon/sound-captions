@@ -14,7 +14,13 @@
       "test-audio/real-clips/12 1hp btw.mp4",
       "test-audio/real-clips/13 IM SQUEAKY CLEAN~.mp4",
       "test-audio/real-clips/14 sova poppin off.mp4",
-      "test-audio/real-clips/15 they mad.mp4"
+      "test-audio/real-clips/15 they mad.mp4",
+      "test-audio/real-clips/17 skirmish game audio - part 01.mp4",
+      "test-audio/real-clips/17 skirmish game audio - part 02.mp4",
+      "test-audio/real-clips/17 skirmish game audio - part 03.mp4",
+      "test-audio/real-clips/17 skirmish game audio - part 04.mp4",
+      "test-audio/real-clips/17 skirmish game audio - part 05.mp4",
+      "test-audio/real-clips/17 skirmish game audio - part 06.mp4"
     ],
     "xonotic_second_game": [
       "test-audio/clips/clip_clean.wav",
@@ -35,7 +41,79 @@
       "test-audio/real-clips/05 CLUTCH.mp4",
       "test-audio/real-clips/10 NINA DEFUSE.mp4"
     ],
-    "lab_final": ["test-audio/clips/clip_voice_final.wav"],
-    "unseen_cs": ["test-audio/real-clips/16 First CS Stream ESEA PUG.mp4"]
+    "lab_final": [
+      "test-audio/clips/clip_voice_final.wav"
+    ],
+    "unseen_cs": [
+      "test-audio/real-clips/16 First CS Stream ESEA PUG.mp4"
+    ]
+  },
+  "clip_options": {
+    "test-audio/real-clips/17 skirmish game audio - part 01.mp4": {
+      "voice_removal_required": false,
+      "suggestion_labels": [
+        "talking"
+      ],
+      "fold_group": "recording-17-skirmish",
+      "source_recording": "test-audio/real-clips/17 skirmish game audio.mp4",
+      "source_start_s": 0,
+      "source_end_s": 60,
+      "gain_db": 20
+    },
+    "test-audio/real-clips/17 skirmish game audio - part 02.mp4": {
+      "voice_removal_required": false,
+      "suggestion_labels": [
+        "talking"
+      ],
+      "fold_group": "recording-17-skirmish",
+      "source_recording": "test-audio/real-clips/17 skirmish game audio.mp4",
+      "source_start_s": 60,
+      "source_end_s": 120,
+      "gain_db": 20
+    },
+    "test-audio/real-clips/17 skirmish game audio - part 03.mp4": {
+      "voice_removal_required": false,
+      "suggestion_labels": [
+        "talking"
+      ],
+      "fold_group": "recording-17-skirmish",
+      "source_recording": "test-audio/real-clips/17 skirmish game audio.mp4",
+      "source_start_s": 120,
+      "source_end_s": 180,
+      "gain_db": 20
+    },
+    "test-audio/real-clips/17 skirmish game audio - part 04.mp4": {
+      "voice_removal_required": false,
+      "suggestion_labels": [
+        "talking"
+      ],
+      "fold_group": "recording-17-skirmish",
+      "source_recording": "test-audio/real-clips/17 skirmish game audio.mp4",
+      "source_start_s": 180,
+      "source_end_s": 240,
+      "gain_db": 20
+    },
+    "test-audio/real-clips/17 skirmish game audio - part 05.mp4": {
+      "voice_removal_required": false,
+      "suggestion_labels": [
+        "talking"
+      ],
+      "fold_group": "recording-17-skirmish",
+      "source_recording": "test-audio/real-clips/17 skirmish game audio.mp4",
+      "source_start_s": 240,
+      "source_end_s": 300,
+      "gain_db": 20
+    },
+    "test-audio/real-clips/17 skirmish game audio - part 06.mp4": {
+      "voice_removal_required": false,
+      "suggestion_labels": [
+        "talking"
+      ],
+      "fold_group": "recording-17-skirmish",
+      "source_recording": "test-audio/real-clips/17 skirmish game audio.mp4",
+      "source_start_s": 300,
+      "source_end_s": 325.161,
+      "gain_db": 20
+    }
   }
 }
